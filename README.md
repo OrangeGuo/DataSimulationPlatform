@@ -1,7 +1,7 @@
 
     
 
-## 本地开发 ##
+## 本地 ##
 
 	// 开启服务器，浏览器访问 http://localhost:8080
 	npm run dev
