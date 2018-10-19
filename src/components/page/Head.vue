@@ -1,6 +1,6 @@
 <template>
 	<div class="header">
-		<div class="logo">后台管理系统</div>
+
 		<div class="welcome">欢迎<span class="username">&nbsp;<slot name="username"></slot>&nbsp;</span>来到后台管理系统</div>
 		<div class="user-info">
 			<el-dropdown trigger="click" @command="handleCommand">
@@ -22,6 +22,18 @@
 			  <el-menu-item index="/page/layout">
 			  	布局相关
 			  </el-menu-item>
+                <el-menu-item >
+                    任务管理
+                </el-menu-item>
+                <el-menu-item>
+                    指标配置
+                </el-menu-item>
+                <el-menu-item>
+                    灵敏度分析
+                </el-menu-item>
+                <el-menu-item>
+                    数据配置
+                </el-menu-item>
 			  <el-submenu index="2" :show-timeout="300" :hide-timeout="150">
 			    <template slot="title">全局参考</template>
 			    <el-menu-item index="/page/overall/font" >字体</el-menu-item>
@@ -92,7 +104,7 @@
     }
     .header .welcome {
     	position:absolute;
-    	left:50%;
+    	left:20%;
     	top:50%;
     	-webit-transform:translate3d(-50%,-50%,0);
     	transform:translate3d(-50%,-50%,0);
