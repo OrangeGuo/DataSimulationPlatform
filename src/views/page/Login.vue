@@ -11,10 +11,13 @@
 						<el-input v-model="userInfo.userpwd" type="password" placeholder="请输入密码" @keyup.enter.native="submit('form')"/>
 						<!-- .native的意思就是当你给一个vue组件绑定事件时候，要加上native！如果是普通的html元素！就不需要-->
 					</el-form-item>
-					<div class="login-btn">
-						<el-button type="primary" @click="submit('form')">登 录</el-button>
-					</div>
-					<p class="login-til">PS：用户名和密码均为：admin</p>
+
+
+						    <el-button round type="primary" @click="submit('form')">    登 录     </el-button>
+                            <el-button round type="primary" @click="register">   注 册    </el-button>
+
+
+					<p class="login-til">当前counter：{{counter}}</p>
 				</el-form>
 			</div>
 		</div>
@@ -24,7 +27,9 @@
 <script type="text/javascript">
 	export default {
 		data () {
+
 			return {
+			    counter:0,
 				userInfo : {
 					username:"",
 					userpwd:""
@@ -38,6 +43,8 @@
 					]
 				}
 			}
+
+
 		},
 		methods : {
 			submit  (formname)  {
@@ -70,9 +77,19 @@
 	               		self.$message.warning("账号或者密码有误");
 	               	}
 	            });
-			}
+			},
+            register () {
+			    this.counter++;
+			    this.$message.warning("注册");
+                let mysql = require('mysql');
+            }
 		}
 	}
+
+
+
+
+
 </script>
 
 <style scoped>
