@@ -81,7 +81,6 @@
             register () {
 			    this.counter++;
 			    this.$message.warning("注册");
-                let mysql = require('mysql');
             }
 		}
 	}
