@@ -14,7 +14,7 @@
 
 
 						    <el-button round type="primary" @click="submit('form')">    登 录     </el-button>
-                            <el-button round type="primary" @click="addUser">   注 册    </el-button>
+                            <el-button round type="primary" @click="register">   注 册    </el-button>
 
 
 					<p class="login-til">当前counter</p>
@@ -78,11 +78,14 @@
 	               	}
 	            });
 			},
+            register(){
+			  this.$router.push('./register')
+            },
             addUser() {
         var name = this.userInfo.username;
         var age = this.userInfo.userpwd;
         this.$message.warning("账号或者密码有误");
-        this.$http.get('/api/user/addUser', {
+        this.$http.post('/api/user/addUser', {
           username: name,
           age: age
         },{}).then((response) => {

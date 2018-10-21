@@ -94,11 +94,11 @@ export default new Router({
 		{
 			path:'/login',//登陆
 			//component: resolve => require(['../components/page/Login.vue'],resolve)
-			component: Register
+			component: Login
 		},
 		{
-			path:'/demo',
-			component:Demo
+			path:'/register',
+			component:Register
 		},
 		{
 			path:'/page',//页面主体
