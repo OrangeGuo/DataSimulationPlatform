@@ -5,19 +5,19 @@
 			<div class="login-wrap-from">
 				<el-form :model="userInfo" :rules="rules" ref="form" label-width="0px" class="userinfo">
 					<el-form-item prop="username">
-						<el-input v-model="userInfo.username" placeholder="请输入用户名"/>
+						<el-input v-model="userInfo.username" name="username" placeholder="请输入用户名"/>
 					</el-form-item>
 					<el-form-item prop="userpwd">
-						<el-input v-model="userInfo.userpwd" type="password" placeholder="请输入密码" @keyup.enter.native="submit('form')"/>
+						<el-input v-model="userInfo.userpwd" name="age" type="password" placeholder="请输入密码" @keyup.enter.native="submit('form')"/>
 						<!-- .native的意思就是当你给一个vue组件绑定事件时候，要加上native！如果是普通的html元素！就不需要-->
 					</el-form-item>
 
 
 						    <el-button round type="primary" @click="submit('form')">    登 录     </el-button>
-                            <el-button round type="primary" @click="register">   注 册    </el-button>
+                            <el-button round type="primary" @click="addUser">   注 册    </el-button>
 
 
-					<p class="login-til">当前counter：{{counter}}</p>
+					<p class="login-til">当前counter</p>
 				</el-form>
 			</div>
 		</div>
@@ -29,7 +29,7 @@
 		data () {
 
 			return {
-			    counter:0,
+
 				userInfo : {
 					username:"",
 					userpwd:""
@@ -78,10 +78,18 @@
 	               	}
 	            });
 			},
-            register () {
-			    this.counter++;
-			    this.$message.warning("注册");
-            }
+            addUser() {
+        var name = this.userInfo.username;
+        var age = this.userInfo.userpwd;
+        this.$message.warning("账号或者密码有误");
+        this.$http.get('/api/user/addUser', {
+          username: name,
+          age: age
+        },{}).then((response) => {
+          console.log(response);
+
+        })
+      }
 		}
 	}
 
