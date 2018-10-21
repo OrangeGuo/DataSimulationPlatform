@@ -15,7 +15,7 @@
 						<!-- .native的意思就是当你给一个vue组件绑定事件时候，要加上native！如果是普通的html元素！就不需要-->
 					</el-form-item>
 
-                    <el-button round type="primary" @click="submit('form')" style="display:block;margin:0 auto">    注册    </el-button>
+                    <el-button round type="primary" @click="UsernameIsRight" style="display:block;margin:0 auto">    注册    </el-button>
 
 
 
@@ -31,7 +31,9 @@
 		data () {
 
 			return {
-			    counter:0,
+
+                UsernameFlag:1,
+                UserpwdFlag:1,
 				userInfo : {
 					username:"",
 					userpwd:"",
@@ -53,19 +55,49 @@
 
 		},
 		methods : {
-			submit  (formname)  {
-				let self = this;
-				self.$refs[formname].validate(
-					(valid) => {
-						if(valid){
-							self.testUser();
-						}else{
-							console.error("注册失败");
-							return false;
-						}
-					}
-				)
-			},
+
+
+	 UsernameIsRight(){
+	     let len = 0;
+
+	     let flag=this.UsernameFlag;
+	     for (let i=0; i<this.userInfo.username.length; i++) {
+	      let c = this.userInfo.username.charCodeAt(i);
+	     //单字节加1
+	      if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) {
+	        len++;
+	      }
+	      else {
+	       len+=2;
+	       flag = false;
+	      }
+	     }
+	     if(len>16||len<5)
+	       flag=false;
+
+	     if(!flag)
+	         this.$message.warning("账号不可含有中文和特殊字符，且长度不可超过16位");
+         len = 0;
+
+
+	     flag=this.UserpwdFlag;
+         len =0;
+         for(let i=0;i<this.userInfo.userpwd.length;i++){
+         let code = this.userInfo.userpwd.charCodeAt(i);
+        if(code < 48 || code > 57 && code < 65 || code > 90 && code < 97 || code > 122){
+            flag= false;
+        }
+               else{
+                   len++;
+        }
+    }
+        if(len<5||len>16)
+        flag = false;
+        if(!flag)
+             this.$message.warning("密码必须为5-16位，且必须含有数字和字母");
+
+	 },
+
 			testUser () {
 				const self = this;
 	           /* if(process.env.NODE_ENV === 'development'){
