@@ -8,30 +8,45 @@ var $sql = require('../sqlMap');
 var conn = mysql.createConnection(models.mysql);
 
 conn.connect();
-var jsonWrite = function(res, ret) {
-  if(typeof ret === 'undefined') {
-    res.json({
-      code: '1',
-      msg: '操作失败'
-    });
-  } else {
-    res.json(ret);
-  }
+var jsonWrite = function (res, ret) {
+    if (typeof ret === 'undefined') {
+        res.json({
+            code: '1',
+            msg: '操作失败'
+        });
+    } else {
+        res.json(ret);
+
+    }
 };
 
 // 增加用户接口
 router.post('/addUser', (req, res) => {
-  var sql = $sql.user.add;
-  var params = req.body;
-  console.log(params);
-  conn.query(sql, [params.username, params.age], function(err, result) {
-    if (err) {
-      console.log(err);
-    }
-    if (result) {
-      jsonWrite(res, result);
-    }
-  })
+    var sql = $sql.user.add;
+    var params = req.body;
+    console.log(params);
+    conn.query(sql, [params.username, params.age], function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        if (result) {
+            jsonWrite(res, result);
+        }
+    })
 });
+router.post('/listUser', (req, res) => {
+    let sql = $sql.user.list;
+    //var params = req.body;
+    console.log("hello");
+    conn.query(sql, function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        if (result) {
+            //console.log(res);
 
+            jsonWrite(res, result);
+        }
+    })
+});
 module.exports = router;
