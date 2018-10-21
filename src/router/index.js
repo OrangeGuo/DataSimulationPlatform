@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 /* 以下为页面组件 */
 import Login from '../views/page/Login';	//登录页
+import Register from '../views/page/Register';
 import Page from '../components/page/Page';	//主页面模板
 import Readme from '../views/page/Readme';	//了解系统
 import ResetPwd from '../views/page/ResetPwd';//重置密码
@@ -93,7 +94,7 @@ export default new Router({
 		{
 			path:'/login',//登陆
 			//component: resolve => require(['../components/page/Login.vue'],resolve)
-			component: Login
+			component: Register
 		},
 		{
 			path:'/demo',
