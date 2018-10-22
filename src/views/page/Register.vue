@@ -19,8 +19,6 @@
                     <el-button round type="primary" @click="UsernameIsRight" style="display:block;margin:0 auto"> 注册
                     </el-button>
 
-
-                    <p class="login-til" align="center">当前counter：</p>
                 </el-form>
             </div>
         </div>

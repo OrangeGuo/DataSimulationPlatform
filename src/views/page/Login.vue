@@ -16,9 +16,6 @@
 
                     <el-button round type="primary" @click="login"> 登 录</el-button>
                     <el-button round type="primary" @click="register"> 注 册</el-button>
-
-
-                    <p class="login-til">当前counter</p>
                 </el-form>
             </div>
         </div>
