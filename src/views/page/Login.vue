@@ -62,33 +62,20 @@
                 )
             },
             login() {
-
-                let username = this.userInfo.username;
-                let password = this.userInfo.userpwd;
-                let flag = false;
-                flag = this.$http.post('/api/user/listUser', {
-                    username: username,
-                    password: password
-                }, {}).then((response) => {
-
-                    let result = response.data;
-                    for (let i = 0; i < result.length; i++) {
-                        console.log(result[i].username);
-                        if (result[i].username === username && result[i].password === password) {
-                            return true;
-
-                        }
+                const self = this;
+                self.$axios.post('/api/user/listUser').then((res) => {
+                    let rel = res.data.some(item => {
+                        return item.username === self.userInfo.username && item.password === self.userInfo.userpwd;
+                    });
+                    if (rel) {
+                        self.$message.success("登录成功!");
+                        localStorage.setItem('user-name', self.userInfo.username);
+                        localStorage.setItem('user-pwd', self.userInfo.userpwd);
+                        self.$router.push('./page');
+                    } else {
+                        self.$message.warning("账号或者密码有误");
                     }
-                    return false;
-                })
-                if (!flag)
-                    this.$message.warning("账户或密码错误");
-                else {
-                    this.$message.success("登录成功!");
-                    //localStorage.setItem('user-name', this.userInfo.username);
-                    //localStorage.setItem('user-pwd', this.userInfo.userpwd);
-                    this.$router.push('./page')
-                }
+                });
             },
             testUser() {
                 const self = this;
