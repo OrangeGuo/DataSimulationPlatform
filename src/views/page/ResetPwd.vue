@@ -82,18 +82,16 @@
 				}
 			},
 			submitForm (name) {
-				let self = this;
-				self.$refs[name].validate(
-					(valid) => {
-						if(valid){
-							self.$message("验证通过！");
-							self.$router.back();
-						}else{
-							self.$message.error("操作失败");
-							return false;
-						}
-					}
-				)
+                let  self=this;
+                this.$http.post('/api/user/updatePass', {
+                        username: localStorage.getItem("user-name"),
+                        password: self.form.pass
+                    }, {}).then((response) => {
+                        //console.log(response);
+                    }).then(() => {
+                    this.$message.success("修改成功！");
+                    localStorage.setItem('user-pwd', self.form.pass);
+                   });
 			},
 			resetForm (name) {
 				this.$refs[name].resetFields();

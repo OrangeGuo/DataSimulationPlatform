@@ -3,7 +3,8 @@ var sqlMap = {
   // 用户
   user: {
       add: 'insert into user( username, password) values ( ?, ?)',
-      list: 'select username,password from user'
+      list: 'select username,password from user',
+      update: 'update user set password=? where username=?'
   }
 }
 module.exports = sqlMap
