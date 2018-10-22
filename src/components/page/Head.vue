@@ -22,18 +22,7 @@
 			  <el-menu-item index="/page/layout">
 			  	布局相关
 			  </el-menu-item>
-                <el-menu-item >
-                    任务管理
-                </el-menu-item>
-                <el-menu-item>
-                    指标配置
-                </el-menu-item>
-                <el-menu-item>
-                    灵敏度分析
-                </el-menu-item>
-                <el-menu-item>
-                    数据配置
-                </el-menu-item>
+
 			  <el-submenu index="2" :show-timeout="300" :hide-timeout="150">
 			    <template slot="title">全局参考</template>
 			    <el-menu-item index="/page/overall/font" >字体</el-menu-item>
@@ -58,6 +47,7 @@
 		data () {
 			return {
 				activeIndex:"/page/layout",
+                index:"",
 				thumbImg:require('static/img/head-icon.jpg')
 			}
 		},

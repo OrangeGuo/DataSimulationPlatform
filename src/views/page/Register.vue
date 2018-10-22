@@ -107,11 +107,29 @@
                 }
                 let username = this.userInfo.username;
                 let userpwd = this.userInfo.userpwd;
+                flag = this.$http.post('/api/user/listUser', {
+                    username: username,
+                    password: userpwd
+                }, {}).then((response) => {
+
+                    let result = response.data;
+                    for (let i = 0; i < result.length; i++) {
+                        console.log(result[i].username);
+                        if (result[i].username === username ) {
+                            return false;
+                        }
+                    }
+                    return true;
+                })
+                if (!flag) {
+                    this.$message.warning("账户已存在!");
+                    return;
+                }
                 this.$http.post('/api/user/addUser', {
                     username: username,
                     password: userpwd
                 }, {}).then((response) => {
-                    console.log(response);
+                    //console.log(response);
                 });
                 this.$message.success("注册成功！");
                 this.$router.push('./login');

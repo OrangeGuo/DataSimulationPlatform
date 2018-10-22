@@ -76,7 +76,7 @@
                         console.log(result[i].username);
                         if (result[i].username === username && result[i].password === password) {
                             return true;
-                            break;
+
                         }
                     }
                     return false;
@@ -85,8 +85,8 @@
                     this.$message.warning("账户或密码错误");
                 else {
                     this.$message.success("登录成功!");
-                    localStorage.setItem('user-name', this.userInfo.username);
-                    localStorage.setItem('user-pwd', this.userInfo.userpwd);
+                    //localStorage.setItem('user-name', this.userInfo.username);
+                    //localStorage.setItem('user-pwd', this.userInfo.userpwd);
                     this.$router.push('./page')
                 }
             },
