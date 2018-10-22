@@ -20,7 +20,7 @@
                     </el-button>
 
 
-                    <p class="login-til" align="center">当前counter：{{counter}}</p>
+                    <p class="login-til" align="center">当前counter：</p>
                 </el-form>
             </div>
         </div>
