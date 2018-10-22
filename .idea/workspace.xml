@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8797ff6f-2f30-4979-98f8-5aed594d5083" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/469ea304-5eca-46aa-b9c4-d6085e21646c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/469ea304-5eca-46aa-b9c4-d6085e21646c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/api/userApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/userApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/sqlMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/sqlMap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/page/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/page/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/page/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/page/Register.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -140,13 +141,14 @@
     <session id="-1756369382">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.106" value="1" />
           <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.42" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -157,7 +159,7 @@
           <entry key="md" value="2" />
           <entry key="sql" value="1" />
           <entry key="user" value="4" />
-          <entry key="vue" value="5" />
+          <entry key="vue" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -168,25 +170,27 @@
           <entry key="JavaScript" value="17" />
           <entry key="Markdown" value="2" />
           <entry key="Scratch" value="1" />
-          <entry key="Vue.js" value="5" />
+          <entry key="Vue.js" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="cell" value="16" />
           <entry key="html" value="1" />
-          <entry key="js" value="249" />
+          <entry key="js" value="522" />
+          <entry key="sql" value="11" />
           <entry key="txt" value="3" />
-          <entry key="vue" value="358" />
+          <entry key="vue" value="822" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="1" />
-          <entry key="JavaScript" value="249" />
+          <entry key="JavaScript" value="522" />
           <entry key="PLAIN_TEXT" value="3" />
+          <entry key="SQL" value="11" />
           <entry key="Scratch" value="16" />
-          <entry key="Vue.js" value="358" />
+          <entry key="Vue.js" value="822" />
         </counts>
       </usages-collector>
     </session>
@@ -205,11 +209,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/api/userApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="36" column="11" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
+            <state relative-caret-position="154">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
             </state>
           </provider>
         </entry>
@@ -228,11 +232,23 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/page/Login.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="70" column="29" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
+            <state relative-caret-position="129">
+              <caret line="86" column="47" lean-forward="true" selection-start-line="86" selection-start-column="47" selection-end-line="86" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/page/Register.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="115" column="38" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="38" />
+              <folding>
+                <element signature="n#style#0;n#el-button#0;n#el-form#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -240,35 +256,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/page/Page.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="198">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -291,6 +280,14 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>agianpwd</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>againpwd</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -308,8 +305,9 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/router/index.js" />
         <option value="$PROJECT_DIR$/server/sqlMap.js" />
-        <option value="$PROJECT_DIR$/src/views/page/Login.vue" />
+        <option value="$PROJECT_DIR$/src/views/page/Register.vue" />
         <option value="$PROJECT_DIR$/server/api/userApi.js" />
+        <option value="$PROJECT_DIR$/src/views/page/Login.vue" />
       </list>
     </option>
   </component>
@@ -485,11 +483,11 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22386059" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22654155" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -508,30 +506,6 @@
       <window_info anchor="right" id="SciView" order="3" weight="0.3297587" />
       <window_info anchor="right" id="Database" order="4" visible="true" weight="0.14209116" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21313673" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.30921987" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32907802" />
-      <window_info anchor="bottom" id="Database Console" order="13" weight="0.32907802" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info active="true" anchor="right" id="Database" order="4" visible="true" weight="0.3297587" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -659,9 +633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-          <folding>
-            <element signature="e#1#36#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -675,15 +646,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/index.js">
+    <entry file="file://$PROJECT_DIR$/config/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="682">
+          <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/db.js">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/page/Page.vue">
       <provider selected="true" editor-type-id="text-editor">
@@ -699,31 +667,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://469ea304-5eca-46aa-b9c4-d6085e21646c/schema/dap/table/user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/Login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="70" column="29" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
+        <state relative-caret-position="198">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
@@ -737,10 +684,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/db.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/api/userApi.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="36" column="11" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
+        <state relative-caret-position="154">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/page/Register.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="115" column="38" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#el-button#0;n#el-form#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://469ea304-5eca-46aa-b9c4-d6085e21646c/schema/dap/table/user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/page/Login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="86" column="47" lean-forward="true" selection-start-line="86" selection-start-column="47" selection-end-line="86" selection-end-column="47" />
         </state>
       </provider>
     </entry>

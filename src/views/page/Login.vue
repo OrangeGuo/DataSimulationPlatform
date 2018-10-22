@@ -62,26 +62,43 @@
                 )
             },
             login() {
-                let temp;
-                this.$http.post('/api/user/listUser').then((response) => {
-                    temp=response.body;
 
+                let username = this.userInfo.username;
+                let password = this.userInfo.userpwd;
+                let flag = false;
+                flag = this.$http.post('/api/user/listUser', {
+                    username: username,
+                    password: password
+                }, {}).then((response) => {
+
+                    let result = response.data;
+                    for (let i = 0; i < result.length; i++) {
+                        console.log(result[i].username);
+                        if (result[i].username === username && result[i].password === password) {
+                            return true;
+                            break;
+                        }
+                    }
+                    return false;
                 })
-                //alert(5);
-                //this.$message.warning("88");
-                //this.$message.warning(temp[0]);
-                alert(temp);
-
+                if (!flag)
+                    this.$message.warning("账户或密码错误");
+                else {
+                    this.$message.success("登录成功!");
+                    localStorage.setItem('user-name', this.userInfo.username);
+                    localStorage.setItem('user-pwd', this.userInfo.userpwd);
+                    this.$router.push('./page')
+                }
             },
             testUser() {
                 const self = this;
                 if (process.env.NODE_ENV === 'development') {
                     self.url = 'static/data/account.json';
                 }
-                ;
+
                 self.$axios.get(self.url).then((res) => {
                     let rel = res.data.some(item => {
-                        return item.name == self.userInfo.username && item.password == self.userInfo.userpwd;
+                        return item.name === self.userInfo.username && item.password === self.userInfo.userpwd;
                     });
                     if (rel) {
                         localStorage.setItem('user-name', self.userInfo.username);
@@ -96,16 +113,28 @@
                 this.$router.push('./register')
             },
             addUser() {
-                let name = this.userInfo.username;
-                let age = this.userInfo.userpwd;
-
+                let username = this.userInfo.username;
+                let password = this.userInfo.userpwd;
+                let flag = false;
                 this.$http.post('/api/user/addUser', {
-                    username: name,
-                    age: age
+                    username: username,
+                    password: password
                 }, {}).then((response) => {
-                    console.log(response);
 
+                    let result = response.data;
+                    for (let i = 0; i < result.length; i++) {
+                        if (result[i].username == username && result[i].password == password) {
+                            flag = true;
+                            break;
+                        }
+                    }
                 })
+                if (!flag)
+                    this.$message.warning("账户或密码错误");
+                else {
+                    this.$message.success("登录成功!");
+                    this.$router.push('./page')
+                }
             }
         }
     }

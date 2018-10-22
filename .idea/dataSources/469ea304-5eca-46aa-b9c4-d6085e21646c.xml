@@ -1111,14 +1111,14 @@
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
     <table id="279" parent="2" name="user"/>
-    <column id="280" parent="279" name="name">
+    <column id="280" parent="279" name="username">
       <Position>1</Position>
-      <DataType>char(6)|0s</DataType>
+      <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="279" name="age">
+    <column id="281" parent="279" name="password">
       <Position>2</Position>
-      <DataType>char(5)|0s</DataType>
+      <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
   </database-model>
