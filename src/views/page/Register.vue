@@ -105,34 +105,32 @@
                     this.$message.warning("两次密码不一致");
                     return;
                 }
-                let username = this.userInfo.username;
-                let userpwd = this.userInfo.userpwd;
-                flag = this.$http.post('/api/user/listUser', {
-                    username: username,
-                    password: userpwd
-                }, {}).then((response) => {
+                const self = this;
+                self.$axios.post('/api/user/listUser').then((res) => {
+                    let rel = res.data.some(item => {
+                        return item.username === self.userInfo.username;
+                    });
+                    if (rel) {
+                        flag = false;
 
-                    let result = response.data;
-                    for (let i = 0; i < result.length; i++) {
-                        console.log(result[i].username);
-                        if (result[i].username === username ) {
-                            return false;
-                        }
                     }
-                    return true;
-                })
-                if (!flag) {
-                    this.$message.warning("账户已存在!");
-                    return;
-                }
-                this.$http.post('/api/user/addUser', {
-                    username: username,
-                    password: userpwd
-                }, {}).then((response) => {
-                    //console.log(response);
+                }).then(() => {
+                    if (!flag) {
+                        self.$message.success("账户已经存在");
+                        return;
+
+                    }
+
+                    this.$http.post('/api/user/addUser', {
+                        username: self.userInfo.username,
+                        password: self.userInfo.userpwd
+                    }, {}).then((response) => {
+                        //console.log(response);
+                    });
+                    this.$message.success("注册成功！");
+                    this.$router.push('./login');
                 });
-                this.$message.success("注册成功！");
-                this.$router.push('./login');
+
             },
 
             proToDB() {
