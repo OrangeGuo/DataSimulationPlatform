@@ -5,8 +5,8 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())//解析json
+app.use(bodyParser.urlencoded({extended: false}))//解析表单不含文件
 
 // 后端api路由
 app.use('/api/user', userApi)
