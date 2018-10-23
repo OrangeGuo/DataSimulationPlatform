@@ -1110,13 +1110,40 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="279" parent="2" name="user"/>
-    <column id="280" parent="279" name="username">
+    <table id="279" parent="2" name="tasks"/>
+    <table id="280" parent="2" name="user"/>
+    <column id="281" parent="279" name="taskName">
+      <Position>1</Position>
+      <DataType>char(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="282" parent="279" name="date">
+      <Position>2</Position>
+      <DataType>date|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="283" parent="279" name="detail">
+      <Position>3</Position>
+      <DataType>char(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="284" parent="279" name="tasks_taskName_uindex">
+      <ColNames>taskName</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="285" parent="279" name="tasks_taskName_uindex">
+      <ColNames>taskName</ColNames>
+      <UnderlyingIndexName>tasks_taskName_uindex</UnderlyingIndexName>
+    </key>
+    <column id="286" parent="280" name="username">
       <Position>1</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="279" name="password">
+    <column id="287" parent="280" name="password">
       <Position>2</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
