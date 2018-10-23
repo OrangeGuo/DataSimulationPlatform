@@ -2,7 +2,7 @@
     <div class="wraper">
         <div class="login-wrap">
             <div class="login-wrap-title">大数据仿真平台</div>
-            <div class="login-wrap-from">
+            <div class="login-wrap-from" align="center">
                 <el-form :model="userInfo" :rules="rules" ref="form" label-width="0px" class="userinfo">
                     <el-form-item prop="username">
                         <el-input v-model="userInfo.username" name="username" placeholder="请输入用户名"/>
@@ -14,8 +14,8 @@
                     </el-form-item>
 
 
-                    <el-button round type="primary" @click="login"> 登 录</el-button>
-                    <el-button round type="primary" @click="register"> 注 册</el-button>
+                    <el-button round type="primary" @click="login" > 登 录</el-button>
+                    <el-button round type="primary" @click="register" > 注 册</el-button>
                 </el-form>
             </div>
         </div>

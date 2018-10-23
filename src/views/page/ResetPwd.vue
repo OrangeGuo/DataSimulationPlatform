@@ -82,6 +82,23 @@
 				}
 			},
 			submitForm (name) {
+			     let len = 0;
+                let flag = true;
+                for (let i = 0; i < this.form.pass.length; i++) {
+                    let code = this.form.pass.charCodeAt(i);
+                    if (code < 48 || code > 57 && code < 65 || code > 90 && code < 97 || code > 122) {
+                        flag = false;
+                    }
+                    else {
+                        len++;
+                    }
+                }
+                if (len < 5 || len > 16)
+                    flag = false;
+                if (!flag) {
+                    this.$message.warning("密码必须为5-16位，且必须含有数字或字母");
+                    return;
+                }
                 let  self=this;
                 this.$http.post('/api/user/updatePass', {
                         username: localStorage.getItem("user-name"),
