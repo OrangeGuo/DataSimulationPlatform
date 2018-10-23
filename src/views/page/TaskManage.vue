@@ -43,7 +43,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <el-dialog title="新建任务" :visible.sync="dialogFormVisible"  width="30%">
+        <el-dialog title="新建任务" :visible.sync="dialogFormVisible" width="30%">
             <el-form :model="form">
                 <el-form-item label="任务名称" :label-width="formLabelWidth">
                     <el-input v-model="form.taskName" autocomplete="off" placeholder="不超过10字符"></el-input>
@@ -63,6 +63,7 @@
 <script>
     export default {
         name: "TaskManage",
+
 
         data() {
             return {
@@ -109,16 +110,19 @@
                     self.tableData = [];
                     res.data.some(item => {
                         self.tableData.push({
-                            date:item.date,
-                            taskName:item.taskName,
-                            detail:item.detail
+                            date: item.date,
+                            taskName: item.taskName,
+                            detail: item.detail
                         })
 
                     });
 
                 });
             }
-        }
+        },
+        mounted() {
+            this.listTask();
+        },
     }
 </script>
 
