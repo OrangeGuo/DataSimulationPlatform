@@ -19,9 +19,7 @@
 		<div class="menu">
 			<el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect" @open="handleOpen" @close="handleClose"
 			  background-color="#242f42" text-color="#fff" active-text-color="#ffd04b" router>
-			  <el-menu-item index="/page/layout">
-			  	布局相关
-			  </el-menu-item>
+
                 <el-menu-item index="/page/TaskManage">
                     任务管理
                 </el-menu-item>

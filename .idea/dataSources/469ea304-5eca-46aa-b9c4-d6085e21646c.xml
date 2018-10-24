@@ -2,7 +2,7 @@
 <dataSource name="dap@localhost">
   <database-model serializer="dbm" rdbms="MYSQL" format-version="4.11">
     <root id="1">
-      <ServerVersion>8.0.11</ServerVersion>
+      <ServerVersion>8.0.12</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
       <DefaultCasing>lower/lower</DefaultCasing>
@@ -1120,7 +1120,7 @@
     </column>
     <column id="282" parent="279" name="date">
       <Position>2</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1152,7 +1152,7 @@
     </key>
     <column id="288" parent="280" name="username">
       <Position>1</Position>
-      <DataType>char(21)|0s</DataType>
+      <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="289" parent="280" name="password">
