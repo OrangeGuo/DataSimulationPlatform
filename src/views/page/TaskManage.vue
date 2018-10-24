@@ -93,29 +93,45 @@
                     desc: ''
                 },
                 dialogFormVisible: false,
-                dialogUpdateForm: false,
-                tableData: [
+                tableData: [{
+                    date: '2016-05-03',
+                    taskName: '王小虎',
+                    detail: '上海市普陀区金沙江路 1518 弄'
+                },
                     {
                         date: '2016-05-03',
                         taskName: '王小虎',
-                        detail: '上海市普陀区金沙江路 1518 弄',
-                        id:''
+                        detail: '上海市普陀区金沙江路 1518 弄'
                     }
                 ]
             }
         },
         methods: {
             newTask() {
-                const self =this;
+                const self=this;
                 let taskName = this.form.taskName;
                 let detail = this.form.detail;
-                this.dialogFormVisible = false;
-                this.$http.post('/api/task/addTask', {
-                    taskName: taskName,
-                    detail: detail
-                }, {}).then((response) => {
-                    self.listTask();
-                })
+                let i = 0;
+                let flag = true;
+                while(i<this.tableData.length)
+                {
+                    if(taskName===this.tableData[i].taskName)
+                    {
+                        this.$message.warning("任务名重复，请重新确认");
+                        flag = false;
+                        break;
+                    }
+                    i++ ;
+                }
+                if(flag) {
+                    this.dialogFormVisible = false;
+                    this.$http.post('/api/task/addTask', {
+                        taskName: taskName,
+                        detail: detail
+                    }, {}).then((response) => {
+                        self.listTask();
+                    })
+                }
             },
             listTask() {
                 const self = this;
