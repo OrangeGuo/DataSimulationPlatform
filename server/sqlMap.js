@@ -8,7 +8,9 @@ let sqlMap = {
     },
     task: {
         add: 'insert into tasks(taskName, date, detail) values (?,?,?)',
-        list: 'select taskName,date,detail from tasks'
+        list: 'select taskName,date,detail,id from tasks',
+        delete: 'delete from tasks where taskName=?',
+        update: 'update tasks set taskName=?, detail=? where id=?'
     }
 }
 module.exports = sqlMap

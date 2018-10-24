@@ -19,7 +19,34 @@ let jsonWrite = function (res, ret) {
 
     }
 };
-
+//修改任务接口
+router.post('/updateTask', (req, res) => {
+    let sql = $sql.task.update;
+    let params = req.body;
+    console.log(params);
+    conn.query(sql, [params.taskName,params.detail,params.id], function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        if (result) {
+            jsonWrite(res, result);
+        }
+    })
+});
+//删除任务接口
+router.post('/deleteTask', (req, res) => {
+    let sql = $sql.task.delete;
+    let params = req.body;
+    console.log(params);
+    conn.query(sql, [params.taskName], function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        if (result) {
+            jsonWrite(res, result);
+        }
+    })
+});
 // 增加用户接口
 router.post('/addTask', (req, res) => {
     let sql = $sql.task.add;
@@ -44,7 +71,7 @@ router.post('/listTask', (req, res) => {
             console.log(err);
         }
         if (result) {
-            console.log(result.length);
+            //console.log(result.length);
             jsonWrite(res, result);
         }
     })
