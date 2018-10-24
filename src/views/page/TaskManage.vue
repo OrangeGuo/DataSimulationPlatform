@@ -1,12 +1,14 @@
 <template>
 
     <div>
+        <el-input placeholder="请输入关键字" clearable></el-input>
         <el-button type="primary" @click="listTask" icon="el-icon-search">搜索</el-button>
         <el-button type="primary" @click="dialogAddForm = true" icon="el-icon-plus">新建</el-button>
         <el-table
             :data="tableData"
             height="250"
-
+            stripe="true"
+            border="true"
             style="width: 80%">
             <el-table-column
                 prop="taskName"
@@ -35,11 +37,12 @@
             <el-table-column
 
                 label="操作"
-                width="100">
+                width="150">
                 <template slot-scope="scope">
                     <el-button icon="el-icon-delete" @click="deleteItem(scope.$index)" type="danger"
                                size="small"></el-button>
-                    <el-button icon="el-icon-edit" type="text" size="small" @click="openEdit(scope.$index)"></el-button>
+                    <el-button icon="el-icon-edit" type="primary" size="small"
+                               @click="openEdit(scope.$index)"></el-button>
                 </template>
             </el-table-column>
         </el-table>
