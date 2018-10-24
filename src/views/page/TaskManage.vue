@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <el-button type="primary" @click="listTask" icon="el-icon-search">搜索</el-button>
+        <el-button type="primary" @click="" icon="el-icon-search">搜索</el-button>
         <el-button type="primary" @click="dialogFormVisible = true" icon="el-icon-plus">新建</el-button>
         <el-table
             :data="tableData"
@@ -94,15 +94,30 @@
         },
         methods: {
             newTask() {
+                const self=this;
                 let taskName = this.form.taskName;
                 let detail = this.form.detail;
-                this.dialogFormVisible = false;
-                this.$http.post('/api/task/addTask', {
-                    taskName: taskName,
-                    detail: detail
-                }, {}).then((response) => {
-
-                })
+                let i = 0;
+                let flag = true;
+                while(i<this.tableData.length)
+                {
+                    if(taskName===this.tableData[i].taskName)
+                    {
+                        this.$message.warning("任务名重复，请重新确认");
+                        flag = false;
+                        break;
+                    }
+                    i++ ;
+                }
+                if(flag) {
+                    this.dialogFormVisible = false;
+                    this.$http.post('/api/task/addTask', {
+                        taskName: taskName,
+                        detail: detail
+                    }, {}).then((response) => {
+                        self.listTask();
+                    })
+                }
             },
             listTask() {
                 const self = this;

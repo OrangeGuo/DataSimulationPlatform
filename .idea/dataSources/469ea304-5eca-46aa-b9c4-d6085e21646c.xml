@@ -2,7 +2,7 @@
 <dataSource name="dap@localhost">
   <database-model serializer="dbm" rdbms="MYSQL" format-version="4.11">
     <root id="1">
-      <ServerVersion>8.0.12</ServerVersion>
+      <ServerVersion>8.0.11</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
       <DefaultCasing>lower/lower</DefaultCasing>
@@ -1120,7 +1120,7 @@
     </column>
     <column id="282" parent="279" name="date">
       <Position>2</Position>
-      <DataType>date|0s</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1129,21 +1129,33 @@
       <DataType>char(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="284" parent="279" name="tasks_taskName_uindex">
+    <column id="284" parent="279" name="id">
+      <Position>4</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="285" parent="279" name="tasks_taskName_uindex">
       <ColNames>taskName</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="285" parent="279" name="tasks_taskName_uindex">
+    <key id="286" parent="279" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="287" parent="279" name="tasks_taskName_uindex">
       <ColNames>taskName</ColNames>
       <UnderlyingIndexName>tasks_taskName_uindex</UnderlyingIndexName>
     </key>
-    <column id="286" parent="280" name="username">
+    <column id="288" parent="280" name="username">
       <Position>1</Position>
-      <DataType>char(20)|0s</DataType>
+      <DataType>char(21)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="280" name="password">
+    <column id="289" parent="280" name="password">
       <Position>2</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
