@@ -11,6 +11,12 @@ let sqlMap = {
         list: 'select taskName,date,detail,id from tasks',
         delete: 'delete from tasks where taskName=?',
         update: 'update tasks set taskName=?, detail=? where id=?'
+    },
+    modules: {
+        add: 'insert into modules(node_id, node_name, node_value, parent, task_id) values(?,?,?,?,?)',
+        list: 'select node_id, node_name, node_value, parent from modules where task_id=?',
+        delete: 'delete from modules where task_id=?'
+
     }
 }
 module.exports = sqlMap
