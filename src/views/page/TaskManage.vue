@@ -1,13 +1,17 @@
 <template>
 
-    <div  >
-       <div style="height: 50px" >
+    <div>
+        <div style="height: 50px">
 
-        <el-input  style="Float: left;height:50px;width: 500px;" float="left" placeholder="请输入关键字" clearable ></el-input>
-        <el-button style="Float: left;height:40px;"  type="primary" @click="listTask" icon="el-icon-search">搜索</el-button>
-        <el-button style="Float: left;height:40px;" type="primary" @click="dialogAddForm = true" icon="el-icon-plus">新建</el-button>
-       </div>
-           <el-table
+            <el-input style="Float: left;height:50px;width: 500px;" float="left" placeholder="请输入关键字"
+                      clearable></el-input>
+            <el-button style="Float: left;height:40px;" type="primary" @click="listTask" icon="el-icon-search">搜索
+            </el-button>
+            <el-button style="Float: left;height:40px;" type="primary" @click="dialogAddForm = true"
+                       icon="el-icon-plus">新建
+            </el-button>
+        </div>
+        <el-table
             :data="tableData"
             height="250"
             stripe="true"
@@ -49,6 +53,47 @@
                 </template>
             </el-table-column>
         </el-table>
+        <div class="custom-tree-container">
+            <div class="block">
+                <p>使用 render-content</p>
+                <el-tree
+                    :data="data4"
+                    show-checkbox
+                    node-key="id"
+                    default-expand-all
+                    :expand-on-click-node="false"
+                    :render-content="renderContent">
+                </el-tree>
+            </div>
+            <div class="block">
+                <p>使用 scoped slot</p>
+                <el-tree
+                    :data="data5"
+                    show-checkbox
+                    node-key="id"
+                    default-expand-all
+                    :expand-on-click-node="false">
+      <span class="custom-tree-node" slot-scope="{ node, data }">
+        <span>{{ node.label }}</span>
+        <span>
+          <el-button
+              type="text"
+              size="mini"
+              @click="() => append(data)">
+            Append
+          </el-button>
+          <el-button
+              type="text"
+              size="mini"
+              @click="() => remove(node, data)">
+            Delete
+          </el-button>
+        </span>
+      </span>
+                </el-tree>
+            </div>
+        </div>
+
         <el-dialog title="新建任务" :visible.sync="dialogAddForm" width="30%">
             <el-form :model="form">
                 <el-form-item label="任务名称" :label-width="formLabelWidth">
@@ -87,6 +132,41 @@
 
         data() {
             return {
+                   const data = [{
+        id: 1,
+        label: '一级 1',
+        children: [{
+          id: 4,
+          label: '二级 1-1',
+          children: [{
+            id: 9,
+            label: '三级 1-1-1'
+          }, {
+            id: 10,
+            label: '三级 1-1-2'
+          }]
+        }]
+      }, {
+        id: 2,
+        label: '一级 2',
+        children: [{
+          id: 5,
+          label: '二级 2-1'
+        }, {
+          id: 6,
+          label: '二级 2-2'
+        }]
+      }, {
+        id: 3,
+        label: '一级 3',
+        children: [{
+          id: 7,
+          label: '二级 3-1'
+        }, {
+          id: 8,
+          label: '二级 3-2'
+        }]
+      }],
                 formLabelWidth: '120px',
                 form: {
                     taskName: '',
@@ -143,25 +223,25 @@
                 self.$axios.post('/api/task/listTask').then((res) => {
                     self.tableData = [];
                     res.data.some(item => {
-                         let day =item.date;
-                         day=day.split("-");
+                        let day = item.date;
+                        day = day.split("-");
 
-                         let dateyear=day[0];
-                         let datemonth=day[1];
-                         day=day[2].split("T")
-                         let dateday=day[0];
-                         day=day[1].split(".");
-                         let datehour = day[0];
-                         datehour=datehour.split(":");
-                         let datemin = datehour[1];
-                         let datesec = datehour[2];
-                         datehour=datehour[0];
-                         datehour = parseInt(datehour);
-                         datehour=datehour+8;
-                         datehour=String(datehour);
+                        let dateyear = day[0];
+                        let datemonth = day[1];
+                        day = day[2].split("T")
+                        let dateday = day[0];
+                        day = day[1].split(".");
+                        let datehour = day[0];
+                        datehour = datehour.split(":");
+                        let datemin = datehour[1];
+                        let datesec = datehour[2];
+                        datehour = datehour[0];
+                        datehour = parseInt(datehour);
+                        datehour = datehour + 8;
+                        datehour = String(datehour);
 
                         self.tableData.push({
-                            date: dateyear+'-'+datemonth+'-'+dateday+' '+ datehour+':'+datemin+':'+datesec,
+                            date: dateyear + '-' + datemonth + '-' + dateday + ' ' + datehour + ':' + datemin + ':' + datesec,
                             taskName: item.taskName,
                             detail: item.detail,
                             id: item.id
@@ -212,7 +292,32 @@
         mounted() {
             this.listTask();
         },
+      append(data) {
+        const newChild = { id: id++, label: 'testtest', children: [] };
+        if (!data.children) {
+          this.$set(data, 'children', []);
+        }
+        data.children.push(newChild);
+      },
 
+      remove(node, data) {
+        const parent = node.parent;
+        const children = parent.data.children || parent.data;
+        const index = children.findIndex(d => d.id === data.id);
+        children.splice(index, 1);
+      },
+
+      renderContent(h, { node, data, store }) {
+        return (
+          <span class="custom-tree-node">
+            <span>{node.label}</span>
+            <span>
+              <el-button size="mini" type="text" on-click={ () => this.append(data) }>Append</el-button>
+              <el-button size="mini" type="text" on-click={ () => this.remove(node, data) }>Delete</el-button>
+            </span>
+          </span>);
+      }
+    }
     }
 </script>
 
