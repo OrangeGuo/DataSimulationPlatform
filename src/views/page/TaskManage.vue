@@ -140,8 +140,25 @@
                 self.$axios.post('/api/task/listTask').then((res) => {
                     self.tableData = [];
                     res.data.some(item => {
+                         let day =item.date;
+                         day=day.split("-");
+
+                         let dateyear=day[0];
+                         let datemonth=day[1];
+                         day=day[2].split("T")
+                         let dateday=day[0];
+                         day=day[1].split(".");
+                         let datehour = day[0];
+                         datehour=datehour.split(":");
+                         let datemin = datehour[1];
+                         let datesec = datehour[2];
+                         datehour=datehour[0];
+                         datehour = parseInt(datehour);
+                         datehour=datehour+8;
+                         datehour=String(datehour);
+
                         self.tableData.push({
-                            date: item.date,
+                            date: dateyear+'-'+datemonth+'-'+dateday+' '+ datehour+':'+datemin+':'+datesec,
                             taskName: item.taskName,
                             detail: item.detail,
                             id: item.id
