@@ -1,10 +1,13 @@
 <template>
 
-    <div>
-        <el-input placeholder="请输入关键字" clearable></el-input>
-        <el-button type="primary" @click="listTask" icon="el-icon-search">搜索</el-button>
-        <el-button type="primary" @click="dialogAddForm = true" icon="el-icon-plus">新建</el-button>
-        <el-table
+    <div  >
+       <div style="height: 50px" >
+
+        <el-input  style="Float: left;height:50px;width: 500px;" float="left" placeholder="请输入关键字" clearable ></el-input>
+        <el-button style="Float: left;height:40px;"  type="primary" @click="listTask" icon="el-icon-search">搜索</el-button>
+        <el-button style="Float: left;height:40px;" type="primary" @click="dialogAddForm = true" icon="el-icon-plus">新建</el-button>
+       </div>
+           <el-table
             :data="tableData"
             height="250"
             stripe="true"
