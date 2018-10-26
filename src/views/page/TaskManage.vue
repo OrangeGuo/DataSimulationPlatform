@@ -53,7 +53,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <div class="data-show">
+        <div class="data-show" style="width: 650px;">
             <h3>常规操作</h3>
 
             <el-tree :data="treeList" ref="tree" :props="defaultProps" :show-checkbox="config.showCheckbox"
@@ -206,37 +206,18 @@
                     })
                 }
             },
-            renderContent(h, {node, data, store}) {
-                return (
-                    < span
-                style = "flex: 1; display: flex; align-items: center; justify-content: space-between; font-size: 14px; padding-right: 8px;" >
-                    < span >
-                    < span > {node.label
-            }<
-                /span>
-                < /span>
-                < span >
-                < el - button
-                style = "font-size: 12px;"
-                type = 'primary'
-                size = 'small'
-                on - click = {()
-            =>
-                this.append(data)
-            }>
-                添加 < /el-button>
-                < el - button
-                style = "font-size: 12px;"
-                type = 'danger'
-                size = 'small'
-                on - click = {()
-            =>
-                this.remove(node, data)
-            }>
-                删除 < /el-button>
-                < /span>
-                < /span>);
-            },
+			renderContent (h, { node, data, store }) {
+				return (
+		          <span style="flex: 1; display: flex; align-items: center; justify-content: space-between; font-size: 14px; padding-right: 8px;">
+		            <span>
+		              <span>{node.label}</span>
+		            </span>
+		            <span>
+		              <el-button style="font-size: 12px;" type='primary' size='small' on-click={ () => this.append(data) }>添加</el-button>
+		              <el-button style="font-size: 12px;" type='danger' size='small' on-click={ () => this.remove(node, data) }>删除</el-button>
+		            </span>
+		          </span>);
+			},
             listTask() {
                 const self = this;
                 self.$axios.post('/api/task/listTask').then((res) => {
