@@ -22,23 +22,24 @@ let jsonWrite = function (res, ret) {
 //增加modules
 router.post('/addModules', (req, res) => {
     let sql = $sql.modules.add;
-    let params = req.body;
-    console.log(params);
-    conn.query(sql, [params.node_id, params.node_name,params.node_value,params.parent,params.task_id], function (err, result) {
-        if (err) {
-            console.log(err);
-        }
-        if (result) {
-            jsonWrite(res, result);
-        }
-    })
+    let items = req.body;
+    for (let i = 0; i < items.length; i++) {
+        let params = items[i];
+        conn.query(sql, [params.node_id, params.node_name, params.value, params.parent, params.task_id], function (err, result) {
+            if (err) {
+                console.log(err);
+            }
+
+        })
+    }
+
 });
 
 //列出modules
 router.post('/listModules', (req, res) => {
     let sql = $sql.modules.list;
     let params = req.body;
-    conn.query(sql,[params.task_id], function (err, result) {
+    conn.query(sql, [params.task_id], function (err, result) {
         if (err) {
             console.log(err);
         }

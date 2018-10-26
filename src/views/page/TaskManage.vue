@@ -5,7 +5,7 @@
 
             <el-input style="Float: left;height:50px;width: 500px;" float="left" placeholder="请输入关键字"
                       clearable></el-input>
-            <el-button style="Float: left;height:40px;" type="primary" @click="listTask" icon="el-icon-search">搜索
+            <el-button style="Float: left;height:40px;" type="primary" @click="newModule" icon="el-icon-search">搜索
             </el-button>
             <el-button style="Float: left;height:40px;" type="primary" @click="dialogAddForm = true"
                        icon="el-icon-plus">新建
@@ -56,7 +56,7 @@
         <div class="data-show" style="width: 650px;">
             <h3>常规操作</h3>
 
-            <el-tree :data="treeList" ref="tree" :props="defaultProps" :show-checkbox="config.showCheckbox"
+            <el-tree :data="treeList" ref="tree" :props="defaultProps"
                      :node-key="config.nodeKey" :indent="config.indent"
                      :highlight-current="config.highlight" :accordion="config.accordion"
                      :expand-on-click-node="config.clickExpand"
@@ -106,8 +106,12 @@
 
 
             return {
-                id: 0,
-                treeList: [],
+                id: 1,
+                treeList: [  {
+                "label": "root",
+                "value":"1",
+                "children": []
+                }],
                 defaultProps: {
                     children: "children",
                     label: "label",
@@ -161,7 +165,7 @@
         methods: {
             append(data) {
                 this.id++;
-                let newList = {"label": "newList" + this.id, value: "000" + this.id, children: []};
+                let newList = {"label": "node_" + this.id, value: "" + this.id, children: []};
                 if (!data.children) {
                     this.$set(data, 'children', []);
                 }
@@ -171,7 +175,7 @@
                 const parent = node.parent;
                 const children = parent.data.children || parent.data;
                 const index = children.findIndex(d => d.value === data.value);
-                children.splice(index, 1);
+                if(data.value!=="1")children.splice(index, 1);
             },
             handleClick(data) {
                 if (data.children && data.children.length > 0) {
@@ -203,8 +207,30 @@
                         detail: detail
                     }, {}).then((response) => {
                         self.listTask();
+                        self.newModule();
                     })
                 }
+            },
+            newModule(){
+                let nodes=[];
+                let list=[];
+                list.push(this.treeList[0]);
+                while(list.length>0){
+                    nodes.push({
+                        node_name:list[0].label,
+                        node_id:list[0].value,
+                        value:0,
+                        parent:0,
+                        task_id:0
+                    });
+                    for (let i = 0; i < list[0].children.length; i++) {
+                        list.push(list[0].children[i]);
+                    }
+                    list.splice(0,1);
+                }
+                this.$http.post('/api/modules/addModules',nodes, {}).then((response) => {
+
+                    })
             },
 			renderContent (h, { node, data, store }) {
 				return (
@@ -291,14 +317,7 @@
         },
         mounted() {
             this.listTask();
-            let self = this;
-            if (process.env.NODE_ENV === 'development') {
-                self.url = 'static/data/tree.json';
-            }
-            ;
-            self.$axios.get(self.url).then((res) => {
-                self.treeList = res.data.slice(0);
-            });
+
         },
 
 
