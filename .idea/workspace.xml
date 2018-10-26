@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8797ff6f-2f30-4979-98f8-5aed594d5083" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/page/TaskManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/page/TaskManage.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -193,7 +191,7 @@
           <entry key="js" value="896" />
           <entry key="sql" value="34" />
           <entry key="txt" value="3" />
-          <entry key="vue" value="2093" />
+          <entry key="vue" value="2101" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -203,7 +201,7 @@
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="SQL" value="34" />
           <entry key="Scratch" value="16" />
-          <entry key="Vue.js" value="2093" />
+          <entry key="Vue.js" value="2101" />
         </counts>
       </usages-collector>
     </session>
@@ -283,7 +281,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/api/taskApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1232">
+            <state relative-caret-position="611">
               <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
             </state>
           </provider>
@@ -292,8 +290,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1386">
-              <caret line="223" selection-start-line="223" selection-end-line="223" />
+            <state relative-caret-position="264">
+              <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#el-input#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -309,8 +307,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/else/Tree.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="20" column="25" lean-forward="true" selection-start-line="18" selection-end-line="26" selection-end-column="18" />
+            <state relative-caret-position="440">
+              <caret line="41" column="18" lean-forward="true" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -596,8 +594,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989733" visible="true" weight="0.23994638" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989733" weight="0.23994638" />
       <window_info id="Structure" order="1" sideWeight="0.5010267" side_tool="true" weight="0.23994638" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" />
@@ -612,38 +611,39 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32907802" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50268096" side_tool="true" weight="0.30921987" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49731904" visible="true" weight="0.30921987" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49731904" weight="0.30921987" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32907802" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32907802" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.3297587" />
+      <window_info anchor="right" id="Database" order="4" weight="0.14142092" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989733" visible="true" weight="0.23994638" />
+      <window_info id="Structure" order="1" sideWeight="0.5010267" side_tool="true" weight="0.23994638" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="0" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32907802" />
+      <window_info anchor="bottom" id="Run" order="3" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.32907802" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="10" weight="0.32907802" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50268096" side_tool="true" weight="0.30921987" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.49731904" visible="true" weight="0.30921987" />
+      <window_info anchor="bottom" id="Python Console" order="13" weight="0.32907802" />
+      <window_info anchor="bottom" id="Database Console" order="14" weight="0.32907802" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" weight="0.3297587" />
       <window_info anchor="right" id="Database" order="4" visible="true" weight="0.14142092" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989733" visible="true" weight="0.23994638" />
-      <window_info id="Structure" order="1" sideWeight="0.5010267" side_tool="true" visible="true" weight="0.23994638" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32907802" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32907802" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50268096" side_tool="true" visible="true" weight="0.30921987" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49731904" visible="true" weight="0.30921987" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32907802" />
-      <window_info anchor="bottom" id="Database Console" order="13" weight="0.32907802" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.3297587" />
-      <window_info active="true" anchor="right" id="Database" order="4" visible="true" weight="0.14142092" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -811,13 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/api/taskApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1232">
-          <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/page/Login.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2002">
@@ -832,13 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/Page.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/page/Register.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
@@ -846,17 +832,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/Page.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/api/taskApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="611">
+          <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/else/Tree.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="25" lean-forward="true" selection-start-line="18" selection-end-line="26" selection-end-column="18" />
+        <state relative-caret-position="440">
+          <caret line="41" column="18" lean-forward="true" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1386">
-          <caret line="223" selection-start-line="223" selection-end-line="223" />
+        <state relative-caret-position="264">
+          <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-input#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />

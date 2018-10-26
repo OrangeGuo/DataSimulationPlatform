@@ -14,8 +14,8 @@
         <el-table
             :data="tableData"
             height="250"
-            stripe="true"
-            border="true"
+            stripe
+            border
             style="width: 80%">
             <el-table-column
                 prop="taskName"
@@ -53,7 +53,18 @@
                 </template>
             </el-table-column>
         </el-table>
+        <div class="data-show">
+            <h3>常规操作</h3>
 
+            <el-tree :data="treeList" ref="tree" :props="defaultProps" :show-checkbox="config.showCheckbox"
+                     :node-key="config.nodeKey" :indent="config.indent"
+                     :highlight-current="config.highlight" :accordion="config.accordion"
+                     :expand-on-click-node="config.clickExpand"
+                     :default-checked-keys="config.checkedKeys" :default-expanded-keys="config.expandedKeys"
+                     :default-expand-all="config.expandAll"
+                     :empty-text="config.emptyTxt" :render-content="renderContent"
+                     @node-click="handleClick" @check-change="handleCheckChange"></el-tree>
+        </div>
 
         <el-dialog title="新建任务" :visible.sync="dialogAddForm" width="30%">
             <el-form :model="form">
@@ -95,7 +106,32 @@
 
 
             return {
-
+                id: 0,
+                treeList: [],
+                defaultProps: {
+                    children: "children",
+                    label: "label",
+                    value: "value",
+                    disabled: "noUse"
+                },
+                config: {
+                    emptyTxt: "没有更多啦~~",
+                    indent: 20,//相邻级节点间的水平缩进，单位为像素
+                    showCheckbox: true,//是否显示复选框
+                    nodeKey: "value",//依据哪个节点来判断选中和展开,其值为节点数据中的一个字段名，该字段在整棵树中是唯一的。
+                    clickExpand: false,//点击后是否展开下级
+                    checkedKeys: ['211'],//默认选中的项的字段值
+                    expandedKeys: ['21'],//判断哪些项是展开的
+                    expandAll: false,//是否默认展开所有
+                    highlight: true,//选中后是否高亮显示当前行
+                    accordion: true//是否开启手风琴
+                },
+                filterText: "",
+                prop: {
+                    label: 'name',
+                    children: 'zones',
+                    isLeaf: 'leaf'
+                },
                 formLabelWidth: '120px',
                 form: {
                     taskName: '',
@@ -123,6 +159,29 @@
             }
         },
         methods: {
+            append(data) {
+                this.id++;
+                let newList = {"label": "newList" + this.id, value: "000" + this.id, children: []};
+                if (!data.children) {
+                    this.$set(data, 'children', []);
+                }
+                data.children.push(newList);
+            },
+            remove(node, data) {
+                const parent = node.parent;
+                const children = parent.data.children || parent.data;
+                const index = children.findIndex(d => d.value === data.value);
+                children.splice(index, 1);
+            },
+            handleClick(data) {
+                if (data.children && data.children.length > 0) {
+                    return;
+                }
+                this.$message("我选中了：" + data.label + ",代号为:" + data.value)
+            },
+            handleCheckChange(data, checked, indeterminate) {
+                console.log(data, checked, indeterminate);
+            },
             newTask() {
                 const self = this;
                 let taskName = this.form.taskName;
@@ -146,6 +205,37 @@
                         self.listTask();
                     })
                 }
+            },
+            renderContent(h, {node, data, store}) {
+                return (
+                    < span
+                style = "flex: 1; display: flex; align-items: center; justify-content: space-between; font-size: 14px; padding-right: 8px;" >
+                    < span >
+                    < span > {node.label
+            }<
+                /span>
+                < /span>
+                < span >
+                < el - button
+                style = "font-size: 12px;"
+                type = 'primary'
+                size = 'small'
+                on - click = {()
+            =>
+                this.append(data)
+            }>
+                添加 < /el-button>
+                < el - button
+                style = "font-size: 12px;"
+                type = 'danger'
+                size = 'small'
+                on - click = {()
+            =>
+                this.remove(node, data)
+            }>
+                删除 < /el-button>
+                < /span>
+                < /span>);
             },
             listTask() {
                 const self = this;
@@ -220,6 +310,14 @@
         },
         mounted() {
             this.listTask();
+            let self = this;
+            if (process.env.NODE_ENV === 'development') {
+                self.url = 'static/data/tree.json';
+            }
+            ;
+            self.$axios.get(self.url).then((res) => {
+                self.treeList = res.data.slice(0);
+            });
         },
 
 
