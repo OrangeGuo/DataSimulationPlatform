@@ -5,6 +5,8 @@ import Router from 'vue-router';
 import Login from '../views/page/Login';	//登录页
 import Register from '../views/page/Register';
 import TaskManage from '../views/page/TaskManage';
+import SystemConfig from '../views/page/SystemConfig';
+import ResponseRate from '../views/page/ResponseRate';
 import Page from '../components/page/Page';	//主页面模板
 import Readme from '../views/page/Readme';	//了解系统
 import ResetPwd from '../views/page/ResetPwd';//重置密码
@@ -110,6 +112,14 @@ export default new Router({
                 {
                     path: 'taskManage',
                     component: TaskManage
+                },
+                {
+                    path: 'systemConfig',
+                    component: SystemConfig
+                },
+                {
+                    path: 'responseRate',
+                    component: ResponseRate
                 },
                 {
                     path: 'readme',
