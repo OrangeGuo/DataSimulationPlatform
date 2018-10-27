@@ -22,13 +22,12 @@
                 label="任务名称"
                 width="200%">
                 <template slot-scope="scope">
-                    <el-popover trigger="hover" placement="top">
-                        <p>任务名称: {{ scope.row.taskName }}</p>
-                        <p>详情: {{ scope.row.detail }}</p>
+
+
                         <div slot="reference" class="name-wrapper">
                             <el-tag size="medium">{{ scope.row.taskName }}</el-tag>
                         </div>
-                    </el-popover>
+
                 </template>
             </el-table-column>
             <el-table-column
@@ -40,7 +39,14 @@
                     <span style="margin-left: 10px">{{ scope.row.date }}</span>
                 </template>
             </el-table-column>
-
+            <el-table-column
+                prop="detail"
+                label="备   注"
+                width="300">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.detail }}</span>
+                </template>
+            </el-table-column>
             <el-table-column
 
                 label="操作"
@@ -54,7 +60,7 @@
             </el-table-column>
         </el-table>
         <div class="data-show" style="width: 650px;">
-            <h3>常规操作</h3>
+            <h3>任务模型</h3>
 
             <el-tree :data="treeList" ref="tree" :props="defaultProps"
                      :node-key="config.nodeKey" :indent="config.indent"
@@ -214,17 +220,21 @@
             newModule(){
                 let nodes=[];
                 let list=[];
+                let parent=[];
+                parent.push(0);
                 list.push(this.treeList[0]);
                 while(list.length>0){
                     nodes.push({
                         node_name:list[0].label,
                         node_id:list[0].value,
                         value:0,
-                        parent:0,
+                        parent:parent[0],
                         task_id:0
                     });
+                    parent.splice(0,1);
                     for (let i = 0; i < list[0].children.length; i++) {
                         list.push(list[0].children[i]);
+                        parent.push(list[0].value);
                     }
                     list.splice(0,1);
                 }
