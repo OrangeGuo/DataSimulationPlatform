@@ -23,10 +23,10 @@
                 <el-menu-item index="/page/TaskManage">
                     任务管理
                 </el-menu-item>
-                <el-menu-item index="/page/SystemConfig" >
-                    系统配置
+                <el-menu-item index="/page/IndexConfig" >
+                    指标配置
                 </el-menu-item>
-                <el-menu-item index="/page/ResponseRate">
+                <el-menu-item index="/page/SensAnalyse">
                     灵敏度分析
                 </el-menu-item>
 			  <el-submenu index="2" :show-timeout="300" :hide-timeout="150">
