@@ -119,8 +119,8 @@
         methods:{
             listModules(){
                 const self = this;
-                self.$axios.post('/api/modules//listModules', {
-                    task_id: 1
+                self.$axios.post('/api/modules/listModules', {
+                    task_id: 0
                 },{}).then((res) => {
                     self.tableData = [];
                     res.data.some(item => {
