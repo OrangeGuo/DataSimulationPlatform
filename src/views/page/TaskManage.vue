@@ -10,7 +10,7 @@
             <el-button style="Float: left;height:40px;" type="primary" @click="dialogAddForm = true"
                        icon="el-icon-plus">新建
             </el-button>
-            <el-button style="Float: left;height:40px;" type="primary" @click=""
+            <el-button style="Float: left;height:40px;" type="primary" @click="savetree"
                        icon="el-icon-upload">保存
             </el-button>
         </div>
@@ -161,16 +161,7 @@
                 },
                 dialogAddForm: false,
                 dialogUpdateForm: false,
-                tableData: [{
-                    date: '2016-05-03',
-                    taskName: '王小虎',
-                    detail: '上海市普陀区金沙江路 1518 弄'
-                },
-                    {
-                        date: '2016-05-03',
-                        taskName: '王小虎',
-                        detail: '上海市普陀区金沙江路 1518 弄'
-                    }
+                tableData: [
                 ]
             }
         },
@@ -293,7 +284,7 @@
                             detail: item.detail,
                             id: item.id
                         })
-
+                        this.InitTree();
                     });
 
                 });
@@ -340,6 +331,7 @@
                 //this.$message.warning(row.id+"");
                 const self = this;
                 let nodes = [];
+                console.log(row.id);
                 self.$axios.post('/api/modules/listModules', {
                     task_id: row.id
                 }, {}).then((res) => {
@@ -385,6 +377,57 @@
                     }
                 })
             },
+            savetree(){
+                
+            },
+            InitTree(){
+                const self = this;
+                let nodes = [];
+                self.$axios.post('/api/modules/listModules', {
+                    task_id: parseInt(self.tableData[0].id)
+                }, {}).then((res) => {
+                    self.treeList = [];
+                    res.data.some(item => {
+                        nodes.push({
+                            node_id: item.node_id,
+                            node_name: item.node_name,
+                            node_value: item.node_value,
+                            parent: item.parent,
+                        })
+
+                    });
+
+                }).then(()=>{
+                    if(nodes.length>0){
+                        self.treeList.push({
+                            'label':nodes[0].node_name,
+                            'value':nodes[0].node_value,
+                            'id':nodes[0].node_id,
+                            'children':[]
+                        });
+                        let temp=[];
+                        temp.push(self.treeList[0]);
+
+                        for (let i = 1; i < nodes.length; i++) {
+                            for(let j=0;j<temp.length;j++){
+                                if(nodes[i].parent===temp[j].id){
+                                    let ob={
+                                        'label':nodes[i].node_name,
+                                        'value':nodes[i].node_value,
+                                        'id':nodes[i].node_id,
+                                        'children':[]
+                                    };
+                                    temp[j].children.push(ob);
+                                    temp.push(ob);
+
+                                    break;
+                                }
+                            }
+                        }
+
+                    }
+                })
+            }
         },
 
         mounted() {
