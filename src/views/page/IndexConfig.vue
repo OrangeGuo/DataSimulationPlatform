@@ -106,6 +106,7 @@
                 },
                 dialogAddForm: false,
                 formLabelWidth:"120px",
+
                 tableData: [
                     {
                         node_id: 1,
@@ -120,7 +121,7 @@
             listModules(){
                 const self = this;
                 self.$axios.post('/api/modules/listModules', {
-                    task_id: 0
+                    task_id: localStorage.getItem("task-id")
                 },{}).then((res) => {
                     self.tableData = [];
                     res.data.some(item => {
@@ -159,7 +160,7 @@
                         node_name: node_name,
                         node_value:node_value,
                         parent:parent,
-                        task_id:1
+                        task_id:localStorage.getItem("task-id")
                     }, {}).then((response) => {
                         self.listModules();
                     })

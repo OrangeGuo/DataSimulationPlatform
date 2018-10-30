@@ -18,6 +18,7 @@
             border
             style="width: 80%"
             @row-click="loadModules"
+            @row-dblclick="openIndexConfig"
             >
             <el-table-column
                 prop="taskName"
@@ -171,6 +172,11 @@
             }
         },
         methods: {
+            openIndexConfig(row){
+                localStorage.setItem('task-id',row.id);
+
+                this.$router.push('./IndexConfig')
+            },
             append(data) {
                 this.id++;
                 let newList = {"label": "node_" + this.id, value: "" + this.id, children: []};
