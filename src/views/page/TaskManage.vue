@@ -10,7 +10,7 @@
             <el-button style="Float: left;height:40px;" type="primary" @click="dialogAddForm = true"
                        icon="el-icon-plus">新建
             </el-button>
-            <el-button style="Float: left;height:40px;" type="primary" @click="savetree"
+            <el-button style="Float: left;height:40px;" type="primary" @click="newModule"
                        icon="el-icon-upload">保存
             </el-button>
         </div>
@@ -118,6 +118,7 @@
 
 
             return {
+                current_task:0,
                 id: 1,
                 treeList: [  {
                 "label": "root",
@@ -215,7 +216,8 @@
                         detail: detail
                     }, {}).then((response) => {
                         self.listTask();
-                        self.newModule();
+                        if(self.tableData.length>0)
+                            self.current_task=self.tableData[self.tableData.length-1].id;
                     })
                 }
             },
@@ -231,7 +233,7 @@
                         node_id:list[0].value,
                         value:0,
                         parent:parent[0],
-                        task_id:10
+                        task_id:this.current_task
                     });
                     parent.splice(0,1);
                     for (let i = 0; i < list[0].children.length; i++) {
@@ -285,6 +287,7 @@
                             id: item.id
                         })
                         self.InitTree(self.tableData[0].id);
+                        self.current_task=self.tableData[0].id;
                     });
 
                 });
@@ -329,10 +332,13 @@
             //选中任意行加载对应任务模型
             loadModules(row) {
                 //this.$message.warning(row.id+"");
+                this.current_task=row.id;
                 this.InitTree(row.id);
             },
 
             InitTree(taskid){
+                if(this.tableData.length===0)
+                    return;
                 const self = this;
                 let nodes = [];
                 self.$axios.post('/api/modules/listModules', {
