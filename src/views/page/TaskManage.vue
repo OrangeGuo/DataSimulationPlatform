@@ -16,7 +16,9 @@
             height="250"
             stripe
             border
-            style="width: 80%">
+            style="width: 80%"
+            @row-click="loadModules"
+            >
             <el-table-column
                 prop="taskName"
                 label="任务名称"
@@ -229,7 +231,7 @@
                         node_id:list[0].value,
                         value:0,
                         parent:parent[0],
-                        task_id:0
+                        task_id:10
                     });
                     parent.splice(0,1);
                     for (let i = 0; i < list[0].children.length; i++) {
@@ -323,8 +325,59 @@
                 }, {}).then((response) => {
                     self.listTask();
                 })
-            }
+            },
+            //选中任意行加载对应任务模型
+            loadModules(row) {
+                //this.$message.warning(row.id+"");
+                const self = this;
+                let nodes = [];
+                self.$axios.post('/api/modules/listModules', {
+                    task_id: row.id
+                }, {}).then((res) => {
+                    self.treeList = [];
+                    res.data.some(item => {
+                        nodes.push({
+                            node_id: item.node_id,
+                            node_name: item.node_name,
+                            node_value: item.node_value,
+                            parent: item.parent,
+                        })
+
+                    });
+
+                }).then(()=>{
+                    if(nodes.length>0){
+                        self.treeList.push({
+                            'label':nodes[0].node_name,
+                            'value':nodes[0].node_value,
+                            'id':nodes[0].node_id,
+                            'children':[]
+                        });
+                        let temp=[];
+                        temp.push(self.treeList[0]);
+
+                        for (let i = 1; i < nodes.length; i++) {
+                            for(let j=0;j<temp.length;j++){
+                                if(nodes[i].parent===temp[j].id){
+                                    let ob={
+                                        'label':nodes[i].node_name,
+                                        'value':nodes[i].node_value,
+                                        'id':nodes[i].node_id,
+                                        'children':[]
+                                    };
+                                    temp[j].children.push(ob);
+                                    temp.push(ob);
+
+                                    break;
+                                }
+                            }
+                        }
+
+                    }
+                })
+            },
         },
+
         mounted() {
             this.listTask();
 
