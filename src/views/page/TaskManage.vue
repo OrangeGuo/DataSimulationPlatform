@@ -119,12 +119,9 @@
 
             return {
                 current_task:0,
+                flag:0,
                 id: 1,
-                treeList: [  {
-                "label": "root",
-                "value":"1",
-                "children": []
-                }],
+                treeList: [],
                 defaultProps: {
                     children: "children",
                     label: "label",
@@ -209,42 +206,63 @@
                     }
                     i++;
                 }
+                let temp=self.tableData.length;
+                if(temp===0)
+                    temp=temp+1;
+                else
+                    temp=self.tableData[self.tableData.length-1].id+1;
                 if (flag) {
                     this.dialogAddForm = false;
                     this.$http.post('/api/task/addTask', {
                         taskName: taskName,
-                        detail: detail
+                        detail: detail,
+                        id: temp
                     }, {}).then((response) => {
                         self.listTask();
-                        if(self.tableData.length>0)
-                            self.current_task=self.tableData[self.tableData.length-1].id;
+                        self.current_task = temp;
+                        self.treeList=[];
+                        self.treeList.push({
+                            "label": "root",
+                            "value":"1",
+                            "children": []
+                        })
                     })
                 }
             },
-            newModule(){
-                let nodes=[];
-                let list=[];
-                let parent=[];
-                parent.push(0);
-                list.push(this.treeList[0]);
-                while(list.length>0){
-                    nodes.push({
-                        node_name:list[0].label,
-                        node_id:list[0].value,
-                        value:0,
-                        parent:parent[0],
-                        task_id:this.current_task
-                    });
-                    parent.splice(0,1);
-                    for (let i = 0; i < list[0].children.length; i++) {
-                        list.push(list[0].children[i]);
-                        parent.push(list[0].value);
-                    }
-                    list.splice(0,1);
-                }
-                this.$http.post('/api/modules/addModules',nodes, {}).then((response) => {
+            deleteAllModules(){
+              const self=this;
+              this.$http.post('/api/modules/deleteModules',{
+                  task_id: self.current_task
+              },{}).then((response) => {
 
                     })
+            },
+            newModule(){
+                    this.deleteAllModules();
+                    let nodes = [];
+                    let list = [];
+                    let parent = [];
+                    parent.push(0);
+                    list.push(this.treeList[0]);
+                    while (list.length > 0) {
+                        nodes.push({
+                            node_name: list[0].label,
+                            node_id: list[0].value,
+                            value: 0,
+                            parent: parent[0],
+                            task_id: this.current_task
+                        });
+                        parent.splice(0, 1);
+                        for (let i = 0; i < list[0].children.length; i++) {
+                            list.push(list[0].children[i]);
+                            parent.push(list[0].value);
+                        }
+                        list.splice(0, 1);
+                    }
+                    this.$http.post('/api/modules/addModules', nodes, {}).then((response) => {
+
+                    })
+
             },
 			renderContent (h, { node, data, store }) {
 				return (
@@ -286,10 +304,18 @@
                             detail: item.detail,
                             id: item.id
                         })
-                        self.InitTree(self.tableData[0].id);
-                        self.current_task=self.tableData[0].id;
+                        console.log(self.flag);
+
                     });
 
+                }).then(()=>{
+                                           if(self.flag===0) {
+                            if(self.tableData.length>0) {
+                                self.InitTree(self.tableData[0].id);
+                                self.current_task = self.tableData[0].id;
+                            }
+                            self.flag=1;
+                        }
                 });
             },
             deleteItem(index) {
@@ -299,6 +325,8 @@
                     taskName: self.tableData[index].taskName
                 }, {}).then((response) => {
                     self.tableData.splice(index, 1);
+                    self.deleteAllModules();
+                    self.treeList=[];
                 })
 
             },

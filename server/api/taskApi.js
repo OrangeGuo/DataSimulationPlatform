@@ -52,7 +52,7 @@ router.post('/addTask', (req, res) => {
     let sql = $sql.task.add;
     let params = req.body;
     console.log(params);
-    conn.query(sql, [params.taskName, new Date(), params.detail], function (err, result) {
+    conn.query(sql, [params.taskName, new Date(), params.detail,params.id], function (err, result) {
         if (err) {
             console.log(err);
         }

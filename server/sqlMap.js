@@ -7,7 +7,7 @@ let sqlMap = {
         update: 'update user set password=? where username=?'
     },
     task: {
-        add: 'insert into tasks(taskName, date, detail) values (?,?,?)',
+        add: 'insert into tasks(taskName, date, detail,id) values (?,?,?,?)',
         list: 'select taskName,date,detail,id from tasks',
         delete: 'delete from tasks where taskName=?',
         update: 'update tasks set taskName=?, detail=? where id=?'
