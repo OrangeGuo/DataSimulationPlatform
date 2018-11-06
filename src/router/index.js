@@ -120,6 +120,10 @@ export default new Router({
                 },
                 {
                     path: 'sensAnalyse',
+                    component: SensAnalyse
+                },
+                {
+                    path: 'homePage',
                     component: HomePage
                 },
                 {

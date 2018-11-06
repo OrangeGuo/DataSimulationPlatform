@@ -29,6 +29,9 @@
                 <el-menu-item index="/page/SensAnalyse">
                     灵敏度分析
                 </el-menu-item>
+                <el-menu-item index="/page/HomePage">
+                    画图测试
+                </el-menu-item>
 			  <el-submenu index="2" :show-timeout="300" :hide-timeout="150">
 			    <template slot="title">全局参考</template>
 			    <el-menu-item index="/page/overall/font" >字体</el-menu-item>
