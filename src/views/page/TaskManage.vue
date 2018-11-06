@@ -20,6 +20,7 @@
             stripe
             border
             style="width: 80%"
+            highlight-current-row
             @row-click="loadModules"
             @row-dblclick="openIndexConfig"
             >
@@ -39,7 +40,8 @@
             <el-table-column
                 prop="date"
                 label="创建时间"
-                width="300">
+                width="300"
+               	>
                 <template slot-scope="scope">
                     <i class="el-icon-time"></i>
                     <span style="margin-left: 10px">{{ scope.row.date }}</span>
@@ -75,6 +77,7 @@
                      :default-checked-keys="config.checkedKeys" :default-expanded-keys="config.expandedKeys"
                      :default-expand-all="config.expandAll"
                      :empty-text="config.emptyTxt" :render-content="renderContent"
+
                      @node-click="handleClick" @check-change="handleCheckChange"></el-tree>
         </div>
 
@@ -266,9 +269,10 @@
             },
 			renderContent (h, { node, data, store }) {
 				return (
+
 		          <span style="flex: 1; display: flex; align-items: center; justify-content: space-between; font-size: 14px; padding-right: 8px;">
 		            <span>
-		              <span>{node.label}</span>
+		              <input type="text" style="width:50px" placeholder={node.label}></input>
 		            </span>
 		            <span>
 		              <el-button style="font-size: 12px;" type='primary' size='small' on-click={ () => this.append(data) }>添加</el-button>
