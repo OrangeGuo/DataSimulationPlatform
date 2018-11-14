@@ -29,17 +29,8 @@
                 <el-menu-item index="/page/SensAnalyse">
                     灵敏度分析
                 </el-menu-item>
-                <el-menu-item index="/page/HomePage">
-                    画图测试
-                </el-menu-item>
-			  <el-submenu index="2" :show-timeout="300" :hide-timeout="150">
-			    <template slot="title">全局参考</template>
-			    <el-menu-item index="/page/overall/font" >字体</el-menu-item>
-			    <el-menu-item index="/page/overall/color" >颜色</el-menu-item>
-			    <el-menu-item index="/page/overall/icon">图标</el-menu-item>
-			    <el-menu-item index="/page/overall/button">按钮</el-menu-item>
-			  </el-submenu>
-			  <el-menu-item  index="" v-popover:popoverT>
+
+			  <el-menu-item  index="3" v-popover:popoverT>
 			  	<el-popover ref="popoverT"  placement="bottom-end" title="提示"  width="100" trigger="hover"
 				  content="这里将展示最新的系统通知消息。">
 				</el-popover>
