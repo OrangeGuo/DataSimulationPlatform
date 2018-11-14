@@ -15,38 +15,47 @@
             border
             style="width: 80%"
             highlight-current-row
-            @row-click="loadModules"
-            @row-dblclick="openIndexConfig"
-            >
+
+        >
             <el-table-column
-                prop="taskName"
-                label="任务名称"
+                prop="name"
+                label="图书名称"
                 width="200%">
                 <template slot-scope="scope">
 
 
-                        <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{ scope.row.taskName }}</el-tag>
-                        </div>
+                    <div slot="reference" class="name-wrapper">
+                        <el-tag size="medium">{{ scope.row.name }}</el-tag>
+                    </div>
 
                 </template>
             </el-table-column>
             <el-table-column
-                prop="date"
-                label="创建时间"
-                width="300"
-               	>
+                prop="writer"
+                label="图书作者"
+                width="200%"
+            >
                 <template slot-scope="scope">
                     <i class="el-icon-time"></i>
-                    <span style="margin-left: 10px">{{ scope.row.date }}</span>
+                    <span style="margin-left: 10px">{{ scope.row.writer }}</span>
                 </template>
             </el-table-column>
             <el-table-column
-                prop="detail"
-                label="备   注"
+                prop="findNumber"
+                label="索书号"
+                width="300"
+            >
+                <template slot-scope="scope">
+                    <i class="el-icon-time"></i>
+                    <span style="margin-left: 10px">{{ scope.row.findNumber }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                prop="resbooks"
+                label="可借数量"
                 width="300">
                 <template slot-scope="scope">
-                    <span style="margin-left: 10px">{{ scope.row.detail }}</span>
+                    <span style="margin-left: 10px">{{ scope.row.resbooks }}</span>
                 </template>
             </el-table-column>
             <el-table-column
@@ -54,43 +63,15 @@
                 label="操作"
                 width="150">
                 <template slot-scope="scope">
-                    <el-button icon="el-icon-delete" @click="deleteItem(scope.$index)" type="danger"
+                    <el-button icon="el-icon-delete" type="danger"
                                size="small"></el-button>
                     <el-button icon="el-icon-edit" type="primary" size="small"
-                               @click="openEdit(scope.$index)"></el-button>
+                    ></el-button>
                 </template>
             </el-table-column>
         </el-table>
 
 
-        <el-dialog title="新建任务" :visible.sync="dialogAddForm" width="30%">
-            <el-form :model="form">
-                <el-form-item label="任务名称" :label-width="formLabelWidth">
-                    <el-input v-model="form.taskName" autocomplete="off" placeholder="不超过10字符"></el-input>
-                </el-form-item>
-                <el-form-item label="备   注" :label-width="formLabelWidth">
-                    <el-input v-model="form.detail" type="textarea" placeholder="不超过50字符"></el-input>
-                </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogAddForm = false">取 消</el-button>
-                <el-button type="primary" @click="newTask">确 定</el-button>
-            </div>
-        </el-dialog>
-        <el-dialog title="修改任务" :visible.sync="dialogUpdateForm" width="30%">
-            <el-form :model="form">
-                <el-form-item label="任务名称" :label-width="formLabelWidth">
-                    <el-input v-model="form.taskName" autocomplete="off" placeholder="不超过10字符"></el-input>
-                </el-form-item>
-                <el-form-item label="备   注" :label-width="formLabelWidth">
-                    <el-input v-model="form.detail" type="textarea" placeholder="不超过50字符"></el-input>
-                </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogUpdateForm = false">取 消</el-button>
-                <el-button type="primary" @click="updateItem">确 定</el-button>
-            </div>
-        </el-dialog>
     </div>
 </template>
 
@@ -103,163 +84,67 @@
 
 
             return {
-                current_task:0,
-                flag:0,
-                id: 1,
 
-                config: {
-                    emptyTxt: "没有更多啦~~",
-                    indent: 20,//相邻级节点间的水平缩进，单位为像素
-                    showCheckbox: true,//是否显示复选框
-                    nodeKey: "value",//依据哪个节点来判断选中和展开,其值为节点数据中的一个字段名，该字段在整棵树中是唯一的。
-                    clickExpand: false,//点击后是否展开下级
-                    checkedKeys: ['211'],//默认选中的项的字段值
-                    expandedKeys: ['21'],//判断哪些项是展开的
-                    expandAll: false,//是否默认展开所有
-                    highlight: true,//选中后是否高亮显示当前行
-                    accordion: true//是否开启手风琴
-                },
+
+
                 filterText: "",
                 prop: {
                     label: 'name',
                     children: 'zones',
                     isLeaf: 'leaf'
                 },
-                formLabelWidth: '120px',
-                form: {
-                    taskName: '',
-                    detail: '',
-                    date1: '',
-                    date2: '',
-                    delivery: false,
-                    type: [],
-                    resource: '',
-                    desc: ''
-                },
-                dialogAddForm: false,
-                dialogUpdateForm: false,
-                tableData: [
-                ]
+
+
+                tableData: []
             }
         },
         methods: {
-            openIndexConfig(row){
-                localStorage.setItem('task-id',row.id);
-
-                this.$router.push('./IndexConfig')
-            },
-
-
-            newTask() {
-                const self = this;
-                let taskName = this.form.taskName;
-                let detail = this.form.detail;
-                let i = 0;
-                let flag = true;
-                while (i < this.tableData.length) {
-                    if (taskName === this.tableData[i].taskName) {
-                        this.$message.warning("任务名重复，请重新确认");
-                        flag = false;
-                        break;
-                    }
-                    i++;
-                }
-                let temp=self.tableData.length;
-                if(temp===0)
-                    temp=temp+1;
-                else
-                    temp=self.tableData[self.tableData.length-1].id+1;
-                if (flag) {
-                    this.dialogAddForm = false;
-                    this.$http.post('/api/task/addTask', {
-                        taskName: taskName,
-                        detail: detail,
-                        id: temp
-                    }, {})
-                }
-            },
-
 
 
             listTask() {
                 const self = this;
-                self.$axios.post('/api/task/listTask').then((res) => {
+                self.$axios.post('/api/books/listBook').then((res) => {
                     self.tableData = [];
                     res.data.some(item => {
-                        let day = item.date;
-                        day = day.split("-");
 
-                        let dateyear = day[0];
-                        let datemonth = day[1];
-                        day = day[2].split("T")
-                        let dateday = day[0];
-                        day = day[1].split(".");
-                        let datehour = day[0];
-                        datehour = datehour.split(":");
-                        let datemin = datehour[1];
-                        let datesec = datehour[2];
-                        datehour = datehour[0];
-                        datehour = parseInt(datehour);
-                        datehour = datehour + 8;
-                        datehour = String(datehour);
 
                         self.tableData.push({
-                            date: dateyear + '-' + datemonth + '-' + dateday + ' ' + datehour + ':' + datemin + ':' + datesec,
-                            taskName: item.taskName,
-                            detail: item.detail,
-                            id: item.id
+                            name: item.bookname,
+                            writer: item.writer,
+                            resbooks: item.resbooks,
+                            findNumber: item.findNumber
                         })
                         console.log(self.flag);
 
                     });
 
-                }).then(()=>{
-                    if(self.flag===0) {
-                            if(self.tableData.length>0) {
+                }).then(() => {
+                    if (self.flag === 0) {
+                        if (self.tableData.length > 0) {
 
-                                self.current_task = self.tableData[0].id;
-                            }
-                            self.flag=1;
+                            self.current_task = self.tableData[0].id;
                         }
+                        self.flag = 1;
+                    }
                 });
             },
-            deleteItem(index) {
+            getDate(day) {
+                day = day.split("-");
 
-                const self = this;
-                self.$http.post('/api/task/deleteTask', {
-                    taskName: self.tableData[index].taskName
-                }, {}).then((response) => {
-                    self.tableData.splice(index, 1);
-
-                })
-
-            },
-            openEdit(index) {
-                this.dialogUpdateForm = true;
-                localStorage.setItem('task_id', index);
-                this.form.taskName = this.tableData[index].taskName;
-                this.form.detail = this.tableData[index].detail;
-            },
-            updateItem() {
-                let id = localStorage.getItem("task_id");
-                for (let i = 0; i < this.tableData.length; i++) {
-                    if (this.form.taskName === this.tableData[i].taskName) {
-                        this.$message.warning("任务名重复，请重新确认");
-                        return;
-                    }
-                }
-                this.tableData[id].taskName = this.form.taskName;
-                this.tableData[id].detail = this.form.detail;
-                this.dialogUpdateForm = false;
-                const self = this;
-
-                self.$http.post('/api/task/updateTask', {
-                    taskName: self.tableData[id].taskName,
-                    detail: self.tableData[id].detail,
-                    id: parseInt(self.tableData[id].id)
-                }, {}).then((response) => {
-                    self.listTask();
-                })
+                let dateyear = day[0];
+                let datemonth = day[1];
+                day = day[2].split("T")
+                let dateday = day[0];
+                day = day[1].split(".");
+                let datehour = day[0];
+                datehour = datehour.split(":");
+                let datemin = datehour[1];
+                let datesec = datehour[2];
+                datehour = datehour[0];
+                datehour = parseInt(datehour);
+                datehour = datehour + 8;
+                datehour = String(datehour);
+                return dateyear + '-' + datemonth + '-' + dateday + ' ' + datehour + ':' + datemin + ':' + datesec;
             },
 
 
@@ -267,7 +152,6 @@
 
         mounted() {
             this.listTask();
-
         },
 
 
