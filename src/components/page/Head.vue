@@ -21,7 +21,7 @@
 			  background-color="#242f42" text-color="#fff" active-text-color="#ffd04b" router>
 
                 <el-menu-item index="/page/TaskManage">
-                    任务管理
+                    图书借阅
                 </el-menu-item>
                 <el-menu-item index="/page/IndexConfig" >
                     指标配置

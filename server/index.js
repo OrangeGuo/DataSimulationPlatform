@@ -1,5 +1,5 @@
 const userApi = require('./api/userApi')
-const taskApi = require('./api/taskApi')
+const booksApi = require('./api/booksApi')
 const modulesApi=require('./api/modulesApi')
 const fs = require('fs')
 const path = require('path')
@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: false}))//解析表单不含文件
 
 // 后端api路由
 app.use('/api/user', userApi)
-app.use('/api/task', taskApi)
+app.use('/api/books', booksApi)
 app.use('/api/modules',modulesApi)
 
 // 监听端口

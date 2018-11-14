@@ -104,10 +104,13 @@
                     return;
                 }
                 const self = this;
+                let id=1;
                 self.$axios.post('/api/user/listUser').then((res) => {
                     let rel = res.data.some(item => {
+                        id=item.userid+1;
                         return item.username === self.userInfo.username;
                     });
+
                     if (rel) {
                         flag = false;
 
@@ -120,8 +123,11 @@
                     }
 
                     this.$http.post('/api/user/addUser', {
+                        userid:  id++,
                         username: self.userInfo.username,
-                        password: self.userInfo.userpwd
+                        password: self.userInfo.userpwd,
+                        userkind: 1,
+                        booksnum: 5,
                     }, {}).then((response) => {
                         //console.log(response);
                     });

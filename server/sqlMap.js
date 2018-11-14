@@ -2,15 +2,15 @@
 let sqlMap = {
     // 用户
     user: {
-        add: 'insert into user( username, password) values ( ?, ?)',
-        list: 'select username,password from user',
-        update: 'update user set password=? where username=?'
+        add: 'insert into libuser( userid, username, password, userkind, booksnum) values ( ?, ?,?,?,?)',
+        list: 'select userid, username, password, userkind, booksnum from libuser',
+        update: 'update libuser set password=? where username=?'
     },
-    task: {
-        add: 'insert into tasks(taskName, date, detail,id) values (?,?,?,?)',
-        list: 'select taskName,date,detail,id from tasks',
-        delete: 'delete from tasks where taskName=?',
-        update: 'update tasks set taskName=?, detail=? where id=?'
+    books: {
+        add: 'insert into books(bookId, bookname, writer, findNumber, resbooks, allbooks) values (?,?,?,?,?,?)',
+        list: 'select bookId, bookname, writer, findNumber, resbooks, allbooks from books',
+        delete: 'delete from books where bookId=?',
+        update: 'update books set resbooks=?, allbooks=? where bookId=?'
     },
     modules: {
         add: 'insert into modules(node_id, node_name, node_value, parent, task_id) values(?,?,?,?,?)',

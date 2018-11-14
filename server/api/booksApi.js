@@ -20,11 +20,11 @@ let jsonWrite = function (res, ret) {
     }
 };
 //修改任务接口
-router.post('/updateTask', (req, res) => {
-    let sql = $sql.task.update;
+router.post('/updateBook', (req, res) => {
+    let sql = $sql.books.update;
     let params = req.body;
     console.log(params);
-    conn.query(sql, [params.taskName, params.detail, params.id], function (err, result) {
+    conn.query(sql, [params.resbooks, params.allbooks, params.bookId], function (err, result) {
         if (err) {
             console.log(err);
         }
@@ -34,11 +34,11 @@ router.post('/updateTask', (req, res) => {
     })
 });
 //删除任务接口
-router.post('/deleteTask', (req, res) => {
-    let sql = $sql.task.delete;
+router.post('/deleteBook', (req, res) => {
+    let sql = $sql.books.delete;
     let params = req.body;
     console.log(params);
-    conn.query(sql, [params.taskName], function (err, result) {
+    conn.query(sql, [params.bookId], function (err, result) {
         if (err) {
             console.log(err);
         }
@@ -48,11 +48,11 @@ router.post('/deleteTask', (req, res) => {
     })
 });
 // 增加用户接口
-router.post('/addTask', (req, res) => {
-    let sql = $sql.task.add;
+router.post('/addBook', (req, res) => {
+    let sql = $sql.books.add;
     let params = req.body;
     console.log(params);
-    conn.query(sql, [params.taskName, new Date(), params.detail,params.id], function (err, result) {
+    conn.query(sql, [params.bookId, params.bookname, params.writer,params.findNumber,params.resbooks,params.allbooks], function (err, result) {
         if (err) {
             console.log(err);
         }
@@ -62,8 +62,8 @@ router.post('/addTask', (req, res) => {
     })
 });
 
-router.post('/listTask', (req, res) => {
-    let sql = $sql.task.list;
+router.post('/listBook', (req, res) => {
+    let sql = $sql.books.list;
 
     console.log("list task");
     conn.query(sql, function (err, result) {
