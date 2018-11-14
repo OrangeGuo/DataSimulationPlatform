@@ -23,12 +23,7 @@
                 <el-menu-item index="/page/TaskManage">
                     图书借阅
                 </el-menu-item>
-                <el-menu-item index="/page/IndexConfig" >
-                    指标配置
-                </el-menu-item>
-                <el-menu-item index="/page/SensAnalyse">
-                    灵敏度分析
-                </el-menu-item>
+
 
 			  <el-menu-item  index="3" v-popover:popoverT>
 			  	<el-popover ref="popoverT"  placement="bottom-end" title="提示"  width="100" trigger="hover"
