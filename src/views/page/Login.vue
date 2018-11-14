@@ -1,7 +1,7 @@
 <template>
     <div class="wraper">
         <div class="login-wrap">
-            <div class="login-wrap-title">大数据仿真平台</div>
+            <div class="login-wrap-title">图书管理系统</div>
             <div class="login-wrap-from" align="center">
                 <el-form :model="userInfo" :rules="rules" ref="form" label-width="0px" class="userinfo">
                     <el-form-item prop="username">

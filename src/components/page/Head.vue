@@ -1,7 +1,7 @@
 <template>
 	<div class="header">
 
-		<div class="welcome">欢迎<span class="username">&nbsp;<slot name="username"></slot>&nbsp;</span>来到大数据仿真系统</div>
+		<div class="welcome">欢迎<span class="username">&nbsp;<slot name="username"></slot>&nbsp;</span>来到图书管理系统</div>
 		<div class="user-info">
 			<el-dropdown trigger="click" @command="handleCommand">
 				<div class="head-icon">
