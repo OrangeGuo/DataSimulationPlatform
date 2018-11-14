@@ -18,17 +18,7 @@ import PersonalCenter from '../views/page/PersonalCenter';	//个人中心
 import Empty from '../views/page/empty.vue';
 
 
-//图表组件
 
-
-
-
-//上传组件
-import BaseUpload from "../views/upload/BaseUpload.vue";//点击上传
-import Picwall from "../views/upload/picwall.vue";
-import Piclist from "../views/upload/piclist.vue";
-import DragUpload from "../views/upload/dragUpload.vue";
-import ClipUpload from "../views/upload/clipUpload.vue";
 
 //消息通知组件
 import Alert from "../views/notice/Alert.vue";
@@ -39,32 +29,15 @@ import Dialog from "../views/notice/Dialog.vue";
 import Tip from "../views/notice/Tip.vue";
 import Popover from "../views/notice/Popover.vue";
 
-//工具类
-import Tag from "../views/tools/Tag.vue";
-import Badge from "../views/tools/Badge.vue";
-import Pagination from "../views/tools/Pagination.vue";
-import Progress from "../views/tools/Progress.vue";
-import Step from "../views/tools/Step.vue";
 
 //控制面板组件
 import Collapse from "../views/panel/Collapse.vue";
 import Card from "../views/panel/Card.vue";
 
 
-//其它组件
-import Drag from '../views/else/drag.vue';
-import Tree from "../views/else/Tree.vue";
-import Carousel from "../views/else/Carousel.vue";
 
-//layout 布局
-import Layout from "../views/layout/Layout.vue";
-import Container from "../views/layout/Container.vue";
 
-//全局介绍
-import Font from "../views/overall/Font.vue";
-import Color from "../views/overall/Color.vue";
-import Icon from "../views/overall/Icon.vue";
-import Button from "../views/overall/Button.vue";
+
 
 
 
@@ -117,77 +90,11 @@ export default new Router({
                     path: 'personalCenter',
                     component: PersonalCenter
                 },
-                {
-                    path: 'else',//其它组件
-                    component: Empty,
-                    children: [
-                        {
-                            path: 'drag',
-                            component: Drag
-                        },
-                        {
-                            path: 'tree',
-                            component: Tree
-                        }, {
-                            path: "carousel",
-                            component: Carousel
-                        }
-                    ]
-                },
 
 
-                {
-                    path: 'upload',//上传组件
-                    component: Empty,
-                    children: [
-                        {
-                            path: 'baseUpload',
-                            component: BaseUpload
-                        },
-                        {
-                            path: 'picwall',
-                            component: Picwall
-                        },
-                        {
-                            path: 'piclist',
-                            component: Piclist
-                        },
-                        {
-                            path: 'dragUpload',
-                            component: DragUpload
-                        },
-                        {
-                            path: 'clipUpload',
-                            component: ClipUpload
-                        }
-                    ]
-                },
-                {
-                    path: 'tools',//工具组件
-                    component: Empty,
-                    children: [
-                        {
-                            path: 'tag',
-                            component: Tag
-                        },
-                        {
-                            path: 'badge',
-                            component: Badge
-                        },
-                        {
-                            path: 'pagination',
-                            component: Pagination
-                        },
-                        {
-                            path: 'progress',
-                            component: Progress
-                        },
-                        {
-                            path: 'step',
-                            component: Step
-                        }
-                    ]
-                },
+
+
+
                 {
                     path: 'notice',
                     component: Empty,
@@ -226,38 +133,6 @@ export default new Router({
                         }, {
                             path: 'card',
                             component: Card
-                        }
-                    ]
-                },  {
-                    path: 'layout',
-                    component: Empty,
-                    redirect: '/page/layout/index',
-                    children: [
-                        {
-                            path: 'index',
-                            component: Layout
-                        },
-                        {
-                            path: 'container',
-                            component: Container
-                        }
-                    ]
-                }, {
-                    path: 'overall',
-                    component: Empty,
-                    children: [
-                        {
-                            path: 'font',
-                            component: Font
-                        }, {
-                            path: 'color',
-                            component: Color
-                        }, {
-                            path: 'icon',
-                            component: Icon
-                        }, {
-                            path: 'button',
-                            component: Button
                         }
                     ]
                 }
