@@ -7,7 +7,7 @@ import Register from '../views/page/Register';
 import TaskManage from '../views/page/TaskManage';
 import IndexConfig from '../views/page/IndexConfig';
 import SensAnalyse from '../views/page/SensAnalyse';
-import  HomePage from '../components/HomePage';
+
 import Page from '../components/page/Page';	//主页面模板
 import Readme from '../views/page/Readme';	//了解系统
 import ResetPwd from '../views/page/ResetPwd';//重置密码
@@ -16,26 +16,12 @@ import PersonalCenter from '../views/page/PersonalCenter';	//个人中心
 //业务组件
 //表格组件
 import Empty from '../views/page/empty.vue';
-import Table from '../views/table/Table.vue';
-import FixedTable from "../views/table/FixedTable.vue";
-import Multistage from "../views/table/Multistage.vue";
-import CheckTable from "../views/table/CheckTable.vue";
-import SortTable from "../views/table/SortTable.vue";
-import ExpandTable from "../views/table/ExpandTable.vue";
-import AddUpTable from "../views/table/AddUpTable.vue";
-import MergeTable from "../views/table/mergeTable.vue";
 
-import ElTable from '../views/table/ElTable'; //eleUI表格组件
-import DataSource from "../views/table/DataSource";	//组定义表格组件
 
 //图表组件
 
 
-//表单组件
-import Baseform from "../views/form/baseform.vue";
-import ExtendForm from "../views/form/extendform.vue";
-import RegisterDone from "../views/form/registerDone.vue";
-import FormTest from "../views/form/formTest.vue";
+
 
 //上传组件
 import BaseUpload from "../views/upload/BaseUpload.vue";//点击上传
@@ -64,10 +50,6 @@ import Step from "../views/tools/Step.vue";
 import Collapse from "../views/panel/Collapse.vue";
 import Card from "../views/panel/Card.vue";
 
-//菜单类
-import Dropdown from "../views/menu/Dropdown.vue";
-import Navmenu from "../views/menu/Navmenu.vue";
-import Tab from "../views/menu/Tab.vue";
 
 //其它组件
 import Drag from '../views/else/drag.vue';
@@ -84,7 +66,7 @@ import Color from "../views/overall/Color.vue";
 import Icon from "../views/overall/Icon.vue";
 import Button from "../views/overall/Button.vue";
 
-import Demo from "../views/layout/Demo.vue";
+
 
 
 Vue.use(Router);
@@ -122,10 +104,7 @@ export default new Router({
                     path: 'sensAnalyse',
                     component: SensAnalyse
                 },
-                {
-                    path: 'homePage',
-                    component: HomePage
-                },
+
                 {
                     path: 'readme',
                     component: Readme
@@ -137,52 +116,6 @@ export default new Router({
                 {
                     path: 'personalCenter',
                     component: PersonalCenter
-                },
-                {
-                    path: 'table',//表格组件
-                    component: Empty,
-                    children: [
-                        {
-                            path: 'ele',
-                            component: Table
-                        },
-                        {
-                            path: 'fixedTable',
-                            component: FixedTable
-                        },
-                        {
-                            path: 'multistage',
-                            component: Multistage
-                        },
-                        {
-                            path: 'checkTable',
-                            component: CheckTable
-                        },
-                        {
-                            path: 'sortTable',
-                            component: SortTable
-                        },
-                        {
-                            path: 'expandTable',
-                            component: ExpandTable
-                        },
-                        {
-                            path: 'addUpTable',
-                            component: AddUpTable
-                        },
-                        {
-                            path: 'mergeTable',
-                            component: MergeTable
-                        },
-                        {
-                            path: 'elTable',
-                            component: ElTable
-                        },
-                        {
-                            path: 'dataSource',
-                            component: DataSource
-                        }
-                    ]
                 },
                 {
                     path: 'else',//其它组件
@@ -202,27 +135,7 @@ export default new Router({
                     ]
                 },
 
-                {
-                    path: 'form',//表单组件
-                    component: Empty,
-                    children: [
-                        {
-                            path: 'baseform',
-                            component: Baseform
-                        },
-                        {
-                            path: 'extendForm',
-                            component: ExtendForm
-                        },
-                        {
-                            path: 'registerDone',
-                            component: RegisterDone
-                        }, {
-                            path: 'formTest',
-                            component: FormTest
-                        }
-                    ]
-                },
+
                 {
                     path: 'upload',//上传组件
                     component: Empty,
@@ -315,22 +228,7 @@ export default new Router({
                             component: Card
                         }
                     ]
-                }, {
-                    path: 'menu',
-                    component: Empty,
-                    children: [
-                        {
-                            path: 'dropdown',
-                            component: Dropdown
-                        }, {
-                            path: 'navmenu',
-                            component: Navmenu
-                        }, {
-                            path: 'tab',
-                            component: Tab
-                        }
-                    ]
-                }, {
+                },  {
                     path: 'layout',
                     component: Empty,
                     redirect: '/page/layout/index',

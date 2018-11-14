@@ -39,7 +39,7 @@
 			    <el-menu-item index="/page/overall/icon">图标</el-menu-item>
 			    <el-menu-item index="/page/overall/button">按钮</el-menu-item>
 			  </el-submenu>
-			  <el-menu-item  index="" v-popover:popoverT>
+			  <el-menu-item  index="3" v-popover:popoverT>
 			  	<el-popover ref="popoverT"  placement="bottom-end" title="提示"  width="100" trigger="hover"
 				  content="这里将展示最新的系统通知消息。">
 				</el-popover>
