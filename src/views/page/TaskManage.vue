@@ -60,11 +60,40 @@
                 width="150">
                 <template slot-scope="scope">
                     <el-tooltip content="可借阅" placement="top">
-                        <el-button icon="el-icon-plus" type="primary" size="medium"></el-button>
+                        <el-button icon="el-icon-plus" type="primary" size="medium" @click="bookInformation(scope.$index)"></el-button>
                     </el-tooltip>
                 </template>
             </el-table-column>
         </el-table>
+         <el-dialog title="借阅书籍信息" :visible.sync="dialogAddForm" width="30%">
+            <div   width="30%">
+                <el-form :model="form">
+                    <el-form-item label="书籍编号" :label-width="formLabelWidth">
+                        <el-input v-model="form.bookId" autocomplete="off" :disabled="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="书籍名称" :label-width="formLabelWidth">
+                        <el-input v-model="form.bookname" autocomplete="off"  :disabled="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="书籍作者" :label-width="formLabelWidth">
+                        <el-input v-model="form.writer" autocomplete="off"  :disabled="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="书籍类别" :label-width="formLabelWidth">
+                        <el-input v-model="form.bookkind" autocomplete="off"  :disabled="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="索书号" :label-width="formLabelWidth">
+                        <el-input v-model="form.findNumber" autocomplete="off"  :disabled="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="剩余数量" :label-width="formLabelWidth">
+                        <el-input v-model="form.resbooks" autocomplete="off"  :disabled="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="总数量" :label-width="formLabelWidth">
+                        <el-input v-model="form.allbooks" autocomplete="off"  :disabled="true"></el-input>
+                    </el-form-item>
+                </el-form>
+                <el-button @click="dialogAddForm = false" style="margin-left: 30%;">取 消</el-button>
+                <el-button type="primary" @click="updateInfor" >确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -74,6 +103,8 @@
 
         data() {
             return {
+                dialogAddForm:false,
+                formLabelWidth: '120px',
                 dropItem: "全部",
                 filterText: "",
                 prop: {
@@ -81,7 +112,16 @@
                     children: 'zones',
                     isLeaf: 'leaf'
                 },
-                tableData: []
+                tableData: [],
+                form:{
+                    bookId: 0,
+                    bookname:'',
+                    writer:'',
+                    findNumber: '',
+                    resbooks:0,
+                    allbooks:0,
+                    bookkind:0,
+                }
             }
         },
         methods: {
@@ -89,16 +129,46 @@
                 this.dropItem=command;
                 this.$message('调整类别为' + command);
             },
+            bookInformation(index){
+                this.dialogAddForm=true;
+                this.form.bookId=this.tableData[index].bookId;
+                this.form.bookname=this.tableData[index].name;
+                this.form.writer=this.tableData[index].writer;
+                this.form.findNumber=this.tableData[index].findNumber;
+                this.form.resbooks=this.tableData[index].resbooks;
+                this.form.allbooks=this.tableData[index].allbooks;
+                this.form.bookkind=this.tableData[index].bookkind;
+                localStorage.setItem('bookid', index);
+            },
+            updateInfor()
+            {
+                const self = this;
+                self.dialogAddForm=false;
+                let id=localStorage.getItem("bookid");
+
+                let temp=parseInt(self.tableData[id].resbooks)-1;
+                self.$http.post('/api/books/updateBook', {
+                    resbooks: temp,
+                    allbooks: parseInt(self.tableData[id].allbooks),
+                    bookId:  parseInt(self.tableData[id].bookId)
+                }, {}).then((response) => {
+                    self.listTask();
+
+                })
+            },
             listTask() {
                 const self = this;
                 self.$axios.post('/api/books/listBook').then((res) => {
                     self.tableData = [];
                     res.data.some(item => {
                         self.tableData.push({
+                            bookId:item.bookId,
                             name: item.bookname,
                             writer: item.writer,
                             resbooks: item.resbooks,
-                            findNumber: item.findNumber
+                            findNumber: item.findNumber,
+                            allbooks: item.allbooks,
+                            bookkind: item.bookkind,
                         })
                     });
                 });
