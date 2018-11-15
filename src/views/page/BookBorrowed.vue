@@ -81,26 +81,64 @@
                     children: 'zones',
                     isLeaf: 'leaf'
                 },
-                tableData: []
+                tableData: [],
+                allBooks: [],
+                bookList: []
             }
         },
         methods: {
             handleCommand(command) {
-                this.dropItem=command;
+                this.dropItem = command;
                 this.$message('调整类别为' + command);
             },
             listTask() {
                 const self = this;
-                self.$axios.post('/api/books/listBook').then((res) => {
-                    self.tableData = [];
+                self.$axios.post('/api/record/listRecord', {userid: localStorage.getItem("user-id")}, {}).then((res) => {
+                    self.bookList = [];
                     res.data.some(item => {
-                        self.tableData.push({
+                        self.bookList.push({
+                            bookId: item.bookid,
+                            borrowDate: item.borrowDate
+                        })
+                    });
+                }).then(() => {
+                    self.tableData = [];
+                    for (let i = 0; i < self.bookList.length; i++) {
+                        for (let j = 0; j < self.allBooks.length; j++) {
+                            if (self.bookList[i].bookId === self.allBooks[j].bookId) {
+                                let item = self.allBooks[j];
+                                self.tableData.push({
+                                    name: item.bookname,
+                                    writer: item.writer,
+                                    resbooks: item.resbooks,
+                                    findNumber: item.findNumber,
+                                    bookId: item.bookId,
+                                    allbooks: item.allbooks,
+                                    bookkind: item.bookkind
+                                });
+                                break;
+                            }
+                        }
+                    }
+
+                });
+            },
+            getBooks() {
+                const self = this;
+                self.$axios.post('/api/books/listBook').then((res) => {
+                    self.allBooks = [];
+                    res.data.some(item => {
+                        self.allBooks.push({
                             name: item.bookname,
                             writer: item.writer,
                             resbooks: item.resbooks,
-                            findNumber: item.findNumber
+                            findNumber: item.findNumber,
+                            bookId: item.bookId,
+                            allbooks: item.allbooks,
+                            bookkind: item.bookkind
                         })
                     });
+
                 });
             },
             getDate(day) {
@@ -122,6 +160,7 @@
             },
         },
         mounted() {
+            this.getBooks();
             this.listTask();
         },
     }

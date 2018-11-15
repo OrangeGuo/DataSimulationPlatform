@@ -15,7 +15,7 @@ let sqlMap = {
     },
     record:{
         add: 'insert into record(userid,bookid,borrowDate) values (?,?,?)',
-        list: 'select userid,bookid,borrowDate from record',
+        list: 'select bookid,borrowDate from record where userid=?',
         delete: 'delete from record where userid =? and bookid=?'
     },
     modules: {

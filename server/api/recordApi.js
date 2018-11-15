@@ -51,9 +51,9 @@ router.post('/addRecord', (req, res) => {
 
 router.post('/listRecord', (req, res) => {
     let sql = $sql.record.list;
-
-    console.log("list task");
-    conn.query(sql, function (err, result) {
+    let params = req.body;
+    console.log(params);
+    conn.query(sql,[params.userid], function (err, result) {
         if (err) {
             console.log(err);
         }

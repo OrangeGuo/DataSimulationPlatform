@@ -144,6 +144,13 @@
             updateInfor() {
                 const self = this;
                 self.dialogAddForm = false;
+                let bookNum=parseInt(localStorage.getItem("books-num"));
+                if(bookNum===0){
+                    this.$message.warning("已超过最大借书数量");
+                    return;
+                }
+                localStorage.setItem('books-num',bookNum-1);
+
                 let id = localStorage.getItem("bookid");
 
                 let temp = parseInt(self.tableData[id].resbooks) - 1;
@@ -163,10 +170,10 @@
                     })
                 });
                 self.$http.post('/api/user/updateBooksNum', {
-                    booksnum: parseInt(localStorage.getItem("books-num"))-1,
+                    booksnum: bookNum-1,
                     userid: parseInt(localStorage.getItem("user-id"))
                 }, {});
-                localStorage.setItem('books-num',parseInt(localStorage.getItem('books-num'))-1);
+
             },
             listTask() {
                 const self = this;
