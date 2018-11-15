@@ -39,7 +39,7 @@ router.post('/addRecord', (req, res) => {
     let sql = $sql.record.add;
     let params = req.body;
     console.log(params);
-    conn.query(sql, [params.userid, params.bookid,params.borrowDate], function (err, result) {
+    conn.query(sql, [params.userid, params.bookid,new Date()], function (err, result) {
         if (err) {
             console.log(err);
         }

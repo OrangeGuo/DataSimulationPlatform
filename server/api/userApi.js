@@ -25,7 +25,7 @@ router.post('/addUser', (req, res) => {
     let sql = $sql.user.add;
     let params = req.body;
     console.log(params);
-    conn.query(sql, [params.userid, params.username, params.password, params.userkind, params.booksnum], function (err, result) {
+    conn.query(sql, [params.userid, params.username, params.password, params.userkind, params.booksnum,params.maxbooks], function (err, result) {
         if (err) {
             console.log(err);
         }
@@ -54,6 +54,20 @@ router.post('/updatePass', (req, res) => {
     let sql = $sql.user.update;
     let params = req.body;
     conn.query(sql, [params.password, params.username], function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        if (result) {
+            jsonWrite(res, result);
+        }
+
+    })
+});
+router.post('/updateBooksNum', (req, res) => {
+    let sql = $sql.user.setBooksNum;
+    let params = req.body;
+    console.log(params);
+    conn.query(sql, [params.booksnum, params.userid], function (err, result) {
         if (err) {
             console.log(err);
         }

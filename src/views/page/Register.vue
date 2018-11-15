@@ -127,7 +127,8 @@
                         username: self.userInfo.username,
                         password: self.userInfo.userpwd,
                         userkind: 1,
-                        booksnum: 5,
+                        booksnum: 12,
+                        maxbooks:12,
                     }, {}).then((response) => {
                         //console.log(response);
                     });

@@ -3,8 +3,9 @@ let sqlMap = {
     // 用户
     user: {
         add: 'insert into libuser( userid, username, password, userkind, booksnum) values ( ?, ?,?,?,?)',
-        list: 'select userid, username, password, userkind, booksnum from libuser',
-        update: 'update libuser set password=? where username=?'
+        list: 'select userid, username, password, userkind, booksnum,maxbooks from libuser',
+        update: 'update libuser set password=? where username=?',
+        setBooksNum:'update libuser set booksnum=? where userid=?'
     },
     books: {
         add: 'insert into books(bookId, bookname, writer, findNumber, resbooks, allbooks,bookkind) values (?,?,?,?,?,?,?)',
@@ -14,7 +15,7 @@ let sqlMap = {
     },
     record:{
         add: 'insert into record(userid,bookid,borrowDate) values (?,?,?)',
-        list: 'select userid,bookid,deadline,borrowDate from record',
+        list: 'select userid,bookid,borrowDate from record',
         delete: 'delete from record where userid =? and bookid=?'
     },
     modules: {
