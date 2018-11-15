@@ -1113,166 +1113,208 @@
     <table id="279" parent="2" name="books"/>
     <table id="280" parent="2" name="libuser"/>
     <table id="281" parent="2" name="modules"/>
-    <table id="282" parent="2" name="student"/>
-    <table id="283" parent="2" name="tasks"/>
-    <table id="284" parent="2" name="user"/>
-    <column id="285" parent="279" name="bookId">
+    <table id="282" parent="2" name="record"/>
+    <table id="283" parent="2" name="student"/>
+    <table id="284" parent="2" name="table_name"/>
+    <table id="285" parent="2" name="tasks"/>
+    <table id="286" parent="2" name="user"/>
+    <column id="287" parent="279" name="bookId">
       <Position>1</Position>
-      <DataType>char(20)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="279" name="bookname">
+    <column id="288" parent="279" name="bookname">
       <Position>2</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="279" name="writer">
+    <column id="289" parent="279" name="writer">
       <Position>3</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="279" name="findNumber">
+    <column id="290" parent="279" name="findNumber">
       <Position>4</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="279" name="resbooks">
+    <column id="291" parent="279" name="resbooks">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="279" name="allbooks">
+    <column id="292" parent="279" name="allbooks">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="279" name="bookkind">
+    <column id="293" parent="279" name="bookkind">
       <Position>7</Position>
       <DataType>int(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="280" name="userid">
+    <column id="294" parent="280" name="userid">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="280" name="username">
+    <column id="295" parent="280" name="username">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="280" name="password">
+    <column id="296" parent="280" name="password">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="295" parent="280" name="userkind">
+    <column id="297" parent="280" name="userkind">
       <Position>4</Position>
       <DataType>int(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="280" name="booksnum">
+    <column id="298" parent="280" name="booksnum">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="297" parent="281" name="node_id">
+    <column id="299" parent="281" name="node_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="298" parent="281" name="node_name">
+    <column id="300" parent="281" name="node_name">
       <Position>2</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="281" name="node_value">
+    <column id="301" parent="281" name="node_value">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="281" name="parent">
+    <column id="302" parent="281" name="parent">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="301" parent="281" name="task_id">
+    <column id="303" parent="281" name="task_id">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="282" name="id">
+    <column id="304" parent="282" name="deadline">
+      <Position>1</Position>
+      <DataType>date|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="305" parent="282" name="borrowDate">
+      <Position>2</Position>
+      <DataType>date|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="306" parent="282" name="userid">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="307" parent="282" name="bookid">
+      <Position>4</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="308" parent="283" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="282" name="name">
+    <column id="309" parent="283" name="name">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="304" parent="282" name="age">
+    <column id="310" parent="283" name="age">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="305" parent="282" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="306" parent="283" name="taskName">
-      <Position>1</Position>
-      <DataType>char(20)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="307" parent="283" name="date">
-      <Position>2</Position>
-      <DataType>date|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="308" parent="283" name="detail">
-      <Position>3</Position>
-      <DataType>char(50)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="309" parent="283" name="id">
-      <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="310" parent="283" name="tasks_taskName_uindex">
-      <ColNames>taskName</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
     <key id="311" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="312" parent="283" name="tasks_taskName_uindex">
-      <ColNames>taskName</ColNames>
-      <UnderlyingIndexName>tasks_taskName_uindex</UnderlyingIndexName>
-    </key>
-    <column id="313" parent="284" name="username">
+    <column id="312" parent="284" name="userid">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="313" parent="284" name="bookId">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="314" parent="284" name="deadline">
+      <Position>3</Position>
+      <DataType>date|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="315" parent="284" name="borrowDate">
+      <Position>4</Position>
+      <DataType>date|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="316" parent="285" name="taskName">
       <Position>1</Position>
       <DataType>char(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="314" parent="284" name="password">
+    <column id="317" parent="285" name="date">
+      <Position>2</Position>
+      <DataType>date|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="318" parent="285" name="detail">
+      <Position>3</Position>
+      <DataType>char(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="319" parent="285" name="id">
+      <Position>4</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="320" parent="285" name="tasks_taskName_uindex">
+      <ColNames>taskName</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="321" parent="285" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="322" parent="285" name="tasks_taskName_uindex">
+      <ColNames>taskName</ColNames>
+      <UnderlyingIndexName>tasks_taskName_uindex</UnderlyingIndexName>
+    </key>
+    <column id="323" parent="286" name="username">
+      <Position>1</Position>
+      <DataType>char(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="324" parent="286" name="password">
       <Position>2</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="315" parent="284" name="PRIMARY">
+    <key id="325" parent="286" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>username</ColNames>
       <Primary>1</Primary>

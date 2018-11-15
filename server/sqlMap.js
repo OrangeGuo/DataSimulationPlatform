@@ -12,6 +12,11 @@ let sqlMap = {
         delete: 'delete from books where bookId=?',
         update: 'update books set resbooks=?, allbooks=? where bookId=?'
     },
+    record:{
+        add: 'insert into record(userid,bookid,deadline,borrowDate) values (?,?,?,?)',
+        list: 'select userid,bookid,deadline,borrowDate from record',
+        delete: 'delete from record where userid =? and bookid=?'
+    },
     modules: {
         add: 'insert into modules(node_id, node_name, node_value, parent, task_id) values(?,?,?,?,?)',
         list: 'select node_id, node_name, node_value, parent from modules where task_id=?',
