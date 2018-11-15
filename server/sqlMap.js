@@ -13,7 +13,7 @@ let sqlMap = {
         update: 'update books set resbooks=?, allbooks=? where bookId=?'
     },
     record:{
-        add: 'insert into record(userid,bookid,deadline,borrowDate) values (?,?,?,?)',
+        add: 'insert into record(userid,bookid,borrowDate) values (?,?,?)',
         list: 'select userid,bookid,deadline,borrowDate from record',
         delete: 'delete from record where userid =? and bookid=?'
     },

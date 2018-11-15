@@ -39,7 +39,8 @@
                     userpwd: [
                         {required: true, message: "请输入密码", trigger: 'blur'}
                     ]
-                }
+                },
+                libuser:[]
             }
 
 
@@ -61,17 +62,35 @@
             login() {
                 const self = this;
                 self.$axios.post('/api/user/listUser').then((res) => {
-                    let rel = res.data.some(item => {
-                        return item.username === self.userInfo.username && item.password === self.userInfo.userpwd;
+                     self.tableData = [];
+                     res.data.some(item => {
+                        self.libuser.push({
+                                userid:item.userid,
+                                username:item.username,
+                                password:item.password,
+                            }
+
+                        );
                     });
-                    if (rel) {
-                        self.$message.success("登录成功!");
-                        localStorage.setItem('user-name', self.userInfo.username);
-                        localStorage.setItem('user-pwd', self.userInfo.userpwd);
-                        self.$router.push('./page');
-                    } else {
-                        self.$message.warning("账号或者密码有误");
+                    let i=0;
+                    for(i=0;i<self.libuser.length;i++)
+                    {
+                        if(self.libuser[i].username===self.userInfo.username&&self.libuser[i].password===self.userInfo.userpwd)
+                        {
+                            localStorage.setItem('user-name', self.userInfo.username);
+                            localStorage.setItem('user-pwd', self.userInfo.userpwd);
+                            localStorage.setItem('user-id', self.libuser[i].userid);
+                            console.log(self.libuser[i].userid);
+                            self.$router.push('./page');
+                            break;
+                        }
+
                     }
+                    if(i<self.libuser.length)
+                        self.$message.success("登录成功!");
+                    else
+                        self.$message.warning("账号或者密码有误");
+
                 });
             },
             testUser() {

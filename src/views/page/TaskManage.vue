@@ -147,12 +147,22 @@
                 let id=localStorage.getItem("bookid");
 
                 let temp=parseInt(self.tableData[id].resbooks)-1;
+
                 self.$http.post('/api/books/updateBook', {
                     resbooks: temp,
                     allbooks: parseInt(self.tableData[id].allbooks),
                     bookId:  parseInt(self.tableData[id].bookId)
                 }, {}).then((response) => {
-                    self.listTask();
+                    var date=new Date();
+                    let newid=localStorage.getItem("user-id");
+                    console.log(newid);
+                    this.$http.post('/api/record/addRecord', {
+                        userid: parseInt(newid),
+                        bookid:  parseInt(self.tableData[id].bookId),
+                        borrowDate: date
+                    }, {}).then((response) => {
+                        self.listTask();
+                    })
 
                 })
             },
