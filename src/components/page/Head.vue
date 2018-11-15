@@ -23,7 +23,9 @@
                 <el-menu-item index="/page/TaskManage">
                     图书借阅
                 </el-menu-item>
-
+                <el-menu-item index="/page/BookBorrowed">
+                    已借图书
+                </el-menu-item>
 
 			  <el-menu-item  index="3" v-popover:popoverT>
 			  	<el-popover ref="popoverT"  placement="bottom-end" title="提示"  width="100" trigger="hover"
