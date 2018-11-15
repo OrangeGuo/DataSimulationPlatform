@@ -4,8 +4,8 @@
 			<span slot="username">{{ nickname }}</span>
 			<span slot="_username">{{ nickname }}</span>
 		</v-head>
-        <!--<side-bar></side-bar>-->
-		<div class="page">
+        <side-bar></side-bar>
+		<div class="page" style="width: auto">
 			<transition name="fade" mode="out-in"><router-view></router-view></transition>
 		</div>
 	</div>
@@ -29,7 +29,7 @@
 		},
 		components:{
 			vHead,
-            //SideBar
+            SideBar
 		}
 	}
 </script>

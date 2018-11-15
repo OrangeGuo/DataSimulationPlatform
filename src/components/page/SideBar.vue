@@ -1,21 +1,15 @@
 <template>
-	<div class="side-bar">
-		<el-menu :default-active="onRoutes" class="el-menu-vertical-demo" theme="dark" unique-opened router>
-			<div v-for="(item,key) in items" :key="key">
-				<div v-if="item.children">
-					<el-submenu :index="item.index">
-                        <div slot="title"><span :class="item.icon"></span>{{ item.title }}</div>
-                        <el-menu-item v-for="(subItem,i) in item.children" :key="i" :index="subItem.index">{{ subItem.title }}
-                        </el-menu-item>
-                    </el-submenu>
-				</div>
-				<div v-else>
-					<el-menu-item :index="item.index">
-						<span :class="item.icon"></span>{{ item.title }}
-					</el-menu-item>
-				</div>
-			</div>
-		</el-menu>
+	<div class="side-bar" >
+		<el-dropdown style="margin-left: 120px;margin-top: 50px" @command="handleCommand">
+                <span class="el-dropdown-link" >
+                    类别<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="1">人文</el-dropdown-item>
+                    <el-dropdown-item command="2">地理</el-dropdown-item>
+                    <el-dropdown-item command="4">小说</el-dropdown-item>
+                </el-dropdown-menu>
+        </el-dropdown>
 	</div>
 </template>
 
@@ -23,28 +17,14 @@
 	export default {
 		data () {
 			return {
-				url:'./static/data/sideBar.json', //生产模式的请求地址
-				items:[]
+
 			}
 		},
-		created () {
-			this.getData();
-		},
-		computed:{
-			onRoutes () {
-				return this.$route.path;
-			}
-		},
+
 		methods:{
-			getData () {
-				let self = this;
-				if(process.env.NODE_ENV === "development"){
-					self.url="/static/data/sideBar.json";
-				}
-				self.$axios.get(self.url).then((res) => {
-					self.items = res.data.slice(0)
-				})
-			},
+            handleCommand(command) {
+                this.$message('click on item ' + command);
+             }
 		}
 	}
 </script>
@@ -60,4 +40,11 @@
 	.side-bar ul{
 		height:100%;
 	}
+    .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
 </style>

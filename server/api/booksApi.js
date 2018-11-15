@@ -52,7 +52,7 @@ router.post('/addBook', (req, res) => {
     let sql = $sql.books.add;
     let params = req.body;
     console.log(params);
-    conn.query(sql, [params.bookId, params.bookname, params.writer,params.findNumber,params.resbooks,params.allbooks], function (err, result) {
+    conn.query(sql, [params.bookId, params.bookname, params.writer,params.findNumber,params.resbooks,params.allbooks,params.bookkind], function (err, result) {
         if (err) {
             console.log(err);
         }

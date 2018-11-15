@@ -2,7 +2,6 @@
 
     <div>
         <div style="height: 50px">
-
             <el-input style="Float: left;height:50px;width: 500px;" float="left" placeholder="请输入关键字"
                       clearable></el-input>
             <el-button style="Float: left;height:40px;" type="primary" @click="" icon="el-icon-search">搜索
@@ -10,7 +9,7 @@
         </div>
         <el-table
             :data="tableData"
-            height="250"
+            height="600"
             stripe
             border
             style="width: 80%"
@@ -40,16 +39,7 @@
                     <span style="margin-left: 10px">{{ scope.row.writer }}</span>
                 </template>
             </el-table-column>
-            <el-table-column
-                prop="findNumber"
-                label="索书号"
-                width="300"
-            >
-                <template slot-scope="scope">
-                    <i class="el-icon-time"></i>
-                    <span style="margin-left: 10px">{{ scope.row.findNumber }}</span>
-                </template>
-            </el-table-column>
+
             <el-table-column
                 prop="resbooks"
                 label="可借数量"
@@ -70,8 +60,6 @@
                 </template>
             </el-table-column>
         </el-table>
-
-
     </div>
 </template>
 

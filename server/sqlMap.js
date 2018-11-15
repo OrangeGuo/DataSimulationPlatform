@@ -7,8 +7,8 @@ let sqlMap = {
         update: 'update libuser set password=? where username=?'
     },
     books: {
-        add: 'insert into books(bookId, bookname, writer, findNumber, resbooks, allbooks) values (?,?,?,?,?,?)',
-        list: 'select bookId, bookname, writer, findNumber, resbooks, allbooks from books',
+        add: 'insert into books(bookId, bookname, writer, findNumber, resbooks, allbooks,bookkind) values (?,?,?,?,?,?,?)',
+        list: 'select bookId, bookname, writer, findNumber, resbooks, allbooks,bookkind from books',
         delete: 'delete from books where bookId=?',
         update: 'update books set resbooks=?, allbooks=? where bookId=?'
     },
