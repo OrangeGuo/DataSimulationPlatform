@@ -15,8 +15,9 @@ let sqlMap = {
     },
     record:{
         add: 'insert into record(userid,bookid,borrowDate) values (?,?,?)',
-        list: 'select bookid,borrowDate from record where userid=?',
-        delete: 'delete from record where userid =? and bookid=?'
+        list: 'select bookid,borrowDate,renew from record where userid=?',
+        delete: 'delete from record where userid =? and bookid=?',
+        update:'update record set renew=? where userid=? and bookid=?'
     },
     modules: {
         add: 'insert into modules(node_id, node_name, node_value, parent, task_id) values(?,?,?,?,?)',

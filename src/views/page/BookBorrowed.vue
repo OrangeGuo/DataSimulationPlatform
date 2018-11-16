@@ -13,9 +13,10 @@
                     <el-dropdown-item command="全部">全部</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-            <el-input style="Float: left;height:50px;width: 500px;" float="left" placeholder="请输入书名、作者"
+            <el-input style="Float: left;height:50px;width: 500px;" float="left" v-model="keyWord"
+                      placeholder="请输入书名、作者"
                       clearable></el-input>
-            <el-button style="Float: left;height:40px;" type="primary" @click="" icon="el-icon-search">搜索
+            <el-button style="Float: left;height:40px;" type="primary" @click="searchBook" icon="el-icon-search">搜索
             </el-button>
         </div>
         <el-table
@@ -42,25 +43,29 @@
                 width="200%"
             >
                 <template slot-scope="scope">
-                    <i class="el-icon-time"></i>
                     <span style="margin-left: 10px">{{ scope.row.writer }}</span>
                 </template>
             </el-table-column>
             <el-table-column
-                prop="resbooks"
+                prop="deadline"
                 label="归还日期"
                 width="300">
                 <template slot-scope="scope">
-                    <span style="margin-left: 10px">{{ scope.row.resbooks }}</span>
+                    <i class="el-icon-time"></i>
+                    <span style="margin-left: 10px">{{ scope.row.deadline }}</span>
                 </template>
             </el-table-column>
             <el-table-column
-
-                label="状态"
+                label="操作"
                 width="150">
                 <template slot-scope="scope">
-                    <el-tooltip content="可借阅" placement="top">
-                        <el-button icon="el-icon-plus" type="primary" size="medium"></el-button>
+                    <el-tooltip content="归还" placement="top">
+                        <el-button icon="el-icon-minus" @click="returnBook(scope.$index)" type="primary"
+                                   size="medium"></el-button>
+                    </el-tooltip>
+                    <el-tooltip content="续借" placement="top">
+                        <el-button icon="el-icon-plus" @click="renewBook(scope.$index)" type="primary"
+                                   size="medium"></el-button>
                     </el-tooltip>
                 </template>
             </el-table-column>
@@ -71,17 +76,17 @@
 <script>
     export default {
         name: "TaskManage",
-
         data() {
             return {
                 dropItem: "全部",
-                filterText: "",
+                keyWord: "",
                 prop: {
                     label: 'name',
                     children: 'zones',
                     isLeaf: 'leaf'
                 },
                 tableData: [],
+                allDate: [],
                 allBooks: [],
                 bookList: []
             }
@@ -98,7 +103,8 @@
                     res.data.some(item => {
                         self.bookList.push({
                             bookId: item.bookid,
-                            borrowDate: item.borrowDate
+                            borrowDate: item.borrowDate,
+                            renew: item.renew
                         })
                     });
                 }).then(() => {
@@ -114,14 +120,52 @@
                                     findNumber: item.findNumber,
                                     bookId: item.bookId,
                                     allbooks: item.allbooks,
-                                    bookkind: item.bookkind
+                                    bookkind: item.bookkind,
+                                    borrowDate: self.bookList[i].borrowDate,
+                                    renew: self.bookList[i].renew,
+                                    deadline: self.getDate(self.bookList[i].borrowDate, self.bookList[i].renew)
                                 });
                                 break;
                             }
                         }
                     }
-
+                    self.allData = self.tableData;
                 });
+            },
+            searchBook() {
+                console.log(this.keyWord);
+                this.tableData=[];
+                for (let i = 0; i < this.allData.length; i++) {
+                    if(this.allData[i].name===this.keyWord||this.allData[i].writer===this.keyWord){
+                        this.tableData.unshift(this.allData[i]);
+                    }
+                    else if(this.allData[i].name.indexOf(this.keyWord)||this.allData[i].writer.indexOf(this.keyWord)){
+                        this.tableData.push(this.allData[i]);
+                    }
+                }
+            },
+            returnBook(index) {
+                let self = this;
+                this.$http.post('/api/record/deleteRecord', {
+                    userid: parseInt(localStorage.getItem('user-id')),
+                    bookid: parseInt(self.tableData[index].bookId)
+                }, {});
+                this.tableData.slice(index, 1);
+                this.listTask();
+            },
+            renewBook(index) {
+                if (this.tableData[index].renew === 3) {
+                    this.$message.warning("已达最大续借次数");
+                    return;
+                }
+                let self = this;
+                this.$http.post('/api/record/updateRecord', {
+                    userid: parseInt(localStorage.getItem('user-id')),
+                    bookid: parseInt(self.tableData[index].bookId),
+                    renew: self.tableData[index].renew + 1
+                }, {});
+                this.tableData[index].renew++;
+                this.tableData[index].deadline = this.getDate(this.tableData[index].borrowDate, this.tableData[index].renew);
             },
             getBooks() {
                 const self = this;
@@ -129,7 +173,7 @@
                     self.allBooks = [];
                     res.data.some(item => {
                         self.allBooks.push({
-                            name: item.bookname,
+                            bookname: item.bookname,
                             writer: item.writer,
                             resbooks: item.resbooks,
                             findNumber: item.findNumber,
@@ -138,15 +182,14 @@
                             bookkind: item.bookkind
                         })
                     });
-
                 });
             },
-            getDate(day) {
+            getDate(day, renew) {
                 day = day.split("-");
                 let dateyear = day[0];
-                let datemonth = day[1];
+                let datemonth = parseInt(day[1]) + renew;
                 day = day[2].split("T")
-                let dateday = day[0];
+                let dateday = parseInt(day[0]) + 1;
                 day = day[1].split(".");
                 let datehour = day[0];
                 datehour = datehour.split(":");
@@ -156,7 +199,7 @@
                 datehour = parseInt(datehour);
                 datehour = datehour + 8;
                 datehour = String(datehour);
-                return dateyear + '-' + datemonth + '-' + dateday + ' ' + datehour + ':' + datemin + ':' + datesec;
+                return dateyear + '-' + datemonth + '-' + dateday;
             },
         },
         mounted() {

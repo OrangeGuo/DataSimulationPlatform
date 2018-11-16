@@ -63,5 +63,17 @@ router.post('/listRecord', (req, res) => {
         }
     })
 });
-
+router.post('/updateRecord', (req, res) => {
+    let sql = $sql.record.update;
+    let params = req.body;
+    console.log(params);
+    conn.query(sql, [params.renew,params.userid,params.bookid], function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        if (result) {
+            jsonWrite(res, result);
+        }
+    })
+});
 module.exports = router;
