@@ -134,12 +134,12 @@
             },
             searchBook() {
                 console.log(this.keyWord);
-                this.tableData=[];
+                this.tableData = [];
                 for (let i = 0; i < this.allData.length; i++) {
-                    if(this.allData[i].name===this.keyWord||this.allData[i].writer===this.keyWord){
+                    if (this.allData[i].name === this.keyWord || this.allData[i].writer === this.keyWord) {
                         this.tableData.unshift(this.allData[i]);
                     }
-                    else if(this.allData[i].name.indexOf(this.keyWord)||this.allData[i].writer.indexOf(this.keyWord)){
+                    else if (this.allData[i].name.indexOf(this.keyWord) || this.allData[i].writer.indexOf(this.keyWord)) {
                         this.tableData.push(this.allData[i]);
                     }
                 }
@@ -151,6 +151,19 @@
                     bookid: parseInt(self.tableData[index].bookId)
                 }, {});
                 this.tableData.slice(index, 1);
+                let bookNum = parseInt(localStorage.getItem("books-num"));
+                self.$http.post('/api/user/updateBooksNum', {
+                    booksnum: bookNum + 1,
+                    userid: parseInt(localStorage.getItem("user-id"))
+                }, {});
+                localStorage.setItem('books-num', bookNum + 1);
+                let temp = parseInt(self.tableData[index].resbooks) + 1;
+                self.$http.post('/api/books/updateBook', {
+                    resbooks: temp,
+                    allbooks: parseInt(self.tableData[index].allbooks),
+                    bookId: parseInt(self.tableData[index].bookId)
+                }, {});
+                self.tableData[index].resbooks=temp;
                 this.listTask();
             },
             renewBook(index) {
@@ -186,17 +199,17 @@
             },
             getDate(day, renew) {
                 day = day.split("-");
-                let days=[31,28,31,30,31,30,31,31,30,31,30,31];
+                let days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
                 let dateYear = parseInt(day[0]);
                 let dateMonth = parseInt(day[1]) + renew;
-                if(dateMonth>=12)
+                if (dateMonth >= 12)
                     dateYear++;
-                dateMonth=dateMonth%12+1;
+                dateMonth = dateMonth % 12 + 1;
 
                 day = day[2].split("T")
                 let dateDay = parseInt(day[0]) + 1;
-                if(days[dateMonth-1]<dateDay){
-                    dateDay=days[dateMonth-1];
+                if (days[dateMonth - 1] < dateDay) {
+                    dateDay = days[dateMonth - 1];
                 }
 
                 return dateYear + '-' + dateMonth + '-' + dateDay;
