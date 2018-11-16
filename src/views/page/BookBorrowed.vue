@@ -186,20 +186,20 @@
             },
             getDate(day, renew) {
                 day = day.split("-");
-                let dateyear = day[0];
-                let datemonth = parseInt(day[1]) + renew;
+                let days=[31,28,31,30,31,30,31,31,30,31,30,31];
+                let dateYear = parseInt(day[0]);
+                let dateMonth = parseInt(day[1]) + renew;
+                if(dateMonth>=12)
+                    dateYear++;
+                dateMonth=dateMonth%12+1;
+
                 day = day[2].split("T")
-                let dateday = parseInt(day[0]) + 1;
-                day = day[1].split(".");
-                let datehour = day[0];
-                datehour = datehour.split(":");
-                let datemin = datehour[1];
-                let datesec = datehour[2];
-                datehour = datehour[0];
-                datehour = parseInt(datehour);
-                datehour = datehour + 8;
-                datehour = String(datehour);
-                return dateyear + '-' + datemonth + '-' + dateday;
+                let dateDay = parseInt(day[0]) + 1;
+                if(days[dateMonth-1]<dateDay){
+                    dateDay=days[dateMonth-1];
+                }
+
+                return dateYear + '-' + dateMonth + '-' + dateDay;
             },
         },
         mounted() {

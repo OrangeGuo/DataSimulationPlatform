@@ -149,6 +149,7 @@
                     this.$message.warning("已超过最大借书数量");
                     return;
                 }
+                let id = localStorage.getItem("bookid");
                 let temp = parseInt(self.tableData[id].resbooks) - 1;
                 if(temp<0){
                     this.$message.warning("可借数量为0");
@@ -156,7 +157,6 @@
                 }
                 localStorage.setItem('books-num',bookNum-1);
 
-                let id = localStorage.getItem("bookid");
 
 
                 self.tableData[id].resbooks = temp;

@@ -1176,11 +1176,13 @@
     <column id="298" parent="280" name="booksnum">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
+      <DefaultExpression>&apos;12&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="299" parent="280" name="maxbooks">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
+      <DefaultExpression>&apos;12&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="300" parent="281" name="node_id">
