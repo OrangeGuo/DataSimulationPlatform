@@ -13,9 +13,11 @@
                     <el-dropdown-item command="全部">全部</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-            <el-input style="Float: left;height:50px;width: 500px;" float="left" placeholder="请输入书名、作者"
+            <el-input style="Float: left;height:50px;width: 500px;" float="left"
+                      v-model="keyWord"
+                      placeholder="请输入书名、作者"
                       clearable></el-input>
-            <el-button style="Float: left;height:40px;" type="primary" @click="" icon="el-icon-search">搜索
+            <el-button style="Float: left;height:40px;" type="primary" @click="searchBook" icon="el-icon-search">搜索
             </el-button>
         </div>
         <el-table
@@ -105,6 +107,7 @@
         data() {
             return {
                 dialogAddForm: false,
+                keyWord: "",
                 formLabelWidth: '120px',
                 dropItem: "全部",
                 filterText: "",
@@ -113,7 +116,18 @@
                     children: 'zones',
                     isLeaf: 'leaf'
                 },
-                tableData: [],
+                tableData: [{
+                    bookId:0,
+                    name:"",
+                    writer:"",
+                    resbooks:0,
+                    allData:0,
+                    bookkind:"",
+                    findNumber:"",
+
+                }],
+                allData:[],
+                recordInfo:[],
                 form: {
                     bookId: 0,
                     bookname: '',
@@ -130,7 +144,34 @@
                 this.dropItem = command;
                 this.$message('调整类别为' + command);
             },
+            searchBook() {
+                console.log(this.keyWord);
+                this.tableData = [];
+
+                for (let i = 0; i < this.allData.length; i++) {
+                    if (this.allData[i].name === this.keyWord || this.allData[i].writer === this.keyWord) {
+                        this.tableData.unshift(this.allData[i]);
+
+                    }
+                    else if (this.allData[i].name.indexOf(this.keyWord)!==-1 || this.allData[i].writer.indexOf(this.keyWord)!==-1) {
+                        this.tableData.push(this.allData[i]);
+
+                    }
+                }
+
+            },
             bookInformation(index) {
+                let flag=true;
+                for(let i=0;i<this.recordInfo.length;i++)
+                {
+                    if(this.recordInfo[i].bookid===this.tableData[index].bookId)
+                        flag=false;
+                }
+                if(flag===false)
+                {
+                    this.$message.warning("不可以借同一本书");
+                    return;
+                }
                 this.dialogAddForm = true;
                 this.form.bookId = this.tableData[index].bookId;
                 this.form.bookname = this.tableData[index].name;
@@ -180,22 +221,39 @@
                 }, {});
 
             },
+
             listTask() {
                 const self = this;
-                self.$axios.post('/api/books/listBook').then((res) => {
-                    self.tableData = [];
+                let id=parseInt(localStorage.getItem("user-id"));
+                self.$axios.post('/api/record/listRecord',{
+                    userid:id
+                },{}).then((res) => {
+                    self.recordInfo = [];
                     res.data.some(item => {
-                        self.tableData.push({
-                            bookId: item.bookId,
-                            name: item.bookname,
-                            writer: item.writer,
-                            resbooks: item.resbooks,
-                            findNumber: item.findNumber,
-                            allbooks: item.allbooks,
-                            bookkind: item.bookkind,
+                        self.recordInfo.push({
+                            bookid: item.bookid,
                         })
                     });
-                });
+                    console.log(self.recordInfo);
+                    self.$axios.post('/api/books/listBook').then((res) => {
+                        self.tableData = [];
+                        res.data.some(item => {
+                            self.tableData.push({
+                                 bookId: item.bookId,
+                                 name: item.bookname,
+                                 writer: item.writer,
+                                 resbooks: item.resbooks,
+                                 findNumber: item.findNumber,
+                                 allbooks: item.allbooks,
+                                 bookkind: item.bookkind,
+                             })
+                        });
+                     }).then(()=>{
+                        self.allData=self.tableData;
+
+                     });
+                })
+
             },
             getDate(day) {
                 day = day.split("-");
