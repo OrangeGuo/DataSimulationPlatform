@@ -61,10 +61,11 @@
                 label="状态"
                 width="150">
                 <template slot-scope="scope">
-                    <el-tooltip content="可借阅" placement="top">
-                        <el-button icon="el-icon-plus" type="primary" size="medium"
+                    <el-tooltip :content="scope.row.hint" placement="top">
+                        <el-button :icon="scope.row.icon" :type="scope.row.type" size="medium"
                                    @click="bookInformation(scope.$index)"></el-button>
                     </el-tooltip>
+
                 </template>
             </el-table-column>
         </el-table>
@@ -173,13 +174,7 @@
 
             },
             bookInformation(index) {
-                let flag=true;
-                for(let i=0;i<this.recordInfo.length;i++)
-                {
-                    if(this.recordInfo[i].bookid===this.tableData[index].bookId)
-                        flag=false;
-                }
-                if(flag===false)
+                if(this.tableData[index].flag===false)
                 {
                     this.$message.warning("不可以借同一本书");
                     return;
@@ -250,6 +245,17 @@
                     self.$axios.post('/api/books/listBook').then((res) => {
                         self.tableData = [];
                         res.data.some(item => {
+                            let temp=true;
+                            let hint1="借阅";
+                            let type1="primary";
+                            let icon1="el-icon-plus";
+                            for(let i=0;i<self.recordInfo.length;i++)
+                                if(item.bookId===self.recordInfo[i].bookid) {
+                                    temp = false;
+                                    hint1="已借阅";
+                                    type1="success";
+                                    icon1="el-icon-check";
+                                }
                             self.tableData.push({
                                  bookId: item.bookId,
                                  name: item.bookname,
@@ -258,6 +264,10 @@
                                  findNumber: item.findNumber,
                                  allbooks: item.allbooks,
                                  bookkind: item.bookkind,
+                                 hint: hint1,
+                                 icon: icon1,
+                                 flag:temp,
+                                 type:type1,
                              })
                         });
                      }).then(()=>{
