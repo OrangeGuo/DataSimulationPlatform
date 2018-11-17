@@ -8,6 +8,8 @@ import TaskManage from '../views/page/TaskManage';
 import IndexConfig from '../views/page/IndexConfig';
 import SensAnalyse from '../views/page/SensAnalyse';
 import BookBorrowed from '../views/page/BookBorrowed'
+import BookManage from '../views/page/BookManage'
+import UserManage from '../views/page/UserManage'
 import Page from '../components/page/Page';	//主页面模板
 import Readme from '../views/page/Readme';	//了解系统
 import ResetPwd from '../views/page/ResetPwd';//重置密码
@@ -65,6 +67,14 @@ export default new Router({
             component: Page,
             redirect: '/page/taskManage',
             children: [
+                {
+                    path: 'bookManage',
+                    component: BookManage
+                },
+                {
+                    path: 'userManage',
+                    component: UserManage
+                },
                 {
                     path: 'taskManage',
                     component: TaskManage
