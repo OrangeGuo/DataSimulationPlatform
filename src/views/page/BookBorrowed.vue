@@ -86,7 +86,7 @@
                     isLeaf: 'leaf'
                 },
                 tableData: [],
-                allDate: [],
+                allData: [],
                 allBooks: [],
                 bookList: []
             }
@@ -94,6 +94,18 @@
         methods: {
             handleCommand(command) {
                 this.dropItem = command;
+                this.tableData=[];
+                if(command!=="全部")
+                {
+                    for(let i=0;i<this.allData.length;i++)
+                    {
+                        if(this.allData[i].bookkind===command)
+                            this.tableData.unshift(this.allData[i]);
+                    }
+                }
+                else {
+                    this.tableData=this.allData;
+                }
                 this.$message('调整类别为' + command);
             },
             listTask() {
@@ -139,7 +151,7 @@
                     if (this.allData[i].name === this.keyWord || this.allData[i].writer === this.keyWord) {
                         this.tableData.unshift(this.allData[i]);
                     }
-                    else if (this.allData[i].name.indexOf(this.keyWord) || this.allData[i].writer.indexOf(this.keyWord)) {
+                    else if (this.allData[i].name.indexOf(this.keyWord)!==-1 || this.allData[i].writer.indexOf(this.keyWord)!==-1) {
                         this.tableData.push(this.allData[i]);
                     }
                 }

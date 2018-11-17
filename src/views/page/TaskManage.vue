@@ -142,6 +142,18 @@
         methods: {
             handleCommand(command) {
                 this.dropItem = command;
+                this.tableData=[];
+                if(command!=="全部")
+                {
+                    for(let i=0;i<this.allData.length;i++)
+                    {
+                        if(this.allData[i].bookkind===command)
+                            this.tableData.unshift(this.allData[i]);
+                    }
+                }
+                else {
+                    this.tableData=this.allData;
+                }
                 this.$message('调整类别为' + command);
             },
             searchBook() {
