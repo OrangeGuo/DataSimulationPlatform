@@ -76,7 +76,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <el-dialog title="借阅书籍信息" :visible.sync="dialogAddForm" width="30%">
+        <el-dialog title="录入书籍信息" :visible.sync="dialogAddForm" width="30%">
             <div width="30%">
                 <el-form :model="form">
                     <el-form-item label="书籍名称" :label-width="formLabelWidth">
