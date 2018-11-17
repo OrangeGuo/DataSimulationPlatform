@@ -7,9 +7,9 @@
                 {{dropItem}}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="科学">科学</el-dropdown-item>
-                    <el-dropdown-item command="自然">自然</el-dropdown-item>
-                    <el-dropdown-item command="文化">文化</el-dropdown-item>
+                    <el-dropdown-item command="一周以上">一周以上</el-dropdown-item>
+                    <el-dropdown-item command="已逾期">已逾期</el-dropdown-item>
+                    <el-dropdown-item command="一周内">一周内</el-dropdown-item>
                     <el-dropdown-item command="全部">全部</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
@@ -80,11 +80,7 @@
             return {
                 dropItem: "全部",
                 keyWord: "",
-                prop: {
-                    label: 'name',
-                    children: 'zones',
-                    isLeaf: 'leaf'
-                },
+                currentDate: "",
                 tableData: [],
                 allData: [],
                 allBooks: [],
@@ -94,19 +90,28 @@
         methods: {
             handleCommand(command) {
                 this.dropItem = command;
-                this.tableData=[];
-                if(command!=="全部")
-                {
-                    for(let i=0;i<this.allData.length;i++)
-                    {
-                        if(this.allData[i].bookkind===command)
-                            this.tableData.unshift(this.allData[i]);
+                this.tableData = [];
+                if (command !== "全部") {
+                    for (let i = 0; i < this.allData.length; i++) {
+                        if (command === '一周内') {
+                            if (this.allData[i].leftDays <= 7 && this.allData[i].leftDays > 0)
+                                this.tableData.push(this.allData[i]);
+                        }
+                        else if (command === '一周以上') {
+                            if (this.allData[i].leftDays > 7)
+                                this.tableData.push(this.allData[i]);
+                        }
+                        else if (command === '已逾期') {
+                            if (this.allData[i].leftDays < 0)
+                                this.tableData.push(this.allData[i]);
+                        }
+                        console.log(this.allData[i].leftDays);
                     }
                 }
                 else {
-                    this.tableData=this.allData;
+                    this.tableData = this.allData;
                 }
-                this.$message('调整类别为' + command);
+                this.$message('还书时间:' + command);
             },
             listTask() {
                 const self = this;
@@ -135,7 +140,8 @@
                                     bookkind: item.bookkind,
                                     borrowDate: self.bookList[i].borrowDate,
                                     renew: self.bookList[i].renew,
-                                    deadline: self.getDate(self.bookList[i].borrowDate, self.bookList[i].renew)
+                                    deadline: self.getDate(self.bookList[i].borrowDate, self.bookList[i].renew),
+                                    leftDays: self.getDays(self.bookList[i].borrowDate, self.bookList[i].renew) - self.getDays(self.currentDate, -1)
                                 });
                                 break;
                             }
@@ -151,7 +157,7 @@
                     if (this.allData[i].name === this.keyWord || this.allData[i].writer === this.keyWord) {
                         this.tableData.unshift(this.allData[i]);
                     }
-                    else if (this.allData[i].name.indexOf(this.keyWord)!==-1 || this.allData[i].writer.indexOf(this.keyWord)!==-1) {
+                    else if (this.allData[i].name.indexOf(this.keyWord) !== -1 || this.allData[i].writer.indexOf(this.keyWord) !== -1) {
                         this.tableData.push(this.allData[i]);
                     }
                 }
@@ -175,7 +181,7 @@
                     allbooks: parseInt(self.tableData[index].allbooks),
                     bookId: parseInt(self.tableData[index].bookId)
                 }, {});
-                self.tableData[index].resbooks=temp;
+                self.tableData[index].resbooks = temp;
                 this.listTask();
             },
             renewBook(index) {
@@ -191,6 +197,7 @@
                 }, {});
                 this.tableData[index].renew++;
                 this.tableData[index].deadline = this.getDate(this.tableData[index].borrowDate, this.tableData[index].renew);
+                this.tableData[index].leftDays =this.getDays(this.tableData[index].borrowDate,this.tableData[index].renew)-this.getDays(this.currentDate,-1);
             },
             getBooks() {
                 const self = this;
@@ -208,6 +215,27 @@
                         })
                     });
                 });
+            },
+            getDays(day, renew) {
+                day = day.split("-");
+                let days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+                let dateYear = parseInt(day[0]);
+                let dateMonth = parseInt(day[1]) + renew;
+                if (dateMonth >= 12)
+                    dateYear++;
+                dateMonth = dateMonth % 12 + 1;
+
+                day = day[2].split("T")
+                let dateDay = parseInt(day[0]) + 1;
+                if (days[dateMonth - 1] < dateDay) {
+                    dateDay = days[dateMonth - 1];
+                }
+                let sum = dateYear * 365;
+                for (let i = 0; i < dateMonth - 1; i++) {
+                    sum += days[i];
+                }
+
+                return sum + dateDay;
             },
             getDate(day, renew) {
                 day = day.split("-");
@@ -228,6 +256,10 @@
             },
         },
         mounted() {
+            let self = this;
+            this.$http.post('/api/record/getDate', {}, {}).then((res) => {
+                self.currentDate = res.data[0].date;
+            });
             this.getBooks();
             this.listTask();
         },

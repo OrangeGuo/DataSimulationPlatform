@@ -76,4 +76,9 @@ router.post('/updateRecord', (req, res) => {
         }
     })
 });
+router.post('/getDate', (req, res) => {
+        res.send(200,[{
+            date:new Date()
+    }]);
+});
 module.exports = router;
