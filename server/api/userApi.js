@@ -50,10 +50,52 @@ router.post('/listUser', (req, res) => {
         }
     })
 });
+router.post('/listCommon', (req, res) => {
+    let sql = $sql.user.listCommon;
+    let params = req.body;
+    console.log(params.username);
+    conn.query(sql, function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        if (result) {
+            //console.log(res);
+
+
+            jsonWrite(res, result);
+        }
+    })
+});
 router.post('/updatePass', (req, res) => {
     let sql = $sql.user.update;
     let params = req.body;
     conn.query(sql, [params.password, params.username], function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        if (result) {
+            jsonWrite(res, result);
+        }
+
+    })
+});
+router.post('/updateNum', (req, res) => {
+    let sql = $sql.user.updateNum;
+    let params = req.body;
+    conn.query(sql, [params.booksnum, params.maxbooks,params.userid], function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        if (result) {
+            jsonWrite(res, result);
+        }
+
+    })
+});
+router.post('/deleteUser', (req, res) => {
+    let sql = $sql.user.deleteUser;
+    let params = req.body;
+    conn.query(sql, [params.userid], function (err, result) {
         if (err) {
             console.log(err);
         }

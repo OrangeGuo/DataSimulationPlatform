@@ -2,10 +2,13 @@
 let sqlMap = {
     // 用户
     user: {
-        add: 'insert into libuser( userid, username, password, userkind, booksnum) values ( ?, ?,?,?,?)',
-        list: 'select userid, username, password, userkind, booksnum,maxbooks from libuser',
+        add: 'insert into libuser( userid, username, password, userkind, booksnum,maxbooks) values ( ?, ?,?,?,?)',
+        list: 'select userid, username, password, userkind, booksnum, maxbooks from libuser',
         update: 'update libuser set password=? where username=?',
-        setBooksNum:'update libuser set booksnum=? where userid=?'
+        setBooksNum:'update libuser set booksnum=? where userid=?',
+        listCommon:'select userid, username, password, userkind, booksnum, maxbooks from libuser where userkind=1',
+        updateNum:'update libuser set booksnum=?,maxbooks=? where userid=?',
+        deleteUser:'delete from libuser where userid=?'
     },
     books: {
         add: 'insert into books(bookId, bookname, writer, findNumber, resbooks, allbooks,bookkind) values (?,?,?,?,?,?,?)',

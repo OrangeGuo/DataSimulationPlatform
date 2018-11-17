@@ -147,7 +147,7 @@
                 {
                     for(let i=0;i<this.allData.length;i++)
                     {
-                        if(this.allData[i].bookkind===command)
+                        if(this.allData[i].bookkind.indexOf(command)!==-1)
                             this.tableData.unshift(this.allData[i]);
                     }
                 }
