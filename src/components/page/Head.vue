@@ -20,11 +20,11 @@
 			<el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect" @open="handleOpen" @close="handleClose"
 			  background-color="#242f42" text-color="#fff" active-text-color="#ffd04b" router>
 
-                <el-menu-item index="/page/TaskManage">
-                    图书借阅
+                <el-menu-item index="index01">
+                    {{tab01}}
                 </el-menu-item>
-                <el-menu-item index="/page/BookBorrowed">
-                    已借图书
+                <el-menu-item index="index02">
+                    {{tab02}}
                 </el-menu-item>
 
 			  <el-menu-item  index="3" v-popover:popoverT>
@@ -45,6 +45,10 @@
 			return {
 				activeIndex:"/page/layout",
                 index:"",
+                tab01:"图书借阅",
+                tab02:"已借图书",
+                index01:"/page/TaskManage",
+                index02:"/page/BookBorrowed",
 				thumbImg:require('static/img/head-icon.jpg')
 			}
 		},
@@ -69,8 +73,20 @@
 			},
 			handleClose (key, keyPath) {
 
-			}
-		}
+			},
+            router(){
+                let type=localStorage.getItem('user-kind');
+                if(type!=='1'){
+                    this.tab01='用户管理';
+                    this.tab02='图书管理';
+                    this.index01='/page/userManage';
+                    this.index02='/page/bookManage';
+                }
+            }
+		},
+        mounted(){
+		    this.router();
+        }
 	}
 </script>
 

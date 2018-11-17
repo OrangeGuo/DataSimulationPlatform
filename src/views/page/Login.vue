@@ -69,6 +69,7 @@
                                 username:item.username,
                                 password:item.password,
                                 booksnum:item.booksnum,
+                                userkind:item.userkind
                             }
 
                         );
@@ -82,6 +83,7 @@
                             localStorage.setItem('user-pwd', self.userInfo.userpwd);
                             localStorage.setItem('user-id', self.libuser[i].userid);
                             localStorage.setItem('books-num',self.libuser[i].booksnum);
+                            localStorage.setItem('user-kind',self.libuser[i].userkind);
                             console.log(self.libuser[i]);
                             self.$router.push('./page');
                             break;
