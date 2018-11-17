@@ -20,10 +20,10 @@
 			<el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect" @open="handleOpen" @close="handleClose"
 			  background-color="#242f42" text-color="#fff" active-text-color="#ffd04b" router>
 
-                <el-menu-item index="index01">
+                <el-menu-item :index="index01">
                     {{tab01}}
                 </el-menu-item>
-                <el-menu-item index="index02">
+                <el-menu-item :index="index02">
                     {{tab02}}
                 </el-menu-item>
 
@@ -47,8 +47,8 @@
                 index:"",
                 tab01:"图书借阅",
                 tab02:"已借图书",
-                index01:"/page/TaskManage",
-                index02:"/page/BookBorrowed",
+                index01:"/page/taskManage",
+                index02:"/page/bookBorrowed",
 				thumbImg:require('static/img/head-icon.jpg')
 			}
 		},
