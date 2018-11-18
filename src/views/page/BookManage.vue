@@ -69,6 +69,10 @@
                 label="操作"
                 width="150">
                 <template slot-scope="scope">
+                    <el-tooltip content="修改库存" placement="top">
+                        <el-button icon="el-icon-edit" type="primary" size="medium"
+                                   @click="openEditBook(scope.$index)"></el-button>
+                    </el-tooltip>
                     <el-tooltip content="移除图书" placement="top">
                         <el-button icon="el-icon-minus" type="primary" size="medium"
                                    @click="removeBook(scope.$index)"></el-button>
@@ -76,6 +80,19 @@
                 </template>
             </el-table-column>
         </el-table>
+        <el-dialog title="修改库存" :visible.sync="diagEditForm" width="20%">
+            <div align="center">
+                <el-input style="width: 150px;"
+                    v-model="newBookNum"
+                    placeholder="输入新的库存量"
+                    clearable
+                ></el-input>
+            </div>
+            <div align="center">
+                <el-button @click="diagEditForm = false" style="margin-top: 20px" size="small" >取 消</el-button>
+                <el-button type="primary" @click="editBook" size="small">确 定</el-button>
+            </div>
+        </el-dialog>
         <el-dialog title="录入书籍信息" :visible.sync="dialogAddForm" width="30%">
             <div width="30%">
                 <el-form :model="form">
@@ -85,14 +102,19 @@
                     <el-form-item label="书籍作者" :label-width="formLabelWidth">
                         <el-input v-model="form.writer" autocomplete="off"></el-input>
                     </el-form-item>
-                    <el-form-item label="书籍类别" :label-width="formLabelWidth">
-                        <el-input v-model="form.bookkind" autocomplete="off"></el-input>
-                    </el-form-item>
+
                     <el-form-item label="索书号" :label-width="formLabelWidth">
                         <el-input v-model="form.findNumber" autocomplete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="总数量" :label-width="formLabelWidth">
                         <el-input v-model="form.allbooks" autocomplete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="书籍类别" :label-width="formLabelWidth">
+                          <el-checkbox-group v-model="form.checkList">
+                                <el-checkbox label="科学"></el-checkbox>
+                                <el-checkbox label="自然"></el-checkbox>
+                                <el-checkbox label="文化"></el-checkbox>
+                          </el-checkbox-group>
                     </el-form-item>
                 </el-form>
                 <el-button @click="dialogAddForm = false" style="margin-left: 30%;">取 消</el-button>
@@ -109,6 +131,8 @@
         data() {
             return {
                 dialogAddForm: false,
+                diagEditForm:false,
+                newBookNum:"",
                 keyWord: "",
                 formLabelWidth: '120px',
                 dropItem: "全部",
@@ -135,7 +159,7 @@
                     writer: 'hiayan',
                     findNumber: 'd112',
                     allbooks: 10,
-                    bookkind: "科学",
+                    checkList:[],
                 }
             }
         },
@@ -158,6 +182,23 @@
                 }).then(() => {
                     self.allData = self.tableData;
 
+                });
+            },
+            openEditBook(index) {
+                this.diagEditForm=true;
+                localStorage.setItem("selectedBook", index);
+            },
+            editBook(){
+                let id=parseInt(localStorage.getItem("selectedBook"));
+                const self=this;
+                self.$axios.post('/api/books/updateBook', {
+                    resbooks: self.tableData[id].resbooks+parseInt(self.newBookNum)-self.tableData[id].allbooks,
+                    allbooks: self.newBookNum,
+                    bookId: self.tableData[id].bookId,
+                }).then(() => {
+                    self.diagEditForm=false;
+                    self.newBookNum="";
+                    this.listBooks();
                 });
             },
             removeBook(index) {
@@ -198,7 +239,9 @@
                     }
                 }
                 let self = this;
-
+                let temp="";
+                for(let i=0;i<self.form.checkList.length;i++)
+                    temp=temp+self.form.checkList[i];
                 self.$axios.post('/api/books/addBook', {
                     bookId: parseInt(self.allData[self.allData.length - 1].bookId) + 1,
                     bookname: self.form.bookname,
@@ -206,7 +249,7 @@
                     findNumber: self.form.findNumber,
                     resbooks: self.form.allbooks,
                     allbooks: self.form.allbooks,
-                    bookkind: self.form.bookkind
+                    bookkind: temp
                 }).then(() => {
                     this.listBooks();
                 });
