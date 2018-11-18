@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8797ff6f-2f30-4979-98f8-5aed594d5083" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/views/page/BookManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/page/BookManage.vue" afterDir="false" />
-    </list>
+    <list default="true" id="8797ff6f-2f30-4979-98f8-5aed594d5083" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +234,7 @@
           <entry key="md" value="60" />
           <entry key="sql" value="186" />
           <entry key="txt" value="12" />
-          <entry key="vue" value="10347" />
+          <entry key="vue" value="10368" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -248,7 +246,7 @@
           <entry key="PLAIN_TEXT" value="12" />
           <entry key="SQL" value="186" />
           <entry key="Scratch" value="149" />
-          <entry key="Vue.js" value="10347" />
+          <entry key="Vue.js" value="10368" />
         </counts>
       </usages-collector>
     </session>
@@ -310,11 +308,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/page/BookManage.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="254" column="38" selection-start-line="254" selection-start-column="38" selection-end-line="254" selection-end-column="38" />
+            <state relative-caret-position="229">
+              <caret line="252" column="31" selection-start-line="252" selection-start-column="31" selection-end-line="252" selection-end-column="31" />
               <folding>
                 <element signature="n#style#0;n#el-input#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#el-button#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -390,7 +388,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="das://469ea304-5eca-46aa-b9c4-d6085e21646c/schema/dap/table/books">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
@@ -642,7 +640,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989733" visible="true" weight="0.21447721" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989733" visible="true" weight="0.21447721" />
       <window_info id="Structure" order="1" sideWeight="0.5010267" side_tool="true" weight="0.23994638" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -664,7 +662,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" weight="0.3297587" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.20442359" />
+      <window_info active="true" anchor="right" id="Database" order="4" visible="true" weight="0.20442359" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989733" weight="0.21179625" />
@@ -941,17 +939,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://469ea304-5eca-46aa-b9c4-d6085e21646c/schema/dap/table/books">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/page/BookManage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="254" column="38" selection-start-line="254" selection-start-column="38" selection-end-line="254" selection-end-column="38" />
+        <state relative-caret-position="229">
+          <caret line="252" column="31" selection-start-line="252" selection-start-column="31" selection-end-line="252" selection-end-column="31" />
           <folding>
             <element signature="n#style#0;n#el-input#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-button#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -964,6 +955,13 @@
             <element signature="n#style#0;n#el-button#0;n#div#1;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-button#0;n#div#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://469ea304-5eca-46aa-b9c4-d6085e21646c/schema/dap/table/books">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
