@@ -47,7 +47,7 @@
                 index:"",
                 tab01:"图书借阅",
                 tab02:"已借图书",
-                index01:"/page/taskManage",
+                index01:"/page/bookList",
                 index02:"/page/bookBorrowed",
 				thumbImg:require('static/img/head-icon.jpg')
 			}
