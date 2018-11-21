@@ -26,39 +26,7 @@
                     </div>
                 </template>
             </el-table-column>
-            <el-table-column
-                prop="booksnum"
-                label="用户剩余可借书数量"
-                width="200%"
-            >
-                <template slot-scope="scope">
-                    <i class="el-icon-time"></i>
-                    <span style="margin-left: 10px">{{ scope.row.booksnum }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column
-                prop="maxbooks"
-                label="用户总共可借书数量"
-                width="300">
-                <template slot-scope="scope">
-                    <span style="margin-left: 10px">{{ scope.row.maxbooks }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column
 
-                label="操作"
-                width="150">
-                <template slot-scope="scope">
-                    <el-tooltip content="提高上限" placement="top">
-                        <el-button icon="el-icon-plus" type="primary" size="small"
-                                   @click="addLimit(scope.$index)"></el-button>
-                    </el-tooltip>
-                    <el-tooltip content="减少上限" placement="top">
-                        <el-button icon="el-icon-minus" @click="looseLimit(scope.$index)" type="primary"
-                                   size="small"></el-button>
-                    </el-tooltip>
-                </template>
-            </el-table-column>
             <el-table-column
                 label="删除用户"
                 width="100">
@@ -91,7 +59,7 @@
         methods:{
             listUser(){
                 const self=this;
-                self.$axios.post('/api/user/listCommon').then((res) => {
+                self.$axios.post('/api/user/listUser').then((res) => {
                     self.tableData = [];
                     res.data.some(item => {
                         self.tableData.push({
@@ -99,8 +67,7 @@
                             name: item.username,
                             password: item.password,
                             userkind: item.userkind,
-                            booksnum: item.booksnum,
-                            maxbooks: item.maxbooks,
+                            money:item.money
                         })
                     });
                 }).then(()=>{
@@ -122,26 +89,7 @@
                     }
                 }
             },
-            addLimit(index){
-                const self=this;
-                self.$http.post('/api/user/updateNum', {
-                    booksnum: self.tableData[index].booksnum+1,
-                    maxbooks: self.tableData[index].maxbooks+1,
-                    userid: self.tableData[index].userid
-                }, {}).then(()=>{
-                    self.listUser();
-                })
-            },
-            looseLimit(index){
-                const self=this;
-                self.$http.post('/api/user/updateNum', {
-                    booksnum: self.tableData[index].booksnum-1,
-                    maxbooks: self.tableData[index].maxbooks-1,
-                    userid: self.tableData[index].userid
-                }, {}).then(()=>{
-                    self.listUser();
-                })
-            },
+
             deleteUser(index){
                 const self=this;
                 self.$http.post('/api/user/deleteUser',{

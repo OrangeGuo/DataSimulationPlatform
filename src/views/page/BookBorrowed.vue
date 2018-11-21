@@ -18,6 +18,8 @@
                       clearable></el-input>
             <el-button style="Float: left;height:40px;" type="primary" @click="searchBook" icon="el-icon-search">搜索
             </el-button>
+            <el-button style="Float: left;height:40px;" type="primary" @click="payBooks" >支付
+            </el-button>
         </div>
         <el-table
             :data="tableData"
@@ -30,7 +32,7 @@
             <el-table-column
                 prop="name"
                 label="图书名称"
-                width="200%">
+                width="150%">
                 <template slot-scope="scope">
                     <div slot="reference" class="name-wrapper">
                         <el-tag size="medium">{{ scope.row.name }}</el-tag>
@@ -40,16 +42,34 @@
             <el-table-column
                 prop="writer"
                 label="图书作者"
-                width="200%"
+                width="150%"
             >
                 <template slot-scope="scope">
                     <span style="margin-left: 10px">{{ scope.row.writer }}</span>
                 </template>
             </el-table-column>
             <el-table-column
+                prop="price"
+                label="单价"
+                width="120%"
+            >
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.price }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                prop="renew"
+                label="购买数量"
+                width="120%"
+            >
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.renew }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
                 prop="deadline"
-                label="归还日期"
-                width="300">
+                label="加入购物车日期"
+                width="150%">
                 <template slot-scope="scope">
                     <i class="el-icon-time"></i>
                     <span style="margin-left: 10px">{{ scope.row.deadline }}</span>
@@ -57,16 +77,24 @@
             </el-table-column>
             <el-table-column
                 label="操作"
-                width="150">
+                width="150%">
                 <template slot-scope="scope">
-                    <el-tooltip content="归还" placement="top">
+                    <el-tooltip content="减少" placement="top">
                         <el-button icon="el-icon-minus" @click="returnBook(scope.$index)" type="primary"
                                    size="medium"></el-button>
                     </el-tooltip>
-                    <el-tooltip content="续借" placement="top">
+                    <el-tooltip content="增加" placement="top">
                         <el-button icon="el-icon-plus" @click="renewBook(scope.$index)" type="primary"
                                    size="medium"></el-button>
                     </el-tooltip>
+                </template>
+            </el-table-column>
+             <el-table-column
+                prop="flag"
+                label="选中"
+                width="80%">
+                <template slot-scope="scope">
+                    <el-checkbox v-model="scope.row.flag" style="margin-left: 10px"></el-checkbox>
                 </template>
             </el-table-column>
         </el-table>
@@ -115,39 +143,58 @@
             },
             listTask() {
                 const self = this;
-                self.$axios.post('/api/record/listRecord', {userid: localStorage.getItem("user-id")}, {}).then((res) => {
-                    self.bookList = [];
+                self.$axios.post('/api/books/listBook').then((res) => {
+                    self.allBooks = [];
                     res.data.some(item => {
-                        self.bookList.push({
-                            bookId: item.bookid,
-                            borrowDate: item.borrowDate,
-                            renew: item.renew
+                        self.allBooks.push({
+                            bookname: item.bookname,
+                            writer: item.writer,
+                            resbooks: item.resbooks,
+                            findNumber: item.findNumber,
+                            bookId: item.bookId,
+                            allbooks: item.allbooks,
+                            bookkind: item.bookkind,
+                            price:item.price,
                         })
                     });
-                }).then(() => {
-                    self.tableData = [];
-                    for (let i = 0; i < self.bookList.length; i++) {
-                        for (let j = 0; j < self.allBooks.length; j++) {
-                            if (self.bookList[i].bookId === self.allBooks[j].bookId) {
-                                let item = self.allBooks[j];
-                                self.tableData.push({
-                                    name: item.bookname,
-                                    writer: item.writer,
-                                    resbooks: item.resbooks,
-                                    findNumber: item.findNumber,
-                                    bookId: item.bookId,
-                                    allbooks: item.allbooks,
-                                    bookkind: item.bookkind,
-                                    borrowDate: self.bookList[i].borrowDate,
-                                    renew: self.bookList[i].renew,
-                                    deadline: self.getDate(self.bookList[i].borrowDate, self.bookList[i].renew),
-                                    leftDays: self.getDays(self.bookList[i].borrowDate, self.bookList[i].renew) - self.getDays(self.currentDate, -1)
-                                });
-                                break;
+                }).then(()=> {
+                    self.$axios.post('/api/record/listRecord', {userid: localStorage.getItem("user-id")}, {}).then((res) => {
+                        self.bookList = [];
+                        res.data.some(item => {
+                            self.bookList.push({
+                                bookId: item.bookid,
+                                borrowDate: item.borrowDate,
+                                renew: item.renew,
+                                price: item.price
+                            })
+                        });
+                    }).then(() => {
+                        self.tableData = [];
+                        for (let i = 0; i < self.bookList.length; i++) {
+                            for (let j = 0; j < self.allBooks.length; j++) {
+                                if (self.bookList[i].bookId === self.allBooks[j].bookId) {
+                                    let item = self.allBooks[j];
+                                    self.tableData.push({
+                                        name: item.bookname,
+                                        writer: item.writer,
+                                        resbooks: item.resbooks,
+                                        findNumber: item.findNumber,
+                                        bookId: item.bookId,
+                                        allbooks: item.allbooks,
+                                        bookkind: item.bookkind,
+                                        borrowDate: self.bookList[i].borrowDate,
+                                        price: item.price,
+                                        flag: true,
+                                        renew: self.bookList[i].renew,
+                                        deadline: self.getDate(self.bookList[i].borrowDate, -1),
+                                        leftDays: self.getDays(self.bookList[i].borrowDate, self.bookList[i].renew) - self.getDays(self.currentDate, -1)
+                                    });
+                                    break;
+                                }
                             }
                         }
-                    }
-                    self.allData = self.tableData;
+                        self.allData = self.tableData;
+                    });
                 });
             },
             searchBook() {
@@ -163,43 +210,75 @@
                 }
             },
             returnBook(index) {
-                let self = this;
-                this.$http.post('/api/record/deleteRecord', {
-                    userid: parseInt(localStorage.getItem('user-id')),
-                    bookid: parseInt(self.tableData[index].bookId)
-                }, {});
-                this.tableData.slice(index, 1);
-                let bookNum = parseInt(localStorage.getItem("books-num"));
-                self.$http.post('/api/user/updateBooksNum', {
-                    booksnum: bookNum + 1,
-                    userid: parseInt(localStorage.getItem("user-id"))
-                }, {});
-                localStorage.setItem('books-num', bookNum + 1);
+                const self = this;
+                let tempR=parseInt(self.tableData[index].renew)-1;
                 let temp = parseInt(self.tableData[index].resbooks) + 1;
-                self.$http.post('/api/books/updateBook', {
-                    resbooks: temp,
-                    allbooks: parseInt(self.tableData[index].allbooks),
-                    bookId: parseInt(self.tableData[index].bookId)
-                }, {});
-                self.tableData[index].resbooks = temp;
-                this.listTask();
+                if(tempR==0)
+                {
+                    self.$http.post('/api/record/deleteRecord', {
+                        userid: parseInt(localStorage.getItem('user-id')),
+                        bookid: parseInt(self.tableData[index].bookId)
+                    }, {}).then(()=>{
+                        let temp = parseInt(self.tableData[index].resbooks) + 1;
+                        self.$http.post('/api/books/updateBook', {
+                            resbooks: temp,
+                            allbooks: parseInt(self.tableData[index].allbooks),
+                            price:parseInt(self.tableData[index].price),
+                            bookId: parseInt(self.tableData[index].bookId)
+                        }, {}).then(()=>{
+                         
+                            self.listTask();
+                        });
+                    });
+                }
+                else {
+                    self.$http.post('/api/record/updateRecord', {
+                        renew: tempR,
+                        userid: parseInt(localStorage.getItem('user-id')),
+                        bookid: parseInt(self.tableData[index].bookId)
+                    }, {}).then(()=>{
+
+
+                        self.$http.post('/api/books/updateBook', {
+                            resbooks: temp,
+                            allbooks: parseInt(self.tableData[index].allbooks),
+                            price:parseInt(self.tableData[index].price),
+                            bookId: parseInt(self.tableData[index].bookId)
+                        }, {}).then(()=>{
+
+
+                            self.listTask();
+                            console.log(temp);
+                        });
+                    });
+                }
+
+
+
             },
             renewBook(index) {
-                if (this.tableData[index].renew === 3) {
-                    this.$message.warning("已达最大续借次数");
+                if(this.tableData[index].resbooks-1<0)
+                {
+                    this.$message.warning("库存不够");
                     return;
                 }
-                let self = this;
-                this.$http.post('/api/record/updateRecord', {
+                const self = this;
+                self.$http.post('/api/record/updateRecord', {
                     userid: parseInt(localStorage.getItem('user-id')),
                     bookid: parseInt(self.tableData[index].bookId),
-                    renew: self.tableData[index].renew + 1
-                }, {});
-                this.tableData[index].renew++;
-                this.tableData[index].deadline = this.getDate(this.tableData[index].borrowDate, this.tableData[index].renew);
-                this.tableData[index].leftDays =this.getDays(this.tableData[index].borrowDate,this.tableData[index].renew)-this.getDays(this.currentDate,-1);
+                    renew: parseInt(self.tableData[index].renew) + 1
+                }, {}).then(()=>{
+                    self.$http.post('/api/books/updateBook',{
+                        resbooks:self.tableData[index].resbooks-1,
+                        allbooks:self.tableData[index].allbooks,
+                        price:parseInt(self.tableData[index].price),
+                        bookId:parseInt(self.tableData[index].bookId)
+                    },{}).then(()=>{
+                        self.listTask();
+                    })
+                });
             },
-            getBooks() {
+           /* getBooks() {
                 const self = this;
                 self.$axios.post('/api/books/listBook').then((res) => {
                     self.allBooks = [];
@@ -211,10 +290,31 @@
                             findNumber: item.findNumber,
                             bookId: item.bookId,
                             allbooks: item.allbooks,
-                            bookkind: item.bookkind
+                            bookkind: item.bookkind,
+                            price:item.price,
                         })
                     });
                 });
+            },*/
+            payBooks(){
+                if(this.tableData.length===0)
+                {
+                    this.$message.warning("购物车为空");
+                    return ;
+                }
+                let sum=0;
+                for(let i=0;i<this.tableData.length;i++)
+                {
+                    if(this.tableData[i].flag===true)
+                        sum=sum+parseInt(this.tableData[i].price)*parseInt(this.tableData[i].renew);
+                }
+                const self=this;
+                self.$http.post('/api/user/updateMoney', {
+                    userid: parseInt(localStorage.getItem('user-id')),
+                    money: parseInt(localStorage.getItem('user-money'))-sum,
+                }, {}).then(()=> {
+                    this.$message.info(sum.toString());
+                })
             },
             getDays(day, renew) {
                 day = day.split("-");
@@ -260,7 +360,6 @@
             this.$http.post('/api/record/getDate', {}, {}).then((res) => {
                 self.currentDate = res.data[0].date;
             });
-            this.getBooks();
             this.listTask();
         },
     }

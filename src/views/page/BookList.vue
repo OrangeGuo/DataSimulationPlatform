@@ -50,10 +50,18 @@
             </el-table-column>
             <el-table-column
                 prop="resbooks"
-                label="可借数量"
-                width="300">
+                label="图书库存量"
+                width="200%">
                 <template slot-scope="scope">
                     <span style="margin-left: 10px">{{ scope.row.resbooks }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                prop="resbooks"
+                label="图书单价"
+                width="200%">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.price }}</span>
                 </template>
             </el-table-column>
             <el-table-column
@@ -69,7 +77,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <el-dialog title="借阅书籍信息" :visible.sync="dialogAddForm" width="30%">
+        <el-dialog title="书籍信息" :visible.sync="dialogAddForm" width="30%">
             <div width="30%">
                 <el-form :model="form">
                     <el-form-item label="书籍编号" :label-width="formLabelWidth">
@@ -87,11 +95,14 @@
                     <el-form-item label="索书号" :label-width="formLabelWidth">
                         <el-input v-model="form.findNumber" autocomplete="off" :disabled="true"></el-input>
                     </el-form-item>
-                    <el-form-item label="剩余数量" :label-width="formLabelWidth">
+                    <el-form-item label="库存数量" :label-width="formLabelWidth">
                         <el-input v-model="form.resbooks" autocomplete="off" :disabled="true"></el-input>
                     </el-form-item>
-                    <el-form-item label="总数量" :label-width="formLabelWidth">
-                        <el-input v-model="form.allbooks" autocomplete="off" :disabled="true"></el-input>
+                    <el-form-item label="购买数量" :label-width="formLabelWidth">
+                        <el-input v-model="buybooksnum" autocomplete="off" ></el-input>
+                    </el-form-item>
+                     <el-form-item label="单价" :label-width="formLabelWidth">
+                        <el-input v-model="form.price" autocomplete="off" :disabled="true"></el-input>
                     </el-form-item>
                 </el-form>
                 <el-button @click="dialogAddForm = false" style="margin-left: 30%;">取 消</el-button>
@@ -108,6 +119,7 @@
         data() {
             return {
                 dialogAddForm: false,
+                buybooksnum:"",
                 keyWord: "",
                 formLabelWidth: '120px',
                 dropItem: "全部",
@@ -137,6 +149,7 @@
                     resbooks: 0,
                     allbooks: 0,
                     bookkind: 0,
+                    price:0,
                 }
             }
         },
@@ -174,10 +187,10 @@
 
             },
             bookInformation(index) {
-                if(this.tableData[index].flag===false)
+                if(this.tableData[index].resbooks===0)
                 {
-                    this.$message.warning("不可以借同一本书");
-                    return;
+                    this.$message.warning("库存不足");
+                    return ;
                 }
                 this.dialogAddForm = true;
                 this.form.bookId = this.tableData[index].bookId;
@@ -187,94 +200,97 @@
                 this.form.resbooks = this.tableData[index].resbooks;
                 this.form.allbooks = this.tableData[index].allbooks;
                 this.form.bookkind = this.tableData[index].bookkind;
+                this.form.price=this.tableData[index].price;
                 localStorage.setItem('bookid', index);
             },
             updateInfor() {
                 const self = this;
                 self.dialogAddForm = false;
-                let bookNum=parseInt(localStorage.getItem("books-num"));
-                if(bookNum===0){
-                    this.$message.warning("已超过最大借书数量");
-                    return;
-                }
-                let id = localStorage.getItem("bookid");
-                let temp = parseInt(self.tableData[id].resbooks) - 1;
+                let id=localStorage.getItem("bookid");
+                let temp = parseInt(self.tableData[id].resbooks) - parseInt(this.buybooksnum);
                 if(temp<0){
-                    this.$message.warning("可借数量为0");
+                    this.$message.warning("库存不足");
                     return;
                 }
-                localStorage.setItem('books-num',bookNum-1);
-
-
 
                 self.tableData[id].resbooks = temp;
                 self.$http.post('/api/books/updateBook', {
                     resbooks: temp,
                     allbooks: parseInt(self.tableData[id].allbooks),
+                    price:parseInt(self.tableData[id].price),
                     bookId: parseInt(self.tableData[id].bookId)
                 }, {}).then((response) => {
                     let newid = localStorage.getItem("user-id");
-                    console.log(newid);
-                    this.$http.post('/api/record/addRecord', {
-                        userid: parseInt(newid),
-                        bookid: parseInt(self.tableData[id].bookId)
-                    }, {}).then((response) => {
-                        self.listTask();
+                    self.$axios.post('/api/record/listRecord', {userid: newid}, {}).then((res) => {
+                        self.recordInfo = [];
+                        res.data.some(item => {
+                            self.recordInfo.push({
+                                bookId: item.bookid,
+                                borrowDate: item.borrowDate,
+                                renew: item.renew,
+                                price:item.price
+                            })
+                         });
+                     }).then(()=>{
+                         let i=0;
+                         for(i=0;i<self.recordInfo.length;i++)
+                             if(self.recordInfo[i].bookId===self.tableData[id].bookId)
+                                 break;
+                         if(i<self.recordInfo.length)
+                         {
+                             this.$http.post('/api/record/updateRecord', {
+                                userid: parseInt(newid),
+                                bookid: parseInt(self.tableData[id].bookId),
+                                renew: parseInt(self.buybooksnum)+parseInt(self.recordInfo[i].renew),
+
+                             }, {}).then((response) => {
+                                self.listTask();
+                             })
+                         }
+                         else{
+                             this.$http.post('/api/record/addRecord', {
+                                userid: parseInt(newid),
+                                bookid: parseInt(self.tableData[id].bookId),
+                                renew: parseInt(self.buybooksnum),
+                                price: parseInt(self.tableData[id].price)
+                             }, {}).then((response) => {
+                                self.listTask();
+                             })
+                         }
+
                     })
                 });
-                self.$http.post('/api/user/updateBooksNum', {
-                    booksnum: bookNum-1,
-                    userid: parseInt(localStorage.getItem("user-id"))
-                }, {});
-
             },
 
             listTask() {
                 const self = this;
                 let id=parseInt(localStorage.getItem("user-id"));
-                self.$axios.post('/api/record/listRecord',{
-                    userid:id
-                },{}).then((res) => {
-                    self.recordInfo = [];
+                self.$axios.post('/api/books/listBook').then((res) => {
+                    self.tableData = [];
                     res.data.some(item => {
-                        self.recordInfo.push({
-                            bookid: item.bookid,
+                        let hint1="加入购物车";
+                        let type1="primary";
+                        let icon1="el-icon-plus";
+
+                        self.tableData.push({
+                            bookId: item.bookId,
+                            name: item.bookname,
+                            writer: item.writer,
+                            resbooks: item.resbooks,
+                            findNumber: item.findNumber,
+                            allbooks: item.allbooks,
+                            bookkind: item.bookkind,
+                            price:item.price,
+                            hint: hint1,
+                            icon: icon1,
+                            type:type1,
                         })
                     });
-                    console.log(self.recordInfo);
-                    self.$axios.post('/api/books/listBook').then((res) => {
-                        self.tableData = [];
-                        res.data.some(item => {
-                            let temp=true;
-                            let hint1="借阅";
-                            let type1="primary";
-                            let icon1="el-icon-plus";
-                            for(let i=0;i<self.recordInfo.length;i++)
-                                if(item.bookId===self.recordInfo[i].bookid) {
-                                    temp = false;
-                                    hint1="已借阅";
-                                    type1="success";
-                                    icon1="el-icon-check";
-                                }
-                            self.tableData.push({
-                                 bookId: item.bookId,
-                                 name: item.bookname,
-                                 writer: item.writer,
-                                 resbooks: item.resbooks,
-                                 findNumber: item.findNumber,
-                                 allbooks: item.allbooks,
-                                 bookkind: item.bookkind,
-                                 hint: hint1,
-                                 icon: icon1,
-                                 flag:temp,
-                                 type:type1,
-                             })
-                        });
-                     }).then(()=>{
-                        self.allData=self.tableData;
+                }).then(()=>{
+                    self.allData=self.tableData;
 
-                     });
-                })
+                });
+
 
             },
             getDate(day) {

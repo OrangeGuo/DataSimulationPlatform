@@ -2,23 +2,21 @@
 let sqlMap = {
     // 用户
     user: {
-        add: 'insert into libuser( userid, username, password, userkind, booksnum,maxbooks) values ( ?, ?,?,?,?)',
-        list: 'select userid, username, password, userkind, booksnum, maxbooks from libuser',
+        add: 'insert into libuser( userid, username, password, userkind, money) values ( ?, ?,?,?,?)',
+        list: 'select userid, username, password, userkind, money from libuser',
         update: 'update libuser set password=? where username=?',
-        setBooksNum:'update libuser set booksnum=? where userid=?',
-        listCommon:'select userid, username, password, userkind, booksnum, maxbooks from libuser where userkind=1',
-        updateNum:'update libuser set booksnum=?,maxbooks=? where userid=?',
-        deleteUser:'delete from libuser where userid=?'
+        deleteUser:'delete from libuser where userid=?',
+        updateMoney:'update libuser set money=? where userid=?'
     },
     books: {
-        add: 'insert into books(bookId, bookname, writer, findNumber, resbooks, allbooks,bookkind) values (?,?,?,?,?,?,?)',
-        list: 'select bookId, bookname, writer, findNumber, resbooks, allbooks,bookkind from books',
+        add: 'insert into books(bookId, bookname, writer, findNumber, resbooks, allbooks,bookkind,price) values (?,?,?,?,?,?,?,?)',
+        list: 'select bookId, bookname, writer, findNumber, resbooks, allbooks,bookkind,price from books',
         delete: 'delete from books where bookId=?',
-        update: 'update books set resbooks=?, allbooks=? where bookId=?'
+        update: 'update books set resbooks=?, allbooks=? ,price=? where bookId=?'
     },
     record:{
-        add: 'insert into record(userid,bookid,borrowDate) values (?,?,?)',
-        list: 'select bookid,borrowDate,renew from record where userid=?',
+        add: 'insert into record(userid,bookid,borrowDate,renew,price) values (?,?,?,?,?)',
+        list: 'select bookid,borrowDate,renew,price from record where userid=?',
         delete: 'delete from record where userid =? and bookid=?',
         update:'update record set renew=? where userid=? and bookid=?'
     },

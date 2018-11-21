@@ -58,11 +58,11 @@
                 </template>
             </el-table-column>
             <el-table-column
-                prop="resbooks"
-                label="借出数量"
+                prop="price"
+                label="单价"
                 width="150">
                 <template slot-scope="scope">
-                    <span style="margin-left: 10px">{{scope.row.allbooks - scope.row.resbooks }}</span>
+                    <span style="margin-left: 10px">{{scope.row.price }}</span>
                 </template>
             </el-table-column>
             <el-table-column
@@ -108,6 +108,9 @@
                     </el-form-item>
                     <el-form-item label="总数量" :label-width="formLabelWidth">
                         <el-input v-model="form.allbooks" autocomplete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="单价" :label-width="formLabelWidth">
+                        <el-input v-model="form.price" autocomplete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="书籍类别" :label-width="formLabelWidth">
                           <el-checkbox-group v-model="form.checkList">
@@ -158,6 +161,7 @@
                     bookname: 'nihao',
                     writer: 'hiayan',
                     findNumber: 'd112',
+                    price:20,
                     allbooks: 10,
                     checkList:[],
                 }
@@ -177,6 +181,7 @@
                             findNumber: item.findNumber,
                             allbooks: item.allbooks,
                             bookkind: item.bookkind,
+                            price:item.price
                         })
                     });
                 }).then(() => {
@@ -192,9 +197,10 @@
                 let id=parseInt(localStorage.getItem("selectedBook"));
                 const self=this;
                 self.$axios.post('/api/books/updateBook', {
-                    resbooks: self.tableData[id].resbooks+parseInt(self.newBookNum)-self.tableData[id].allbooks,
+                    resbooks: self.newBookNum,
                     allbooks: self.newBookNum,
                     bookId: self.tableData[id].bookId,
+                    price:self.tableData[id].price
                 }).then(() => {
                     self.diagEditForm=false;
                     self.newBookNum="";
@@ -249,7 +255,8 @@
                     findNumber: self.form.findNumber,
                     resbooks: self.form.allbooks,
                     allbooks: self.form.allbooks,
-                    bookkind: temp
+                    bookkind: temp,
+                    price:parseInt(self.form.price),
                 }).then(() => {
                     this.listBooks();
                 });

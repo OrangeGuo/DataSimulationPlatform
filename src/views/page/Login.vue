@@ -1,7 +1,7 @@
 <template>
     <div class="wraper">
         <div class="login-wrap">
-            <div class="login-wrap-title">图书管理系统</div>
+            <div class="login-wrap-title">网上书店</div>
             <div class="login-wrap-from" align="center">
                 <el-form :model="userInfo" :rules="rules" ref="form" label-width="0px" class="userinfo">
                     <el-form-item prop="username">
@@ -68,7 +68,7 @@
                                 userid:item.userid,
                                 username:item.username,
                                 password:item.password,
-                                booksnum:item.booksnum,
+                                money :item.money,
                                 userkind:item.userkind
                             }
 
@@ -82,7 +82,7 @@
                             localStorage.setItem('user-name', self.userInfo.username);
                             localStorage.setItem('user-pwd', self.userInfo.userpwd);
                             localStorage.setItem('user-id', self.libuser[i].userid);
-                            localStorage.setItem('books-num',self.libuser[i].booksnum);
+                            localStorage.setItem('user-money',self.libuser[i].money);
                             localStorage.setItem('user-kind',self.libuser[i].userkind);
                             console.log(self.libuser[i]);
                             self.$router.push('./page');

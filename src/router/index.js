@@ -55,7 +55,7 @@ export default new Router({
         {
             path: '/page',//页面主体
             component: Page,
-            redirect: '/page/bookList',
+            //redirect: '/page/bookList',
             children: [
                 {
                     path: 'bookManage',

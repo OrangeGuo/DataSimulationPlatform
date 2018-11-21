@@ -1,7 +1,7 @@
 <template>
 	<div class="header">
 
-		<div class="welcome">欢迎<span class="username">&nbsp;<slot name="username"></slot>&nbsp;</span>来到图书管理系统</div>
+		<div class="welcome">欢迎<span class="username">&nbsp;<slot name="username"></slot>&nbsp;</span>来到网上书店</div>
 		<div class="user-info">
 			<el-dropdown trigger="click" @command="handleCommand">
 				<div class="head-icon">
@@ -45,8 +45,8 @@
 			return {
 				activeIndex:"/page/layout",
                 index:"",
-                tab01:"图书借阅",
-                tab02:"已借图书",
+                tab01:"图书列表",
+                tab02:"购物车",
                 index01:"/page/bookList",
                 index02:"/page/bookBorrowed",
 				thumbImg:require('static/img/head-icon.jpg')

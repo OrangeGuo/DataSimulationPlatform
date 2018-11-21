@@ -25,7 +25,7 @@ router.post('/addUser', (req, res) => {
     let sql = $sql.user.add;
     let params = req.body;
     console.log(params);
-    conn.query(sql, [params.userid, params.username, params.password, params.userkind, params.booksnum,params.maxbooks], function (err, result) {
+    conn.query(sql, [params.userid, params.username, params.password, params.userkind, params.money], function (err, result) {
         if (err) {
             console.log(err);
         }
@@ -50,22 +50,7 @@ router.post('/listUser', (req, res) => {
         }
     })
 });
-router.post('/listCommon', (req, res) => {
-    let sql = $sql.user.listCommon;
-    let params = req.body;
-    console.log(params.username);
-    conn.query(sql, function (err, result) {
-        if (err) {
-            console.log(err);
-        }
-        if (result) {
-            //console.log(res);
 
-
-            jsonWrite(res, result);
-        }
-    })
-});
 router.post('/updatePass', (req, res) => {
     let sql = $sql.user.update;
     let params = req.body;
@@ -79,10 +64,10 @@ router.post('/updatePass', (req, res) => {
 
     })
 });
-router.post('/updateNum', (req, res) => {
-    let sql = $sql.user.updateNum;
+router.post('/updateMoney', (req, res) => {
+    let sql = $sql.user.updateMoney;
     let params = req.body;
-    conn.query(sql, [params.booksnum, params.maxbooks,params.userid], function (err, result) {
+    conn.query(sql, [params.money,params.userid], function (err, result) {
         if (err) {
             console.log(err);
         }
@@ -105,18 +90,5 @@ router.post('/deleteUser', (req, res) => {
 
     })
 });
-router.post('/updateBooksNum', (req, res) => {
-    let sql = $sql.user.setBooksNum;
-    let params = req.body;
-    console.log(params);
-    conn.query(sql, [params.booksnum, params.userid], function (err, result) {
-        if (err) {
-            console.log(err);
-        }
-        if (result) {
-            jsonWrite(res, result);
-        }
 
-    })
-})
 module.exports = router;
