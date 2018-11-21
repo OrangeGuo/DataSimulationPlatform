@@ -1,7 +1,7 @@
 const userApi = require('./api/userApi')
 const booksApi = require('./api/booksApi')
 const recordApi = require('./api/recordApi')
-
+const sellRecordApi=require('./api/sellRecordApi')
 const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({extended: false}))//解析表单不含文件
 app.use('/api/user', userApi)
 app.use('/api/books', booksApi)
 app.use('/api/record',recordApi)
+app.use('/api/sellRecord',sellRecordApi)
 
 
 // 监听端口

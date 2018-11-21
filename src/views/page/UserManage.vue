@@ -17,18 +17,42 @@
             highlight-current-row
         >
             <el-table-column
-                prop="name"
+                prop="usename"
                 label="用户名称"
                 width="200%">
                 <template slot-scope="scope">
                     <div slot="reference" class="name-wrapper">
-                        <el-tag size="medium">{{ scope.row.name }}</el-tag>
+                        <el-tag size="medium">{{ scope.row.usename }}</el-tag>
                     </div>
+                </template>
+            </el-table-column>
+            <el-table-column
+                prop="address"
+                label="地址"
+                width="200%">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.address }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                prop="sum"
+                label="总价"
+                width="200%">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.sum }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                prop="date"
+                label="日期"
+                width="200%">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.date }}</span>
                 </template>
             </el-table-column>
 
             <el-table-column
-                label="删除用户"
+                label="删除记录"
                 width="100">
                 <template slot-scope="scope">
                     <el-tooltip content="删除" placement="top">
@@ -59,15 +83,14 @@
         methods:{
             listUser(){
                 const self=this;
-                self.$axios.post('/api/user/listUser').then((res) => {
+                self.$axios.post('/api/sellRecord/listSell').then((res) => {
                     self.tableData = [];
                     res.data.some(item => {
                         self.tableData.push({
-                            userid: item.userid,
-                            name: item.username,
-                            password: item.password,
-                            userkind: item.userkind,
-                            money:item.money
+                            usename: item.usename,
+                            address: item.address,
+                            sum: item.sum,
+                            date: item.date,
                         })
                     });
                 }).then(()=>{
@@ -79,11 +102,11 @@
                 this.tableData = [];
 
                 for (let i = 0; i < this.allData.length; i++) {
-                    if (this.allData[i].name === this.keyWord ) {
+                    if (this.allData[i].usename === this.keyWord ) {
                         this.tableData.unshift(this.allData[i]);
 
                     }
-                    else if (this.allData[i].name.indexOf(this.keyWord)!==-1 ) {
+                    else if (this.allData[i].usename.indexOf(this.keyWord)!==-1 ) {
                         this.tableData.push(this.allData[i]);
 
                     }
@@ -92,8 +115,9 @@
 
             deleteUser(index){
                 const self=this;
-                self.$http.post('/api/user/deleteUser',{
-                    userid: self.tableData[index].userid
+                self.$http.post('/api/sellRecord//deleteSell',{
+                    usename: self.tableData[index].usename,
+                    date:self.tableData[index].date
                 },{}).then(()=>{
                     self.listUser();
                 })

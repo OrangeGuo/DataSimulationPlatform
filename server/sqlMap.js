@@ -18,7 +18,12 @@ let sqlMap = {
         add: 'insert into record(userid,bookid,borrowDate,renew,price) values (?,?,?,?,?)',
         list: 'select bookid,borrowDate,renew,price from record where userid=?',
         delete: 'delete from record where userid =? and bookid=?',
-        update:'update record set renew=? where userid=? and bookid=?'
+        update:'update record set renew=? where userid=? and bookid=?',
+    },
+    sellrecord:{
+        list: 'select usename,address,sum,date from sellrecord',
+        add: 'insert into sellrecord(usename,address,sum,date) values (?,?,?,?)',
+        delete:'delete from sellrecord where usename=? and date=?',
     },
     modules: {
         add: 'insert into modules(node_id, node_name, node_value, parent, task_id) values(?,?,?,?,?)',

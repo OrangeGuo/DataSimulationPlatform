@@ -2,23 +2,13 @@
 
     <div>
         <div style="height: 50px">
-            <el-dropdown @command="handleCommand">
-            <span class="el-dropdown-link">
-                {{dropItem}}<i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="一周以上">一周以上</el-dropdown-item>
-                    <el-dropdown-item command="已逾期">已逾期</el-dropdown-item>
-                    <el-dropdown-item command="一周内">一周内</el-dropdown-item>
-                    <el-dropdown-item command="全部">全部</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
+
             <el-input style="Float: left;height:50px;width: 500px;" float="left" v-model="keyWord"
                       placeholder="请输入书名、作者"
                       clearable></el-input>
             <el-button style="Float: left;height:40px;" type="primary" @click="searchBook" icon="el-icon-search">搜索
             </el-button>
-            <el-button style="Float: left;height:40px;" type="primary" @click="payBooks" >支付
+            <el-button style="Float: left;height:40px;" type="primary" @click="openSellInfo" >支付
             </el-button>
         </div>
         <el-table
@@ -98,6 +88,21 @@
                 </template>
             </el-table-column>
         </el-table>
+        <el-dialog title="购买信息" :visible.sync="dialogAddForm" width="30%">
+            <div width="30%">
+                <el-form :model="form">
+                    <el-form-item label="地址" :label-width="formLabelWidth">
+                        <el-input v-model="form.address" autocomplete="off" ></el-input>
+                    </el-form-item>
+                    <el-form-item label="总价" :label-width="formLabelWidth">
+                        <el-input v-model="form.sum" autocomplete="off" :disabled="true"></el-input>
+                    </el-form-item>
+
+                </el-form>
+                <el-button @click="dialogAddForm = false" style="margin-left: 30%;">取 消</el-button>
+                <el-button type="primary" @click="payBooks">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -106,17 +111,24 @@
         name: "TaskManage",
         data() {
             return {
+                dialogAddForm:false,
+                formLabelWidth: '120px',
                 dropItem: "全部",
                 keyWord: "",
                 currentDate: "",
                 tableData: [],
                 allData: [],
                 allBooks: [],
-                bookList: []
+                bookList: [],
+                form: {
+                    username:'',
+                    address: '',
+                    sum:'',
+                }
             }
         },
         methods: {
-            handleCommand(command) {
+            /*handleCommand(command) {
                 this.dropItem = command;
                 this.tableData = [];
                 if (command !== "全部") {
@@ -140,7 +152,8 @@
                     this.tableData = this.allData;
                 }
                 this.$message('还书时间:' + command);
-            },
+            },*/
+
             listTask() {
                 const self = this;
                 self.$axios.post('/api/books/listBook').then((res) => {
@@ -296,7 +309,7 @@
                     });
                 });
             },*/
-            payBooks(){
+           openSellInfo(){
                 if(this.tableData.length===0)
                 {
                     this.$message.warning("购物车为空");
@@ -308,12 +321,41 @@
                     if(this.tableData[i].flag===true)
                         sum=sum+parseInt(this.tableData[i].price)*parseInt(this.tableData[i].renew);
                 }
+
+                this.form.sum=sum.toString();
+                this.dialogAddForm=true;
+           },
+            payBooks(){
+                this.dialogAddForm=false;
                 const self=this;
+                var mydate=new Date();
+                var date=mydate.toLocaleDateString()+mydate.toLocaleTimeString();
+                console.log(date);
                 self.$http.post('/api/user/updateMoney', {
                     userid: parseInt(localStorage.getItem('user-id')),
-                    money: parseInt(localStorage.getItem('user-money'))-sum,
+                    money: parseInt(localStorage.getItem('user-money'))-parseInt(self.form.sum),
                 }, {}).then(()=> {
-                    this.$message.info(sum.toString());
+                    localStorage.setItem('user-money',parseInt(localStorage.getItem('user-money'))-parseInt(self.form.sum));
+                    self.$http.post('/api/sellRecord/addSell', {
+                        usename: localStorage.getItem('user-name'),
+                        address: self.form.address,
+                        sum:parseInt(self.form.sum),
+                        date: date
+                     }, {}).then(()=>{
+                        for(let i=0;i<self.tableData.length;i++)
+                        {
+                            if(self.tableData[i].flag===true)
+                            {
+                                self.$http.post('/api/record/deleteRecord', {
+                                    bookid: parseInt(self.tableData[i].bookId),
+                                    userid: parseInt(localStorage.getItem('user-id'))
+                                }, {}).then(()=>{
+                                    self.listTask();
+                                })
+                            }
+                        }
+                    })
+                    //this.$message.info(sum.toString());
                 })
             },
             getDays(day, renew) {

@@ -77,7 +77,7 @@
             router(){
                 let type=localStorage.getItem('user-kind');
                 if(type!=='1'){
-                    this.tab01='用户管理';
+                    this.tab01='销售记录';
                     this.tab02='图书管理';
                     this.index01='/page/userManage';
                     this.index02='/page/bookManage';

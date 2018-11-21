@@ -909,157 +909,180 @@
     <table id="228" parent="2" name="libuser"/>
     <table id="229" parent="2" name="modules"/>
     <table id="230" parent="2" name="record"/>
-    <table id="231" parent="2" name="tasks"/>
-    <table id="232" parent="2" name="user"/>
-    <column id="233" parent="227" name="bookId">
+    <table id="231" parent="2" name="sellrecord">
+      <Collation>utf8_general_ci</Collation>
+    </table>
+    <table id="232" parent="2" name="tasks"/>
+    <table id="233" parent="2" name="user"/>
+    <column id="234" parent="227" name="bookId">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="234" parent="227" name="bookname">
+    <column id="235" parent="227" name="bookname">
       <Position>2</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="235" parent="227" name="writer">
+    <column id="236" parent="227" name="writer">
       <Position>3</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="236" parent="227" name="findNumber">
+    <column id="237" parent="227" name="findNumber">
       <Position>4</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="237" parent="227" name="resbooks">
+    <column id="238" parent="227" name="resbooks">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="238" parent="227" name="allbooks">
+    <column id="239" parent="227" name="allbooks">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="239" parent="227" name="bookkind">
+    <column id="240" parent="227" name="bookkind">
       <Position>7</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="240" parent="227" name="price">
+    <column id="241" parent="227" name="price">
       <Position>8</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="241" parent="228" name="userid">
+    <column id="242" parent="228" name="userid">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="242" parent="228" name="username">
+    <column id="243" parent="228" name="username">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="243" parent="228" name="password">
+    <column id="244" parent="228" name="password">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="228" name="userkind">
+    <column id="245" parent="228" name="userkind">
       <Position>4</Position>
       <DataType>int(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="228" name="money">
+    <column id="246" parent="228" name="money">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="229" name="node_id">
+    <column id="247" parent="229" name="node_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="229" name="node_name">
+    <column id="248" parent="229" name="node_name">
       <Position>2</Position>
       <DataType>char(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="248" parent="229" name="node_value">
+    <column id="249" parent="229" name="node_value">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="249" parent="229" name="parent">
+    <column id="250" parent="229" name="parent">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="250" parent="229" name="task_id">
+    <column id="251" parent="229" name="task_id">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="251" parent="230" name="borrowDate">
+    <column id="252" parent="230" name="borrowDate">
       <Position>1</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="252" parent="230" name="userid">
+    <column id="253" parent="230" name="userid">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="230" name="bookid">
+    <column id="254" parent="230" name="bookid">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="230" name="renew">
+    <column id="255" parent="230" name="renew">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="230" name="price">
+    <column id="256" parent="230" name="price">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="231" name="taskName">
+    <column id="257" parent="231" name="sum">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="258" parent="231" name="usename">
+      <Position>2</Position>
+      <DataType>char(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="259" parent="231" name="address">
+      <Position>3</Position>
+      <DataType>char(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="260" parent="231" name="date">
+      <Position>4</Position>
+      <DataType>char(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="261" parent="232" name="taskName">
       <Position>1</Position>
       <DataType>char(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="231" name="date">
+    <column id="262" parent="232" name="date">
       <Position>2</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="231" name="detail">
+    <column id="263" parent="232" name="detail">
       <Position>3</Position>
       <DataType>char(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="231" name="id">
+    <column id="264" parent="232" name="id">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="260" parent="231" name="PRIMARY">
+    <key id="265" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="261" parent="232" name="username">
+    <column id="266" parent="233" name="username">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="232" name="password">
+    <column id="267" parent="233" name="password">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>

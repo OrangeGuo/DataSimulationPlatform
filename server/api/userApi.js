@@ -67,6 +67,7 @@ router.post('/updatePass', (req, res) => {
 router.post('/updateMoney', (req, res) => {
     let sql = $sql.user.updateMoney;
     let params = req.body;
+    console.log(params);
     conn.query(sql, [params.money,params.userid], function (err, result) {
         if (err) {
             console.log(err);
