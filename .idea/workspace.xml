@@ -2,10 +2,55 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8797ff6f-2f30-4979-98f8-5aed594d5083" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/469ea304-5eca-46aa-b9c4-d6085e21646c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/469ea304-5eca-46aa-b9c4-d6085e21646c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/charts/Schart.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/else/Carousel.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/else/Tree.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/else/drag.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/form/baseform.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/form/extendform.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/form/formTest.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/form/registerDone.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/layout/Container.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/layout/Demo.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/layout/Layout.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/menu/Dropdown.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/menu/Navmenu.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/menu/Tab.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/notice/Alert.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/notice/Dialog.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/notice/Loading.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/notice/Message.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/notice/Notification.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/notice/Popover.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/notice/Tip.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/overall/Button.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/overall/Color.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/overall/Font.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/overall/Icon.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/panel/Card.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/panel/Collapse.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/table/AddUpTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/table/CheckTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/table/DataSource.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/table/ElTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/table/ExpandTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/table/FixedTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/table/Multistage.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/table/SortTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/table/Table.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/table/mergeTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/tools/Badge.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/tools/Pagination.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/tools/Progress.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/tools/Step.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/tools/Tag.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/upload/BaseUpload.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/upload/clipUpload.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/upload/dragUpload.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/upload/piclist.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/upload/picwall.vue" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -189,7 +234,7 @@
     <session id="-1756369382">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="35" />
+          <entry key="project.closed" value="36" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.106" value="1" />
@@ -198,6 +243,7 @@
           <entry key="project.open.time.14" value="3" />
           <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.17" value="2" />
+          <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.3" value="2" />
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.39" value="2" />
@@ -207,13 +253,13 @@
           <entry key="project.open.time.54" value="1" />
           <entry key="project.open.time.75" value="2" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="37" />
+          <entry key="project.opened" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="html" value="3" />
-          <entry key="js" value="68" />
+          <entry key="js" value="69" />
           <entry key="json" value="6" />
           <entry key="md" value="3" />
           <entry key="modules" value="4" />
@@ -228,7 +274,7 @@
           <entry key="Database Element" value="13" />
           <entry key="HTML" value="3" />
           <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="68" />
+          <entry key="JavaScript" value="69" />
           <entry key="Markdown" value="3" />
           <entry key="SQL" value="1" />
           <entry key="Scratch" value="1" />
@@ -243,7 +289,7 @@
           <entry key="json" value="5" />
           <entry key="md" value="60" />
           <entry key="sql" value="34" />
-          <entry key="txt" value="3" />
+          <entry key="txt" value="16" />
           <entry key="vue" value="5671" />
         </counts>
       </usages-collector>
@@ -253,7 +299,7 @@
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="1416" />
           <entry key="Markdown" value="60" />
-          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="PLAIN_TEXT" value="16" />
           <entry key="SQL" value="34" />
           <entry key="Scratch" value="69" />
           <entry key="Vue.js" value="5671" />
@@ -328,16 +374,29 @@
         <entry file="file://$PROJECT_DIR$/server/api/modulesApi.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1276">
-              <caret line="58" column="27" lean-forward="true" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="27" />
+              <caret line="58" column="27" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/db.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/db.js">
+        <entry file="file://$PROJECT_DIR$/src/router/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+            <state relative-caret-position="62">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+                <element signature="e#118#164#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -354,7 +413,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/api/userApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="611">
+            <state relative-caret-position="1166">
               <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
             </state>
           </provider>
@@ -430,10 +489,10 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/views/page/TaskManage.vue" />
         <option value="$PROJECT_DIR$/src/components/page/Page.vue" />
-        <option value="$PROJECT_DIR$/src/router/index.js" />
         <option value="$PROJECT_DIR$/src/components/page/Head.vue" />
         <option value="$PROJECT_DIR$/src/views/page/SensAnalyse.vue" />
         <option value="$PROJECT_DIR$/server/db.js" />
+        <option value="$PROJECT_DIR$/src/router/index.js" />
       </list>
     </option>
   </component>
@@ -526,13 +585,6 @@
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="DataSimulationPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataSimulationPlatform" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="panel" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -589,6 +641,14 @@
       <workItem from="1540543061877" duration="98000" />
       <workItem from="1540543255034" duration="683000" />
     </task>
+    <task id="LOCAL-00001" summary="切换到腾讯云数据库">
+      <created>1542879818546</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1542879818546</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -605,11 +665,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1548" height="840" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989733" visible="true" weight="0.23221476" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989733" visible="true" weight="0.23557048" />
       <window_info id="Structure" order="1" sideWeight="0.5010267" side_tool="true" weight="0.23994638" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="SQL Generator" weight="0.32907802" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32892805" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -620,11 +680,12 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32892805" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5033557" side_tool="true" visible="true" weight="0.3026874" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4966443" visible="true" weight="0.3026874" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.595302" side_tool="true" visible="true" weight="0.3026874" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.40469798" visible="true" weight="0.3026874" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32892805" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32892805" />
       <window_info anchor="bottom" id="Messages" order="14" />
+      <window_info anchor="bottom" id="SQL Generator" order="15" weight="0.32907802" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -662,6 +723,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="切换到腾讯云数据库" />
+    <option name="LAST_COMMIT_MESSAGE" value="切换到腾讯云数据库" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/views/layout/Container.vue">
@@ -829,27 +894,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/Page.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2299">
-          <caret line="121" column="40" selection-start-line="121" selection-start-column="40" selection-end-line="121" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/Head.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1628">
-          <caret line="74" column="14" selection-start-line="74" selection-start-column="14" selection-end-line="74" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/page/SideBar.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-855" />
@@ -897,13 +941,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/api/userApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -914,7 +951,7 @@
     <entry file="file://$PROJECT_DIR$/server/api/modulesApi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1276">
-          <caret line="58" column="27" lean-forward="true" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="27" />
+          <caret line="58" column="27" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -925,10 +962,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/api/userApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1166">
+          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/Page.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/Head.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1628">
+          <caret line="74" column="14" selection-start-line="74" selection-start-column="14" selection-end-line="74" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/db.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
-          <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#118#164#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
