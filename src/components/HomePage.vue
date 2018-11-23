@@ -14,13 +14,6 @@
       </div>
       <div class="DAG-content">
         <Step1 v-if="tap[0].sel"/>
-        <Step2 v-if="tap[1].sel"/>
-        <Step3 v-if="tap[2].sel"/>
-        <Step4 v-if="tap[3].sel"/>
-        <Step5 v-if="tap[4].sel"/>
-        <Step6 v-if="tap[5].sel"/>
-        <Step7 v-if="tap[6].sel"/>
-        <Step8 v-if="tap[7].sel"/>
       </div>
     </div>
     <nodes-bus v-if="dragBus" :value="busValue.value" :pos_x="busValue.pos_x" :pos_y="busValue.pos_y" />
