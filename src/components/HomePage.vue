@@ -78,8 +78,8 @@ export default {
         const x = e.pageX;
         const y = e.pageY;
         this.busValue = Object.assign({}, this.busValue, {
-          pos_x: x,
-          pos_y: y,
+          pos_x: x-173,
+          pos_y: y-70,
           value: dragDes.name
         });
         this.dragBus = true;
@@ -90,8 +90,8 @@ export default {
         const x = e.pageX;
         const y = e.pageY;
         this.busValue = Object.assign({}, this.busValue, {
-          pos_x: x,
-          pos_y: y
+          pos_x: x-173,
+          pos_y: y-70
         });
       }
     },
