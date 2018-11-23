@@ -115,7 +115,7 @@
 
             deleteUser(index){
                 const self=this;
-                self.$http.post('/api/sellRecord//deleteSell',{
+                self.$http.post('/api/sellRecord/deleteSell',{
                     usename: self.tableData[index].usename,
                     date:self.tableData[index].date
                 },{}).then(()=>{

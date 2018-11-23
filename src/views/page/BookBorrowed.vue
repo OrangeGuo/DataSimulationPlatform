@@ -326,10 +326,15 @@
                 this.dialogAddForm=true;
            },
             payBooks(){
-                this.dialogAddForm=false;
+
                 const self=this;
                 var mydate=new Date();
                 var date=mydate.toLocaleDateString()+mydate.toLocaleTimeString();
+                if(self.form.address==="") {
+                    this.$message.warning("地址不能为空");
+                    return;
+                }
+                 this.dialogAddForm=false;
                 console.log(date);
                 self.$http.post('/api/user/updateMoney', {
                     userid: parseInt(localStorage.getItem('user-id')),
@@ -342,6 +347,7 @@
                         sum:parseInt(self.form.sum),
                         date: date
                      }, {}).then(()=>{
+                         this.$message.info("付款成功");
                         for(let i=0;i<self.tableData.length;i++)
                         {
                             if(self.tableData[i].flag===true)

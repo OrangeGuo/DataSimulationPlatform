@@ -19,6 +19,10 @@
                       clearable></el-input>
             <el-button style="Float: left;height:40px;" type="primary" @click="searchBook" icon="el-icon-search">搜索
             </el-button>
+            <el-button style="Float: left;height:40px;" type="primary" @click="sortByPrice" >价格
+            </el-button>
+            <el-button style="Float: left;height:40px;" type="primary" @click="sortBySell" >销量
+            </el-button>
         </div>
         <el-table
             :data="tableData"
@@ -119,7 +123,7 @@
         data() {
             return {
                 dialogAddForm: false,
-                buybooksnum:"",
+                buybooksnum:"1",
                 keyWord: "",
                 formLabelWidth: '120px',
                 dropItem: "全部",
@@ -245,6 +249,7 @@
 
                              }, {}).then((response) => {
                                 self.listTask();
+                                this.$message.info("已加入购物车");
                              })
                          }
                          else{
@@ -255,6 +260,7 @@
                                 price: parseInt(self.tableData[id].price)
                              }, {}).then((response) => {
                                 self.listTask();
+                                this.$message.info("已加入购物车");
                              })
                          }
 
@@ -310,6 +316,40 @@
                 datehour = String(datehour);
                 return dateyear + '-' + datemonth + '-' + dateday + ' ' + datehour + ':' + datemin + ':' + datesec;
             },
+            sortByPrice(){
+                for (let i = 0; i < this.tableData.length-1; i++) {
+                    let temp=i;
+                    for(let j=i+1;j<this.tableData.length;j++){
+                        if(this.tableData[temp].price<this.tableData[j].price)
+                            temp=j;
+                    }
+                    if(temp!==i){
+                        let book=this.tableData[temp];
+                        let book2=this.tableData[i];
+                        //this.tableData[i]=this.tableData[temp];
+                        //this.tableData[temp]=book;
+                        this.tableData.splice(i,1,book);
+                        this.tableData.splice(temp,1,book2)
+                    }
+                }
+            },
+            sortBySell(){
+                for (let i = 0; i < this.tableData.length-1; i++) {
+                    let temp=i;
+                    for(let j=i+1;j<this.tableData.length;j++){
+                        if(this.tableData[temp].allbooks-this.tableData[temp].resbooks<this.tableData[j].allbooks-this.tableData[j].resbooks)
+                            temp=j;
+                    }
+                    if(temp!==i){
+                        let book=this.tableData[temp];
+                        let book2=this.tableData[i];
+                        //this.tableData[i]=this.tableData[temp];
+                        //this.tableData[temp]=book;
+                        this.tableData.splice(i,1,book);
+                        this.tableData.splice(temp,1,book2)
+                    }
+                }
+            }
         },
         mounted() {
             this.listTask();
