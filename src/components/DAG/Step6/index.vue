@@ -171,7 +171,7 @@ export default {
       this.dragLink = Object.assign({}, this.dragLink, { toX: x, toY: y });
     },
     r_click_nodes(e, i) { // 节点的右键事件
-      this.setInitRect()
+      this.setInitRect();
       const id = this.DataAll.nodes[i].id;
       const x = e.x - this.initPos.left;
       const y = e.y - this.initPos.top;
@@ -180,7 +180,7 @@ export default {
         x,
         y,
         id
-      }
+      };
       e.stopPropagation();
       e.cancelBubble = true;
       e.preventDefault();

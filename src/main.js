@@ -8,11 +8,11 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource);
 import 'element-ui/lib/theme-chalk/index.css';    // 默认主题
 import 'babel-polyfill';//用于解决ie9和一些低版本的高级浏览器对es6新语法并不支持的问题
-import jsplumb from 'jsplumb'
-Vue.prototype.$jsPlumb = jsplumb.jsPlumb
+import store from './store';
 Vue.prototype.$axios = axios;
 Vue.use(ElementUI);
 new Vue({
 	router,
+    store,
 	render: h => h(App)
 }).$mount('#app');
