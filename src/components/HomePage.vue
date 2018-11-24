@@ -134,32 +134,7 @@ export default {
   bottom: 0;
   overflow: hidden;
 }
-.tapBar {
-  width: 100%;
-  height: 60px;
-  background-color: #212528;
-  display: flex;
-  padding-top: 10px;
-  padding-left: 300px;
-}
-.tapEach {
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  width: 100px;
-  color: #ffffff;
-  cursor: pointer;
-}
-.tapEachSel {
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  width: 100px;
-  color: #212528;
-  background: #cccccc;
-  cursor: pointer;
-  box-sizing: border-box;
-}
+
 .mainContent {
   width: 100%;
   position: absolute;

@@ -4,12 +4,24 @@
         <body xmlns="http://www.w3.org/1999/xhtml" :style="get_menu_style()">
             <div class="menu_contain">
                 <span @click="delEdges">删除节点</span>
-                <span>编辑</span>
+                <span @click="dialogEditForm = true">编辑</span>
                 <span>干点别的啥</span>
             </div>
         </body>
         </foreignObject>
+         <el-dialog title="修改任务" :visible.sync="dialogEditForm" width="30%">
+             <el-form >
+                 <el-form-item label="任务名称" :label-width="formLabelWidth">
+                     <el-input v-model="name" autocomplete="off" placeholder="不超过10字符"></el-input>
+                 </el-form-item>
+             </el-form>
+             <div slot="footer" class="dialog-footer">
+                 <el-button @click="dialogEditForm = false">取 消</el-button>
+                 <el-button type="primary" @click="updateName">确 定</el-button>
+             </div>
+         </el-dialog>
     </g>
+
 </template>
 
 <script>
@@ -23,15 +35,26 @@ export default {
         value: false,
         x: -9999,
         y: -9999,
-        id: null
+        id: null,
+
         }
       }
     }
   },
+    data(){
+      return{
+          formLabelWidth: '120px',
+          dialogEditForm:true,
+          name:""
+      }
+    },
   methods: {
     ...mapActions(['delNode']),
+      updateName(){
+
+      },
     click_menu_cover(e) {
-      this.$emit('close_click_nodes')
+      this.$emit('close_click_nodes');
       e.preventDefault();
       e.cancelBubble = true;
       e.stopPropagation();
@@ -47,7 +70,7 @@ export default {
       let params = {
         model_id: sessionStorage['newGraph'],
         id: this.isEditAreaShow.id
-      }
+      };
       if (this.isEditAreaShow.id) {
         this.delNode(params)
       }
