@@ -1,8 +1,6 @@
 <template>
   <div class="page-content" @mousedown="startNodesBus($event)" @mousemove="moveNodesBus($event)" @mouseup="endNodesBus($event)">
-    <div class="tapBar">
-      <div :class="item.sel ? 'tapEachSel ': 'tapEach'"  @click="selStep(i)" v-for="(item , i) in tap" :key="i">{{ item.name }}</div>
-    </div>
+
     <div class="mainContent">
       <div class="nav">
         <div>假装是侧栏导航</div>
@@ -13,7 +11,7 @@
         </div>
       </div>
       <div class="DAG-content">
-        <Step1 v-if="tap[0].sel"/>
+        <Step1 />
       </div>
     </div>
     <nodes-bus v-if="dragBus" :value="busValue.value" :pos_x="busValue.pos_x" :pos_y="busValue.pos_y" />
@@ -71,7 +69,7 @@ export default {
         const x = e.pageX;
         const y = e.pageY;
         this.busValue = Object.assign({}, this.busValue, {
-          pos_x: x-173,
+          pos_x: x,
           pos_y: y-70,
           value: dragDes.name
         });
@@ -83,7 +81,7 @@ export default {
         const x = e.pageX;
         const y = e.pageY;
         this.busValue = Object.assign({}, this.busValue, {
-          pos_x: x-173,
+          pos_x: x,
           pos_y: y-70
         });
       }
@@ -166,7 +164,7 @@ export default {
   width: 100%;
   position: absolute;
   left: 0;
-  top: 70px;
+  top: 0;
   bottom: 0;
   text-align: left;
 }

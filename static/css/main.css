@@ -14,7 +14,7 @@ body{
 /* 页面 */
 .page {
     position: absolute;
-    left: 250px;
+    left: 0;
     right: 0;
     top: 70px;
     bottom:0;

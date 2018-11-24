@@ -4,7 +4,7 @@
 			<span slot="username">{{ nickname }}</span>
 			<span slot="_username">{{ nickname }}</span>
 		</v-head>
-        <!--<side-bar></side-bar>-->
+
 		<div class="page">
 			<transition name="fade" mode="out-in"><router-view></router-view></transition>
 		</div>
@@ -13,7 +13,6 @@
 
 <script type="text/javascript">
 	import vHead from './Head';
-	import SideBar from './SideBar';
 
 	export default {
 		data () {
@@ -29,7 +28,7 @@
 		},
 		components:{
 			vHead,
-            //SideBar
+
 		}
 	}
 </script>
