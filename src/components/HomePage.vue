@@ -3,11 +3,9 @@
 
     <div class="mainContent">
       <div class="nav">
-        <div>假装是侧栏导航</div>
-        <div>点击顶部导航,查看实现流程</div>
+        <div>侧边栏</div>
         <div class="nodes_bus">
-          <span @mousedown="dragIt('拖动1')">拖动我吧1</span>
-          <span @mousedown="dragIt('拖动2')">拖动我吧2</span>
+          <span @mousedown="dragIt('新建节点')">新建节点</span>
         </div>
       </div>
       <div class="DAG-content">

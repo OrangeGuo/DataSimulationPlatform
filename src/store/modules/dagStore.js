@@ -139,13 +139,9 @@ const dagStore = {
         },
         ADD_EDGE_DATA: (state, desp) => {
             let _DataAll = state.DataAll;
-            _DataAll.edges.push({
-                ...desp,
-                id: state.DataAll.edges.length + 10
-            });
             /*
-            检测源节点是否已被占用
-             */
+                检测源节点是否已被占用
+            */
             let isUnique = true;
             _DataAll.edges.forEach(item => {
                 if (item.dst_node_id === desp.dst_node_id) {
@@ -153,10 +149,14 @@ const dagStore = {
                 }
             });
             if (!isUnique) {
-                _DataAll.edges.pop();
                 alert('重复连接');
                 return;
             }
+            _DataAll.edges.push({
+                ...desp,
+                id: state.DataAll.edges.length + 10
+            });
+
             /**
              * 检测是否成环
              **/
