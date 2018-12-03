@@ -107,9 +107,6 @@ const dagStore = {
         selAreaEnd: ({commit}, area) => { // 框选节点
             commit('SEL_AREA_END', area)
         },
-        save: ({commit}) =>{
-            commit('SAVE')
-        }
     },
     mutations: {
         CHANGE_SIZE: (state, action) => {
@@ -213,8 +210,8 @@ const dagStore = {
             let _nodes = state.DataAll.nodes;
             let currentId = _nodes[0].id;
             for (let i = 1; i < _nodes.length; i++) {
-                if(currentId<=_nodes[i].id)
-                    currentId=_nodes[i].id+1;
+                if (currentId <= _nodes[i].id)
+                    currentId = _nodes[i].id + 1;
             }
             _nodes.push({
                 ...params.desp,
@@ -225,9 +222,6 @@ const dagStore = {
         },
         SEL_AREA_END: (state, area) => {
             console.log('area', area)
-        },
-        SAVE: (state) => {
-
         }
     }
 };

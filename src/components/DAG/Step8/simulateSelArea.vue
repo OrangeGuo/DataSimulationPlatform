@@ -1,6 +1,6 @@
 <template>
      <g>
-        <foreignObject width="100%" height="100%" style="position: abolute">
+        <foreignObject width="100%" height="100%" style="position: absolute">
         <body xmlns="http://www.w3.org/1999/xhtml" :style="getSimulateSelArea()" id="simulate_sel_area">
         </body>
         </foreignObject>
