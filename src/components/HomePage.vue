@@ -49,6 +49,8 @@
             },
             save() {
                 let self = this;
+                this.$axios.post('/api/edge/addEdges', this.DataAll.edges, {}).then((response) => {
+                });
                 this.$axios.post('/api/node/addNodes', this.DataAll.nodes, {}).then((response) => {
                     self.$message.success("保存成功");
                 })

@@ -51,6 +51,10 @@ export default {
         id: this.isEditAreaShow.id
       };
       if (this.isEditAreaShow.id) {
+          if(this.isEditAreaShow.id===1){
+              this.$message.warning('根节点不可删除');
+              return;
+          }
         this.delNode(params)
       }
       this.$emit('close_click_nodes')

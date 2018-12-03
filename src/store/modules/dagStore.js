@@ -2,76 +2,18 @@ const dagStore = {
     state: {
         DataAll: {
             nodes: [{
-                name: "name1",
+                name: "root",
                 id: 1,
                 imgContent: "",
                 pos_x: 100,
                 pos_y: 230,
                 type: 'constant',
                 in_ports: [0],
-                out_ports: [0]
-            }, {
-                name: "name5",
-                id: 5,
-                imgContent: "",
-                pos_x: 400,
-                pos_y: 180,
-                type: 'constant',
-                in_ports: [0],
-                out_ports: [0]
-            }, {
-                name: "name6",
-                id: 6,
-                imgContent: "",
-                pos_x: 500,
-                pos_y: 300,
-                type: 'constant',
-                in_ports: [0],
-                out_ports: [0]
-            }, {
-                name: "name7",
-                id: 7,
-                imgContent: "",
-                pos_x: 300,
-                pos_y: 400,
-                type: 'constant',
-                in_ports: [0],
-                out_ports: [0]
-            }, {
-                name: "name2",
-                id: 2,
-                imgContent: "",
-                pos_x: 200,
-                pos_y: 40,
-                type: 'constant',
-                in_ports: [0],
-                out_ports: [0]
+                out_ports: [0],
+                in:0,
+                out:0
             }],
-            edges: [{
-                id: 1,
-                dst_input_idx: 0,
-                dst_node_id: 1,
-                src_node_id: 2,
-                src_output_idx: 0
-            }, {
-                id: 2,
-                dst_input_idx: 0,
-                dst_node_id: 5,
-                src_node_id: 2,
-                src_output_idx: 0
-            }, {
-                id: 3,
-                dst_input_idx: 0,
-                dst_node_id: 6,
-                src_node_id: 5,
-                src_output_idx: 0
-            }, {
-                id: 3,
-                dst_input_idx: 0,
-                dst_node_id: 7,
-                src_node_id: 1,
-                src_output_idx: 0
-            }],
+            edges: [],
             model_id: 21
         },
         svgSize: 1
@@ -178,7 +120,15 @@ const dagStore = {
             checkCircle(dst_node_id, 1);
             if (isCircle) {
                 _DataAll.edges.pop();
-                alert('禁止成环')
+                alert('禁止成环');
+                return;
+            }
+            let newEdge=_DataAll.edges[_DataAll.edges.length-1];
+            for (let i = 0; i < _DataAll.nodes.length; i++) {
+                if(_DataAll.nodes[i].id===newEdge.src_node_id)
+                    _DataAll.nodes[i].out++;
+                else if(_DataAll.nodes[i].id===newEdge.dst_node_id)
+                    _DataAll.nodes[i].in++;
             }
         },
         DEL_EDGE_DATA: (state, id) => {
@@ -208,7 +158,7 @@ const dagStore = {
         },
         ADD_NODE_DATA: (state, params) => {
             let _nodes = state.DataAll.nodes;
-            let currentId = _nodes[0].id;
+            let currentId = _nodes[0].id+1;
             for (let i = 1; i < _nodes.length; i++) {
                 if (currentId <= _nodes[i].id)
                     currentId = _nodes[i].id + 1;
@@ -217,7 +167,9 @@ const dagStore = {
                 ...params.desp,
                 id: currentId,
                 in_ports: [0],
-                out_ports: [0]
+                out_ports: [0],
+                in:0,
+                out:0
             })
         },
         SEL_AREA_END: (state, area) => {
