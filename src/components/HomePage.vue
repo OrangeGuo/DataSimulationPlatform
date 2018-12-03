@@ -3,9 +3,9 @@
 
     <div class="mainContent">
       <div class="nav">
-        <div>侧边栏</div>
         <div class="nodes_bus">
           <span @mousedown="dragIt('新建节点')">新建节点</span>
+            <span @mousedown="save">保存修改</span>
         </div>
       </div>
       <div class="DAG-content">
