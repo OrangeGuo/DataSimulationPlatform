@@ -40,7 +40,7 @@ router.post('/addNodes', (req, res) => {
     console.log(nodes);
     for (let i = 0; i < nodes.length; i++) {
         let params = nodes[i];
-        conn.query(sql, [1, params.id, params.name, params.imgContent, params.pos_x, params.pos_y,params.in,params.out], function (err, result) {
+        conn.query(sql, [1, params.id, params.name, params.imgContent, params.pos_x, params.pos_y,params.degree], function (err, result) {
             if (err) {
                 console.log(err);
             }

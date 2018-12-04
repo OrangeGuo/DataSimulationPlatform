@@ -7,7 +7,7 @@
                 <div class="nodes_bus">
                     <span @mousedown="dragIt('新建节点')">新建节点</span>
                     <span @mousedown="save">保存修改</span>
-                    <span @mousedown="loadNodesAndEdges">读入</span>
+                    <span @mousedown="loadNodesAndEdges">刷  新</span>
                 </div>
             </div>
             <div class="DAG-content">
@@ -72,8 +72,7 @@
                             type: 'constant',
                             in_ports: [0],
                             out_ports: [0],
-                            in: item.input,
-                            out: item.output
+                            degree:item.degree
                         })
                     });
 
@@ -84,7 +83,8 @@
                             dst_node_id: item.dst_node_id,
                             src_node_id: item.src_node_id,
                             dst_input_idx: 0,
-                            src_output_idx: 0
+                            src_output_idx: 0,
+                            id:item.id
                         })
                     });
 
@@ -157,7 +157,6 @@
             }
         },
         mounted() {
-            this.loadNodesAndEdges();
             if (window.sessionStorage["step"]) {
                 const i = window.sessionStorage.step;
                 this.selStep(i);

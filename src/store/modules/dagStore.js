@@ -10,8 +10,7 @@ const dagStore = {
                 type: 'constant',
                 in_ports: [0],
                 out_ports: [0],
-                in: 0,
-                out: 0
+                degree:0
             }],
             edges: [],
             model_id: 21
@@ -113,9 +112,14 @@ const dagStore = {
                 alert('重复连接');
                 return;
             }
+            let edgeId=1;
+            for (let i = 0; i < state.DataAll.edges.length; i++) {
+                if(state.DataAll.edges[i].id>=edgeId)
+                    edgeId=state.DataAll.edges[i].id+1;
+            }
             _DataAll.edges.push({
                 ...desp,
-                id: state.DataAll.edges.length + 10
+                id: edgeId
             });
 
             /**
@@ -146,9 +150,9 @@ const dagStore = {
             let newEdge = _DataAll.edges[_DataAll.edges.length - 1];
             for (let i = 0; i < _DataAll.nodes.length; i++) {
                 if (_DataAll.nodes[i].id === newEdge.src_node_id)
-                    _DataAll.nodes[i].out++;
+                    _DataAll.nodes[i].degree-=1;
                 else if (_DataAll.nodes[i].id === newEdge.dst_node_id)
-                    _DataAll.nodes[i].in++;
+                    _DataAll.nodes[i].degree++;
             }
         },
         DEL_EDGE_DATA: (state, id) => {
@@ -183,14 +187,14 @@ const dagStore = {
                 if (currentId <= _nodes[i].id)
                     currentId = _nodes[i].id + 1;
             }
-            _nodes.push({
+            state.DataAll.nodes.push({
                 ...params.desp,
                 id: currentId,
                 in_ports: [0],
                 out_ports: [0],
-                in: 0,
-                out: 0
+                degree:0
             })
+
         },
         SEL_AREA_END: (state, area) => {
             console.log('area', area)
