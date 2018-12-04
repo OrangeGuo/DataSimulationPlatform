@@ -2,10 +2,10 @@ const dagStore = {
     state: {
         DataAll: {
             nodes: [{
-                taskId:0,
+                taskId: 0,
                 name: "root",
                 id: 1,
-                imgContent: "",
+                parent: 0,
                 pos_x: 100,
                 pos_y: 230,
                 type: 'constant',
@@ -121,7 +121,7 @@ const dagStore = {
             _DataAll.edges.push({
                 ...desp,
                 id: edgeId,
-                taskId:state.DataAll.nodes[0].taskId
+                taskId: state.DataAll.nodes[0].taskId
             });
 
             /**
@@ -153,8 +153,10 @@ const dagStore = {
             for (let i = 0; i < _DataAll.nodes.length; i++) {
                 if (_DataAll.nodes[i].id === newEdge.src_node_id)
                     _DataAll.nodes[i].degree--;
-                else if (_DataAll.nodes[i].id === newEdge.dst_node_id)
+                else if (_DataAll.nodes[i].id === newEdge.dst_node_id) {
                     _DataAll.nodes[i].degree++;
+                    _DataAll.nodes[i].parent = newEdge.src_node_id;
+                }
             }
         },
         DEL_EDGE_DATA: (state, id) => {
@@ -166,8 +168,10 @@ const dagStore = {
                     for (let i = 0; i < state.DataAll.nodes.length; i++) {
                         if (state.DataAll.nodes[i].id === item.src_node_id)
                             state.DataAll.nodes[i].degree++;
-                        else if (state.DataAll.nodes[i].id === item.dst_node_id)
+                        else if (state.DataAll.nodes[i].id === item.dst_node_id) {
                             state.DataAll.nodes[i].degree--;
+                            state.DataAll.nodes[i].parent = 0;
+                        }
                     }
                 }
             });
@@ -188,10 +192,11 @@ const dagStore = {
                     }
                 } else {
                     for (let i = 0; i < state.DataAll.nodes.length; i++) {
-                         if (state.DataAll.nodes[i].id === item.dst_node_id) {
-                             state.DataAll.nodes[i].degree--;
-                             break;
-                         }
+                        if (state.DataAll.nodes[i].id === item.dst_node_id) {
+                            state.DataAll.nodes[i].degree--;
+                            state.DataAll.nodes[i].parent = 0;
+                            break;
+                        }
                     }
                 }
             });
@@ -212,10 +217,11 @@ const dagStore = {
             }
             state.DataAll.nodes.push({
                 ...params.desp,
-                taskId:state.DataAll.nodes[0].taskId,
+                taskId: state.DataAll.nodes[0].taskId,
                 id: currentId,
                 in_ports: [0],
                 out_ports: [0],
+                parent: 0,
                 degree: 0
             })
 

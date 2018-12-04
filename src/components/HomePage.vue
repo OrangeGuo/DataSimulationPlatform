@@ -67,7 +67,7 @@
                         nodes.push({
                             name: item.name,
                             id: item.id,
-                            imgContent: item.imgContent,
+                            parent: item.parent,
                             pos_x: item.pos_x,
                             pos_y: item.pos_y,
                             type: 'constant',
