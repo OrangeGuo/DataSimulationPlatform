@@ -21,9 +21,9 @@
             border
             style="width: 80%"
             highlight-current-row
-            @row-click="loadModules"
+            @row-click=""
             @row-dblclick="openIndexConfig"
-            >
+        >
             <el-table-column
                 prop="taskName"
                 label="任务名称"
@@ -31,9 +31,9 @@
                 <template slot-scope="scope">
 
 
-                        <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{ scope.row.taskName }}</el-tag>
-                        </div>
+                    <div slot="reference" class="name-wrapper">
+                        <el-tag size="medium">{{ scope.row.taskName }}</el-tag>
+                    </div>
 
                 </template>
             </el-table-column>
@@ -41,7 +41,7 @@
                 prop="date"
                 label="创建时间"
                 width="300"
-               	>
+            >
                 <template slot-scope="scope">
                     <i class="el-icon-time"></i>
                     <span style="margin-left: 10px">{{ scope.row.date }}</span>
@@ -67,19 +67,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <div class="data-show" style="width: 650px;">
-            <h3>任务模型</h3>
 
-            <el-tree :data="treeList" ref="tree" :props="defaultProps"
-                     :node-key="config.nodeKey" :indent="config.indent"
-                     :highlight-current="config.highlight" :accordion="config.accordion"
-                     :expand-on-click-node="config.clickExpand"
-                     :default-checked-keys="config.checkedKeys" :default-expanded-keys="config.expandedKeys"
-                     :default-expand-all="config.expandAll"
-                     :empty-text="config.emptyTxt" :render-content="renderContent"
-
-                     @node-click="handleClick" @check-change="handleCheckChange"></el-tree>
-        </div>
 
         <el-dialog title="新建任务" :visible.sync="dialogAddForm" width="30%">
             <el-form :model="form">
@@ -115,33 +103,15 @@
 <script>
     export default {
         name: "TaskManage",
-
-
         data() {
-
-
             return {
-                current_task:0,
-                flag:0,
+                flag: 0,
                 id: 1,
-                treeList: [],
                 defaultProps: {
                     children: "children",
                     label: "label",
                     value: "value",
                     disabled: "noUse"
-                },
-                config: {
-                    emptyTxt: "没有更多啦~~",
-                    indent: 20,//相邻级节点间的水平缩进，单位为像素
-                    showCheckbox: true,//是否显示复选框
-                    nodeKey: "value",//依据哪个节点来判断选中和展开,其值为节点数据中的一个字段名，该字段在整棵树中是唯一的。
-                    clickExpand: false,//点击后是否展开下级
-                    checkedKeys: ['211'],//默认选中的项的字段值
-                    expandedKeys: ['21'],//判断哪些项是展开的
-                    expandAll: false,//是否默认展开所有
-                    highlight: true,//选中后是否高亮显示当前行
-                    accordion: true//是否开启手风琴
                 },
                 filterText: "",
                 prop: {
@@ -162,38 +132,13 @@
                 },
                 dialogAddForm: false,
                 dialogUpdateForm: false,
-                tableData: [
-                ]
+                tableData: []
             }
         },
         methods: {
-            openIndexConfig(row){
-                localStorage.setItem('task-id',row.id);
-
+            openIndexConfig(row) {
+                localStorage.setItem('task-id', row.id);
                 this.$router.push('./IndexConfig')
-            },
-            append(data) {
-                this.id++;
-                let newList = {"label": "node_" + this.id, value: "" + this.id, children: []};
-                if (!data.children) {
-                    this.$set(data, 'children', []);
-                }
-                data.children.push(newList);
-            },
-            remove(node, data) {
-                const parent = node.parent;
-                const children = parent.data.children || parent.data;
-                const index = children.findIndex(d => d.value === data.value);
-                if(data.value!=="1")children.splice(index, 1);
-            },
-            handleClick(data) {
-                if (data.children && data.children.length > 0) {
-                    return;
-                }
-                this.$message("我选中了：" + data.label + ",代号为:" + data.value)
-            },
-            handleCheckChange(data, checked, indeterminate) {
-                console.log(data, checked, indeterminate);
             },
             newTask() {
                 const self = this;
@@ -209,11 +154,11 @@
                     }
                     i++;
                 }
-                let temp=self.tableData.length;
-                if(temp===0)
-                    temp=temp+1;
+                let temp = self.tableData.length;
+                if (temp === 0)
+                    temp = temp + 1;
                 else
-                    temp=self.tableData[self.tableData.length-1].id+1;
+                    temp = self.tableData[self.tableData.length - 1].id + 1;
                 if (flag) {
                     this.dialogAddForm = false;
                     this.$http.post('/api/task/addTask', {
@@ -222,64 +167,9 @@
                         id: temp
                     }, {}).then((response) => {
                         self.listTask();
-                        self.current_task = temp;
-                        self.treeList=[];
-                        self.treeList.push({
-                            "label": "root",
-                            "value":"1",
-                            "children": []
-                        })
                     })
                 }
             },
-            deleteAllModules(){
-              const self=this;
-              this.$http.post('/api/modules/deleteModules',{
-                  task_id: self.current_task
-              },{}).then((response) => {
-
-                    })
-            },
-            newModule(){
-                    this.deleteAllModules();
-                    let nodes = [];
-                    let list = [];
-                    let parent = [];
-                    parent.push(0);
-                    list.push(this.treeList[0]);
-                    while (list.length > 0) {
-                        nodes.push({
-                            node_name: list[0].label,
-                            node_id: list[0].value,
-                            value: 0,
-                            parent: parent[0],
-                            task_id: this.current_task
-                        });
-                        parent.splice(0, 1);
-                        for (let i = 0; i < list[0].children.length; i++) {
-                            list.push(list[0].children[i]);
-                            parent.push(list[0].value);
-                        }
-                        list.splice(0, 1);
-                    }
-                    this.$http.post('/api/modules/addModules', nodes, {}).then((response) => {
-
-                    })
-
-            },
-			renderContent (h, { node, data, store }) {
-				return (
-
-		          <span style="flex: 1; display: flex; align-items: center; justify-content: space-between; font-size: 14px; padding-right: 8px;">
-		            <span>
-		              <input type="text" style="width:50px" placeholder={node.label}></input>
-		            </span>
-		            <span>
-		              <el-button style="font-size: 12px;" type='primary' size='small' on-click={ () => this.append(data) }>添加</el-button>
-		              <el-button style="font-size: 12px;" type='danger' size='small' on-click={ () => this.remove(node, data) }>删除</el-button>
-		            </span>
-		          </span>);
-			},
             listTask() {
                 const self = this;
                 self.$axios.post('/api/task/listTask').then((res) => {
@@ -287,7 +177,6 @@
                     res.data.some(item => {
                         let day = item.date;
                         day = day.split("-");
-
                         let dateyear = day[0];
                         let datemonth = day[1];
                         day = day[2].split("T")
@@ -307,30 +196,17 @@
                             taskName: item.taskName,
                             detail: item.detail,
                             id: item.id
-                        })
-                        console.log(self.flag);
-
+                        });
                     });
-
-                }).then(()=>{
-                                           if(self.flag===0) {
-                            if(self.tableData.length>0) {
-                                self.InitTree(self.tableData[0].id);
-                                self.current_task = self.tableData[0].id;
-                            }
-                            self.flag=1;
-                        }
                 });
             },
             deleteItem(index) {
-
                 const self = this;
                 self.$http.post('/api/task/deleteTask', {
                     taskName: self.tableData[index].taskName
                 }, {}).then((response) => {
                     self.tableData.splice(index, 1);
-                    self.deleteAllModules();
-                    self.treeList=[];
+                    ;
                 })
 
             },
@@ -361,65 +237,7 @@
                     self.listTask();
                 })
             },
-            //选中任意行加载对应任务模型
-            loadModules(row) {
-                //this.$message.warning(row.id+"");
-                this.current_task=row.id;
-                this.InitTree(row.id);
-            },
-
-            InitTree(taskid){
-                if(this.tableData.length===0)
-                    return;
-                const self = this;
-                let nodes = [];
-                self.$axios.post('/api/modules/listModules', {
-                    task_id: taskid
-                }, {}).then((res) => {
-                    self.treeList = [];
-                    res.data.some(item => {
-                        nodes.push({
-                            node_id: item.node_id,
-                            node_name: item.node_name,
-                            node_value: item.node_value,
-                            parent: item.parent,
-                        })
-
-                    });
-
-                }).then(()=>{
-                    if(nodes.length>0){
-                        self.treeList.push({
-                            'label':nodes[0].node_name,
-                            'value':nodes[0].node_value,
-                            'id':nodes[0].node_id,
-                            'children':[]
-                        });
-                        let temp=[];
-                        temp.push(self.treeList[0]);
-
-                        for (let i = 1; i < nodes.length; i++) {
-                            for(let j=0;j<temp.length;j++){
-                                if(nodes[i].parent===temp[j].id){
-                                    let ob={
-                                        'label':nodes[i].node_name,
-                                        'value':nodes[i].node_value,
-                                        'id':nodes[i].node_id,
-                                        'children':[]
-                                    };
-                                    temp[j].children.push(ob);
-                                    temp.push(ob);
-
-                                    break;
-                                }
-                            }
-                        }
-
-                    }
-                })
-            }
         },
-
         mounted() {
             this.listTask();
 
