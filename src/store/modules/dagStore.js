@@ -2,6 +2,7 @@ const dagStore = {
     state: {
         DataAll: {
             nodes: [{
+                taskId:0,
                 name: "root",
                 id: 1,
                 imgContent: "",
@@ -119,7 +120,8 @@ const dagStore = {
             }
             _DataAll.edges.push({
                 ...desp,
-                id: edgeId
+                id: edgeId,
+                taskId:state.DataAll.nodes[0].taskId
             });
 
             /**
@@ -210,6 +212,7 @@ const dagStore = {
             }
             state.DataAll.nodes.push({
                 ...params.desp,
+                taskId:state.DataAll.nodes[0].taskId,
                 id: currentId,
                 in_ports: [0],
                 out_ports: [0],

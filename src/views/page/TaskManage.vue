@@ -10,7 +10,7 @@
             <el-button style="Float: left;height:40px;" type="primary" @click="dialogAddForm = true"
                        icon="el-icon-plus">新建
             </el-button>
-            <el-button style="Float: left;height:40px;" type="primary" @click="newModule"
+            <el-button style="Float: left;height:40px;" type="primary" @click=""
                        icon="el-icon-upload">保存
             </el-button>
         </div>
@@ -21,7 +21,7 @@
             border
             style="width: 80%"
             highlight-current-row
-            @row-click=""
+            @row-click="openModule"
             @row-dblclick="openIndexConfig"
         >
             <el-table-column
@@ -140,6 +140,10 @@
                 localStorage.setItem('task-id', row.id);
                 this.$router.push('./IndexConfig')
             },
+            openModule(row){
+                localStorage.setItem('task-id', row.id);
+                this.$router.push('./HomePage')
+            },
             newTask() {
                 const self = this;
                 let taskName = this.form.taskName;
@@ -240,7 +244,6 @@
         },
         mounted() {
             this.listTask();
-
         },
 
 

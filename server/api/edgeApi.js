@@ -40,7 +40,7 @@ router.post('/addEdges', (req, res) => {
     console.log(nodes);
     for (let i = 0; i < nodes.length; i++) {
         let params = nodes[i];
-        conn.query(sql, [1, params.id, params.dst_node_id, params.src_node_id], function (err, result) {
+        conn.query(sql, [params.taskId, params.id, params.dst_node_id, params.src_node_id], function (err, result) {
             if (err) {
                 console.log(err);
             }
@@ -55,7 +55,7 @@ router.post('/addEdges', (req, res) => {
 router.post('/listEdges', (req, res) => {
     let sql = $sql.edges.list;
     let params = req.body;
-    console.log("list edges");
+    console.log(params);
     conn.query(sql, [params.taskId], function (err, result) {
         if (err) {
             console.log(err);

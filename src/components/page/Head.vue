@@ -30,7 +30,7 @@
                     灵敏度分析
                 </el-menu-item>
                 <el-menu-item index="/page/HomePage">
-                    画图测试
+                    模型配置
                 </el-menu-item>
 
 			</el-menu>

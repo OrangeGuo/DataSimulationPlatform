@@ -30,6 +30,7 @@
         }),
         data() {
             return {
+                taskId:0,
                 tap: tap,
                 dragBus: false,
                 busValue: {
@@ -50,20 +51,20 @@
             },
             save() {
                 let self = this;
-                this.$axios.post('/api/edge/deleteEdges', {taskId: 1}, {}).then((response) => {
+                this.$axios.post('/api/edge/deleteEdges', {taskId: self.taskId}, {}).then((response) => {
                     self.$axios.post('/api/edge/addEdges', this.DataAll.edges, {});
                 });
-                this.$axios.post('/api/node/deleteNodes', {taskId: 1}, {}).then((response) => {
+                this.$axios.post('/api/node/deleteNodes', {taskId: self.taskId}, {}).then((response) => {
                     self.$axios.post('/api/node/addNodes', this.DataAll.nodes, {});
                 });
             },
             loadNodesAndEdges() {
-                this.DataAll.nodes = [];
-                this.DataAll.edges = [];
-
-                this.$axios.post('/api/node/listNodes', {taskId: 1}).then((res) => {
+                let nodes = [];
+                this.DataAll.edges=[];
+                let self=this;
+                this.$axios.post('/api/node/listNodes', {taskId: self.taskId}).then((res) => {
                     res.data.some(item => {
-                        this.DataAll.nodes.push({
+                        nodes.push({
                             name: item.name,
                             id: item.id,
                             imgContent: item.imgContent,
@@ -72,19 +73,25 @@
                             type: 'constant',
                             in_ports: [0],
                             out_ports: [0],
-                            degree:item.degree
+                            degree:item.degree,
+                            taskId:self.taskId
                         })
                     });
 
+                }).then(()=>{
+                    if(nodes.length>0)
+                        self.DataAll.nodes=nodes;
+                    self.DataAll.nodes[0].taskId=self.taskId;
                 });
-                this.$axios.post('/api/edge/listEdges', {taskId: 1}).then((res) => {
+                this.$axios.post('/api/edge/listEdges', {taskId: self.taskId}).then((res) => {
                     res.data.some(item => {
                         this.DataAll.edges.push({
                             dst_node_id: item.dst_node_id,
                             src_node_id: item.src_node_id,
                             dst_input_idx: 0,
                             src_output_idx: 0,
-                            id:item.id
+                            id:item.id,
+                            taskId:self.taskId
                         })
                     });
 
@@ -162,6 +169,10 @@
                 this.selStep(i);
             }
             sessionStorage['svgScale'] = 1
+            this.taskId=localStorage.getItem('task-id');
+            if(this.taskId>0){
+                this.loadNodesAndEdges();
+            }
         },
         components: {
             ...Step,

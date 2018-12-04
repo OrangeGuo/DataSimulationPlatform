@@ -40,7 +40,7 @@ router.post('/addNodes', (req, res) => {
     console.log(nodes);
     for (let i = 0; i < nodes.length; i++) {
         let params = nodes[i];
-        conn.query(sql, [1, params.id, params.name, params.imgContent, params.pos_x, params.pos_y,params.degree], function (err, result) {
+        conn.query(sql, [params.taskId, params.id, params.name, params.imgContent, params.pos_x, params.pos_y,params.degree], function (err, result) {
             if (err) {
                 console.log(err);
             }
@@ -55,7 +55,7 @@ router.post('/addNodes', (req, res) => {
 router.post('/listNodes', (req, res) => {
     let sql = $sql.nodes.list;
     let params = req.body;
-    console.log("list nodes");
+    console.log(params);
     conn.query(sql, [params.taskId], function (err, result) {
         if (err) {
             console.log(err);
