@@ -10,8 +10,8 @@ const dagStore = {
                 type: 'constant',
                 in_ports: [0],
                 out_ports: [0],
-                in:0,
-                out:0
+                in: 0,
+                out: 0
             }],
             edges: [],
             model_id: 21
@@ -31,6 +31,9 @@ const dagStore = {
         },
         delEdge: ({commit}, {id}) => { // 删除边
             commit('DEL_EDGE_DATA', id)
+        },
+        editNode: ({commit}, {id}) => { // 删除边
+            commit('EDIT_NODE_NAME', id)
         },
         moveNode: ({commit}, params) => { // 移动点的位置
             commit('MOVE_NODE_DATA', params)
@@ -69,6 +72,15 @@ const dagStore = {
         },
         UPDATE_DATA: (state, data) => {
             state.DataAll = data;
+        },
+        EDIT_NODE_NAME: (state, id) => {
+            for (let i = 0; i < state.DataAll.nodes.length; i++) {
+                if(state.DataAll.nodes[i].id===id){
+                    let name=prompt("修改名称",state.DataAll.nodes[i].name);
+                    state.DataAll.nodes[i].name=name;
+                    break;
+                }
+            }
         },
         MOVE_NODE_DATA: (state, params) => {
             let _DataAll = state.DataAll;
@@ -123,11 +135,11 @@ const dagStore = {
                 alert('禁止成环');
                 return;
             }
-            let newEdge=_DataAll.edges[_DataAll.edges.length-1];
+            let newEdge = _DataAll.edges[_DataAll.edges.length - 1];
             for (let i = 0; i < _DataAll.nodes.length; i++) {
-                if(_DataAll.nodes[i].id===newEdge.src_node_id)
+                if (_DataAll.nodes[i].id === newEdge.src_node_id)
                     _DataAll.nodes[i].out++;
-                else if(_DataAll.nodes[i].id===newEdge.dst_node_id)
+                else if (_DataAll.nodes[i].id === newEdge.dst_node_id)
                     _DataAll.nodes[i].in++;
             }
         },
@@ -158,7 +170,7 @@ const dagStore = {
         },
         ADD_NODE_DATA: (state, params) => {
             let _nodes = state.DataAll.nodes;
-            let currentId = _nodes[0].id+1;
+            let currentId = _nodes[0].id + 1;
             for (let i = 1; i < _nodes.length; i++) {
                 if (currentId <= _nodes[i].id)
                     currentId = _nodes[i].id + 1;
@@ -168,8 +180,8 @@ const dagStore = {
                 id: currentId,
                 in_ports: [0],
                 out_ports: [0],
-                in:0,
-                out:0
+                in: 0,
+                out: 0
             })
         },
         SEL_AREA_END: (state, area) => {
