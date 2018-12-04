@@ -94,6 +94,13 @@ const dagStore = {
         ADD_EDGE_DATA: (state, desp) => {
             let _DataAll = state.DataAll;
             /*
+                root节点不能作为dst
+            */
+            if(desp.dst_node_id===1){
+                alert("根节点不能作为目的节点");
+                return;
+            }
+            /*
                 检测源节点是否已被占用
             */
             let isUnique = true;
@@ -135,6 +142,7 @@ const dagStore = {
                 alert('禁止成环');
                 return;
             }
+            //调整出度入读
             let newEdge = _DataAll.edges[_DataAll.edges.length - 1];
             for (let i = 0; i < _DataAll.nodes.length; i++) {
                 if (_DataAll.nodes[i].id === newEdge.src_node_id)
