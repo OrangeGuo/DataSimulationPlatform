@@ -10,7 +10,7 @@ const dagStore = {
                 type: 'constant',
                 in_ports: [0],
                 out_ports: [0],
-                degree:0
+                degree: 0
             }],
             edges: [],
             model_id: 21
@@ -74,9 +74,9 @@ const dagStore = {
         },
         EDIT_NODE_NAME: (state, id) => {
             for (let i = 0; i < state.DataAll.nodes.length; i++) {
-                if(state.DataAll.nodes[i].id===id){
-                    let name=prompt("修改名称",state.DataAll.nodes[i].name);
-                    state.DataAll.nodes[i].name=name;
+                if (state.DataAll.nodes[i].id === id) {
+                    let name = prompt("修改名称", state.DataAll.nodes[i].name);
+                    state.DataAll.nodes[i].name = name;
                     break;
                 }
             }
@@ -95,7 +95,7 @@ const dagStore = {
             /*
                 root节点不能作为dst
             */
-            if(desp.dst_node_id===1){
+            if (desp.dst_node_id === 1) {
                 alert("根节点不能作为目的节点");
                 return;
             }
@@ -112,10 +112,10 @@ const dagStore = {
                 alert('重复连接');
                 return;
             }
-            let edgeId=1;
+            let edgeId = 1;
             for (let i = 0; i < state.DataAll.edges.length; i++) {
-                if(state.DataAll.edges[i].id>=edgeId)
-                    edgeId=state.DataAll.edges[i].id+1;
+                if (state.DataAll.edges[i].id >= edgeId)
+                    edgeId = state.DataAll.edges[i].id + 1;
             }
             _DataAll.edges.push({
                 ...desp,
@@ -150,7 +150,7 @@ const dagStore = {
             let newEdge = _DataAll.edges[_DataAll.edges.length - 1];
             for (let i = 0; i < _DataAll.nodes.length; i++) {
                 if (_DataAll.nodes[i].id === newEdge.src_node_id)
-                    _DataAll.nodes[i].degree-=1;
+                    _DataAll.nodes[i].degree--;
                 else if (_DataAll.nodes[i].id === newEdge.dst_node_id)
                     _DataAll.nodes[i].degree++;
             }
@@ -160,6 +160,13 @@ const dagStore = {
             state.DataAll.edges.forEach((item, i) => {
                 if (item.id !== id) {
                     _edges.push(item)
+                } else {
+                    for (let i = 0; i < state.DataAll.nodes.length; i++) {
+                        if (state.DataAll.nodes[i].id === item.src_node_id)
+                            state.DataAll.nodes[i].degree++;
+                        else if (state.DataAll.nodes[i].id === item.dst_node_id)
+                            state.DataAll.nodes[i].degree--;
+                    }
                 }
             });
             state.DataAll.edges = _edges
@@ -170,6 +177,20 @@ const dagStore = {
             state.DataAll.edges.forEach(item => {
                 if (item.dst_node_id !== id && item.src_node_id !== id) {
                     _edges.push(item)
+                } else if (item.dst_node_id === id) {
+                    for (let i = 0; i < state.DataAll.nodes.length; i++) {
+                        if (state.DataAll.nodes[i].id === item.src_node_id) {
+                            state.DataAll.nodes[i].degree++;
+                            break;
+                        }
+                    }
+                } else {
+                    for (let i = 0; i < state.DataAll.nodes.length; i++) {
+                         if (state.DataAll.nodes[i].id === item.dst_node_id) {
+                             state.DataAll.nodes[i].degree--;
+                             break;
+                         }
+                    }
                 }
             });
             state.DataAll.nodes.forEach(item => {
@@ -192,7 +213,7 @@ const dagStore = {
                 id: currentId,
                 in_ports: [0],
                 out_ports: [0],
-                degree:0
+                degree: 0
             })
 
         },

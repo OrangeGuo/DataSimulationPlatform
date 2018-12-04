@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8797ff6f-2f30-4979-98f8-5aed594d5083" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/edgeApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/edgeApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/nodeApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/nodeApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/sqlMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/sqlMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/modules/dagStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/dagStore.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -80,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/store/modules/dagStore.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="189" column="26" selection-start-line="189" selection-start-column="26" selection-end-line="189" selection-end-column="26" />
+            <state relative-caret-position="40">
+              <caret line="190" column="35" selection-start-line="190" selection-start-column="35" selection-end-line="190" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -94,24 +90,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="620">
               <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/edges">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -137,7 +115,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/api/nodeApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-172">
+            <state relative-caret-position="-158">
               <caret line="39" column="23" lean-forward="true" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
             </state>
           </provider>
@@ -437,7 +415,7 @@
       <workItem from="1543808617278" duration="2988000" />
       <workItem from="1543812953282" duration="18013000" />
       <workItem from="1543892489834" duration="2471000" />
-      <workItem from="1543896589138" duration="2288000" />
+      <workItem from="1543896589138" duration="3080000" />
     </task>
     <task id="LOCAL-00001" summary="切换到腾讯云数据库">
       <created>1542879818546</created>
@@ -551,11 +529,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543897082913</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="给edge增加id标识，节点出度入度合一">
+      <created>1543899137786</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1543899137786</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61695000" />
+    <option name="totallyTimeSpent" value="62487000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -652,7 +637,8 @@
     <MESSAGE value="DAG节点名称编辑功能（UI可能调整）" />
     <MESSAGE value="移除任务管理中树形控件" />
     <MESSAGE value="修复 root可以作为dst的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复 root可以作为dst的bug" />
+    <MESSAGE value="给edge增加id标识，节点出度入度合一" />
+    <option name="LAST_COMMIT_MESSAGE" value="给edge增加id标识，节点出度入度合一" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/components/DAG/Step5/index.vue" />
@@ -878,13 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/api/nodeApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-172">
-          <caret line="39" column="23" lean-forward="true" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/DAG/Step8/editArea.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-660">
@@ -939,13 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/modules/dagStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="189" column="26" selection-start-line="189" selection-start-column="26" selection-end-line="189" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -957,6 +929,20 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/api/nodeApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-158">
+          <caret line="39" column="23" lean-forward="true" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/modules/dagStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="190" column="35" selection-start-line="190" selection-start-column="35" selection-end-line="190" selection-end-column="35" />
         </state>
       </provider>
     </entry>
