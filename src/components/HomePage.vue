@@ -50,17 +50,18 @@
             },
             save() {
                 let self = this;
-                this.$axios.post('/api/edge/addEdges', this.DataAll.edges, {}).then((response) => {
+                this.$axios.post('/api/edge/deleteEdges', {taskId: 1}, {}).then((response) => {
+                    self.$axios.post('/api/edge/addEdges', this.DataAll.edges, {});
                 });
-                this.$axios.post('/api/node/addNodes', this.DataAll.nodes, {}).then((response) => {
-                    self.$message.success("保存成功");
-                })
+                this.$axios.post('/api/node/deleteNodes', {taskId: 1}, {}).then((response) => {
+                    self.$axios.post('/api/node/addNodes', this.DataAll.nodes, {});
+                });
             },
             loadNodesAndEdges() {
                 this.DataAll.nodes = [];
                 this.DataAll.edges = [];
 
-                this.$axios.post('/api/node/listNodes',{taskId:1}).then((res) => {
+                this.$axios.post('/api/node/listNodes', {taskId: 1}).then((res) => {
                     res.data.some(item => {
                         this.DataAll.nodes.push({
                             name: item.name,
@@ -77,13 +78,13 @@
                     });
 
                 });
-                this.$axios.post('/api/edge/listEdges',{taskId:1}).then((res) => {
+                this.$axios.post('/api/edge/listEdges', {taskId: 1}).then((res) => {
                     res.data.some(item => {
                         this.DataAll.edges.push({
-                            dst_node_id:item.dst_node_id,
-                            src_node_id:item.src_node_id,
-                            dst_input_idx:0,
-                            src_output_idx:0
+                            dst_node_id: item.dst_node_id,
+                            src_node_id: item.src_node_id,
+                            dst_input_idx: 0,
+                            src_output_idx: 0
                         })
                     });
 
