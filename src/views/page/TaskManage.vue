@@ -165,7 +165,7 @@
                     temp = self.tableData[self.tableData.length - 1].id + 1;
                 if (flag) {
                     this.dialogAddForm = false;
-                    this.$http.post('/api/task/addTask', {
+                    this.$axios.post('/api/task/addTask', {
                         taskName: taskName,
                         detail: detail,
                         id: temp
@@ -206,11 +206,13 @@
             },
             deleteItem(index) {
                 const self = this;
-                self.$http.post('/api/task/deleteTask', {
+                self.$axios.post('/api/task/deleteTask', {
                     taskName: self.tableData[index].taskName
                 }, {}).then((response) => {
+                    let taskId=self.tableData[index].id;
                     self.tableData.splice(index, 1);
-                    ;
+                    self.$axios.post('/api/node/deleteNodes',{taskId:taskId},{});
+                    self.$axios.post('/api/edge/deleteEdges',{taskId:taskId},{});
                 })
 
             },
@@ -233,7 +235,7 @@
                 this.dialogUpdateForm = false;
                 const self = this;
 
-                self.$http.post('/api/task/updateTask', {
+                self.$axios.post('/api/task/updateTask', {
                     taskName: self.tableData[id].taskName,
                     detail: self.tableData[id].detail,
                     id: parseInt(self.tableData[id].id)
