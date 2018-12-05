@@ -6,9 +6,12 @@
             <div class="nav">
                 <div class="nodes_bus">
                     <p>{{taskName}}</p>
-                    <span @mousedown="dragIt('新建节点')">新建节点</span>
-                    <span @mousedown="save">保存修改</span>
-                    <span @mousedown="loadNodesAndEdges">刷  新</span>
+                    <el-button style="Float: left;height:40px;width: 120px" type="primary" @click="dragIt('新建节点')" icon="el-icon-plus">新建节点
+                    </el-button>
+                    <el-button style="Float: left;height:40px;width: 120px" type="primary" @click="loadNodesAndEdges" icon="el-icon-refresh">刷新模型
+                    </el-button>
+                    <el-button style="Float: left;height:40px;width: 120px" type="primary" @click="save" icon="el-icon-upload">保存修改
+                    </el-button>
                 </div>
             </div>
             <div class="DAG-content">
@@ -31,8 +34,8 @@
         }),
         data() {
             return {
-                taskId:0,
-                taskName:"新建任务",
+                taskId: 0,
+                taskName: "新建任务",
                 tap: tap,
                 dragBus: false,
                 busValue: {
@@ -62,8 +65,8 @@
             },
             loadNodesAndEdges() {
                 let nodes = [];
-                this.DataAll.edges=[];
-                let self=this;
+                this.DataAll.edges = [];
+                let self = this;
                 this.$axios.post('/api/node/listNodes', {taskId: self.taskId}).then((res) => {
                     res.data.some(item => {
                         nodes.push({
@@ -75,15 +78,15 @@
                             type: 'constant',
                             in_ports: [0],
                             out_ports: [0],
-                            degree:item.degree,
-                            taskId:self.taskId
+                            degree: item.degree,
+                            taskId: self.taskId
                         })
                     });
 
-                }).then(()=>{
-                    if(nodes.length>0)
-                        self.DataAll.nodes=nodes;
-                    self.DataAll.nodes[0].taskId=self.taskId;
+                }).then(() => {
+                    if (nodes.length > 0)
+                        self.DataAll.nodes = nodes;
+                    self.DataAll.nodes[0].taskId = self.taskId;
                 });
                 this.$axios.post('/api/edge/listEdges', {taskId: self.taskId}).then((res) => {
                     res.data.some(item => {
@@ -92,8 +95,8 @@
                             src_node_id: item.src_node_id,
                             dst_input_idx: 0,
                             src_output_idx: 0,
-                            id:item.id,
-                            taskId:self.taskId
+                            id: item.id,
+                            taskId: self.taskId
                         })
                     });
 
@@ -171,9 +174,9 @@
                 this.selStep(i);
             }
             sessionStorage['svgScale'] = 1
-            this.taskId=localStorage.getItem('task-id');
-            if(this.taskId>0){
-                this.taskName=localStorage.getItem('task-name');
+            this.taskId = localStorage.getItem('task-id');
+            if (this.taskId > 0) {
+                this.taskName = localStorage.getItem('task-name');
                 this.loadNodesAndEdges();
             }
         },
@@ -205,8 +208,8 @@
     }
 
     .mainContent .nav {
-        width: 300px;
-        background: #212528;
+        width: 150px;
+        background: #242f42;
         position: absolute;
         left: 0;
         bottom: 0;
@@ -223,7 +226,7 @@
 
     .DAG-content {
         position: absolute;
-        left: 300px;
+        left: 150px;
         top: 0;
         bottom: 0;
         right: 0;

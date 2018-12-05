@@ -5,7 +5,6 @@
             <div class="menu_contain">
                 <span @click="delEdges">删除节点</span>
                 <span @click="edit_Node">编辑</span>
-                <span>干点别的啥</span>
             </div>
             </body>
         </foreignObject>
