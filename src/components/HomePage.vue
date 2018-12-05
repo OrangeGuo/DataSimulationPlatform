@@ -5,6 +5,7 @@
         <div class="mainContent">
             <div class="nav">
                 <div class="nodes_bus">
+                    <p>{{taskName}}</p>
                     <span @mousedown="dragIt('新建节点')">新建节点</span>
                     <span @mousedown="save">保存修改</span>
                     <span @mousedown="loadNodesAndEdges">刷  新</span>
@@ -31,6 +32,7 @@
         data() {
             return {
                 taskId:0,
+                taskName:"新建任务",
                 tap: tap,
                 dragBus: false,
                 busValue: {
@@ -171,6 +173,7 @@
             sessionStorage['svgScale'] = 1
             this.taskId=localStorage.getItem('task-id');
             if(this.taskId>0){
+                this.taskName=localStorage.getItem('task-name');
                 this.loadNodesAndEdges();
             }
         },
