@@ -23,6 +23,7 @@ let jsonWrite = function (res, ret) {
 router.post('/deleteNodes', (req, res) => {
     let sql = $sql.nodes.delete;
     let params = req.body;
+    console.log("delete node");
     console.log(params);
     conn.query(sql, [params.taskId], function (err, result) {
         if (err) {
@@ -37,10 +38,11 @@ router.post('/deleteNodes', (req, res) => {
 router.post('/addNodes', (req, res) => {
     let sql = $sql.nodes.add;
     let nodes = req.body;
+    console.log("add node");
     console.log(nodes);
     for (let i = 0; i < nodes.length; i++) {
         let params = nodes[i];
-        conn.query(sql, [params.taskId, params.id, params.name, params.parent, params.pos_x, params.pos_y,params.degree], function (err, result) {
+        conn.query(sql, [params.taskId, params.id, params.name, params.parent, params.pos_x, params.pos_y, params.degree], function (err, result) {
             if (err) {
                 console.log(err);
             }
@@ -55,6 +57,7 @@ router.post('/addNodes', (req, res) => {
 router.post('/listNodes', (req, res) => {
     let sql = $sql.nodes.list;
     let params = req.body;
+    console.log("list node");
     console.log(params);
     conn.query(sql, [params.taskId], function (err, result) {
         if (err) {

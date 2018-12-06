@@ -23,7 +23,7 @@ let jsonWrite = function (res, ret) {
 router.post('/updateTask', (req, res) => {
     let sql = $sql.task.update;
     let params = req.body;
-    console.log(params);
+    console.log("update task");
     conn.query(sql, [params.taskName, params.detail, params.id], function (err, result) {
         if (err) {
             console.log(err);
@@ -37,7 +37,7 @@ router.post('/updateTask', (req, res) => {
 router.post('/deleteTask', (req, res) => {
     let sql = $sql.task.delete;
     let params = req.body;
-    console.log(params);
+    console.log("delete task");
     conn.query(sql, [params.taskName], function (err, result) {
         if (err) {
             console.log(err);
@@ -51,7 +51,7 @@ router.post('/deleteTask', (req, res) => {
 router.post('/addTask', (req, res) => {
     let sql = $sql.task.add;
     let params = req.body;
-    console.log(params);
+    console.log("add task");
     conn.query(sql, [params.taskName, new Date(), params.detail,params.id], function (err, result) {
         if (err) {
             console.log(err);
