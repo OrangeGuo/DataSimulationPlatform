@@ -6,11 +6,14 @@
             <div class="nav">
                 <div class="nodes_bus">
                     <p>{{taskName}}</p>
-                    <el-button style="Float: left;height:40px;width: 120px" type="primary" @click="dragIt('新建节点')" icon="el-icon-plus">新建节点
+                    <el-button style="Float: left;height:40px;width: 120px" type="primary" @click="dragIt('新建节点')"
+                               icon="el-icon-plus">新建节点
                     </el-button>
-                    <el-button style="Float: left;height:40px;width: 120px" type="primary" @click="loadNodesAndEdges" icon="el-icon-refresh">刷新模型
+                    <el-button style="Float: left;height:40px;width: 120px" type="primary" @click="loadNodesAndEdges"
+                               icon="el-icon-refresh">刷新模型
                     </el-button>
-                    <el-button style="Float: left;height:40px;width: 120px" type="primary" @click="save" icon="el-icon-upload">保存修改
+                    <el-button style="Float: left;height:40px;width: 120px" type="primary" @click="save"
+                               icon="el-icon-upload">保存修改
                     </el-button>
                 </div>
             </div>
@@ -55,6 +58,10 @@
                 this.tap = JSON.parse(JSON.stringify(this.tap));
             },
             save() {
+                if (this.DataAll.nodes.length !== this.DataAll.edges.length + 1) {
+                    this.$message.warning("模型构建不完整!");
+                    return;
+                }
                 let self = this;
                 this.$axios.post('/api/edge/deleteEdges', {taskId: self.taskId}, {}).then((response) => {
                     self.$axios.post('/api/edge/addEdges', this.DataAll.edges, {});
