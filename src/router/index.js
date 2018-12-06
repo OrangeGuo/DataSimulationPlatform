@@ -7,13 +7,13 @@ import Register from '../views/page/Register';
 import TaskManage from '../views/page/TaskManage';
 import IndexConfig from '../views/page/IndexConfig';
 import SensAnalyse from '../views/page/SensAnalyse';
-import  ModuleConfig from '../components/ModuleConfig';
+import  ModuleConfig from '../views/page/ModuleConfig';
 import Page from '../components/page/Page';	//主页面模板
 import Readme from '../views/page/Readme';	//了解系统
 import ResetPwd from '../views/page/ResetPwd';//重置密码
 import PersonalCenter from '../views/page/PersonalCenter';	//个人中心
 
-Vue.use(Router);
+Vue.use(Router);//挂载属性
 
 export default new Router({
     routes: [

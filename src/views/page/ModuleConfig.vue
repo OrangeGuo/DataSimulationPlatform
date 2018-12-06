@@ -26,9 +26,9 @@
 </template>
 
 <script>
-    import {tap} from "./DataMainPage.js";
-    import Step from "./DAG";
-    import NodesBus from "./nodesBus";
+    import {tap} from "../DAG/DataMainPage.js";
+    import Step from "../DAG";
+    import NodesBus from "../DAG/nodesBus";
     import {mapState, mapActions} from "vuex";
 
     export default {
