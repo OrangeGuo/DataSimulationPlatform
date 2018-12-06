@@ -143,7 +143,7 @@
             openModule(row){
                 localStorage.setItem('task-id', row.id);
                 localStorage.setItem('task-name',row.taskName);
-                this.$router.push('./HomePage')
+                this.$router.push('./ModuleConfig')
             },
             newTask() {
                 const self = this;
