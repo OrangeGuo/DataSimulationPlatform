@@ -29,7 +29,7 @@
                 <el-menu-item index="/page/SensAnalyse">
                     灵敏度分析
                 </el-menu-item>
-                <el-menu-item index="/page/HomePage">
+                <el-menu-item index="/page/ModuleConfig">
                     模型配置
                 </el-menu-item>
 
