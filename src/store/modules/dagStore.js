@@ -77,7 +77,7 @@ const dagStore = {
             for (let i = 0; i < state.DataAll.nodes.length; i++) {
                 if (state.DataAll.nodes[i].id === id) {
                     let name = prompt("修改名称", state.DataAll.nodes[i].name);
-                    state.DataAll.nodes[i].name = name;
+                    if (name !== null && name !== "") state.DataAll.nodes[i].name = name;
                     break;
                 }
             }

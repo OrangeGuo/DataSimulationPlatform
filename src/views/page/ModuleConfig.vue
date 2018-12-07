@@ -62,6 +62,17 @@
                     this.$message.warning("模型构建不完整!");
                     return;
                 }
+                for (let i = 0; i < this.DataAll.nodes.length; i++) {
+                    this.DataAll.nodes[i].parent = 0;
+                }
+                for (let i = 0; i < this.DataAll.edges.length; i++) {
+                    for (let j = 0; j < this.DataAll.nodes.length; j++) {
+                        if (this.DataAll.nodes[j].id === this.DataAll.edges[i].dst_node_id) {
+                            this.DataAll.nodes[j].parent = this.DataAll.edges[i].src_node_id;
+                            break;
+                        }
+                    }
+                }
                 let self = this;
                 this.$axios.post('/api/edge/deleteEdges', {taskId: self.taskId}, {}).then((response) => {
                     self.$axios.post('/api/edge/addEdges', this.DataAll.edges, {});
