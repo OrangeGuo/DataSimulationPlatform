@@ -27,8 +27,6 @@
                 label="结点编号"
                 width="200">
                 <template slot-scope="scope">
-
-
                         <div slot="reference" class="name-wrapper">
                             <el-tag size="medium">{{ scope.row.node_id }}</el-tag>
                         </div>
@@ -67,6 +65,9 @@
                 <el-form-item label="结束" :label-width="formLabelWidth">
                     <el-input v-model="form.end"  ></el-input>
                 </el-form-item>
+                <el-form-item label="步长" :label-width="formLabelWidth">
+                    <el-input v-model="form.walkLong"  ></el-input>
+                </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogUpdateForm = false">取 消</el-button>
@@ -84,39 +85,19 @@
 			    dialogUpdateForm:false,
                 formLabelWidth: '120px',
                 form:{
-			        begin:0,
-                    end:0
+			        begin:'',
+                    end:'',
+                    walkLong:'',
                 },
 			    tasks:[],
                 allData:[],
+                temp:[],
                 tableData:[],
+                temp1:[],
 				source:[{
 				    canvasId:"line",
 		            name:"折线图",
-		            data:[
-			            {
-				            name:"坚果",
-				            value:"7890"
-			            },{
-				            name:"果铺",
-				            value:"5490"
-			            },{
-				            name:"特产",
-				            value:"5509"
-			            },{
-				            name:"早餐",
-				            value:"1231"
-                        },{
-				            name:"进口食品",
-				            value:"231"
-			            },{
-				            name:"年货",
-				            value:"9800"
-			            },{
-				            name:"其它",
-				            value:"2311"
-			            }
-                    ],
+		            data:[],
                     options:{
 			            title:"灵敏度分析",
 			            bgColor:"#009688",
@@ -142,7 +123,6 @@
                 });
             },
             handleCommand(command){
-                this.$message(command);
                 this.listModules(command);
             },
             listModules(taskid){
@@ -156,29 +136,72 @@
                             node_name: item.name,
                             node_value: item.value,
                             parent: item.parent,
+                            degree:item.degree,
                         })
                     });
                 }).then(()=>{
                     for(let i=0;i<self.allData.length;i++)
                     {
-                        let j=0;
-                        for(j=0;j<self.allData.length;j++)
-                        {
-                            if(self.allData[i].node_id===self.allData[j].parent)
-                            {
-                                break;
-                            }
-                        }
-                        if(j===self.allData.length)
-                            self.tableData.push(self.allData[i]);
+                       if(self.allData[i].degree>0)
+                           self.tableData.push(self.allData[i]);
                     }
                 })
             },
-            openDiag(){
+            openDiag(row){
                 this.dialogUpdateForm=true;
+                localStorage.setItem('nodeId', row.node_id);
             },
             showChart(){
                 this.dialogUpdateForm=false;
+                let id=localStorage.getItem("nodeId");
+                for(let m=parseInt(this.form.begin);m<=parseInt(this.form.end);m=m+parseInt(this.form.walkLong))
+                {
+                    let flag = -3;
+                    let sum=0;
+                    this.temp=[];
+                    for(let i=0;i<this.allData.length;i++)
+                    {
+                        let res={};
+                        for(var key in this.allData[i])
+                        {
+                            res[key]=this.allData[i][key];
+                        }
+                        this.temp.push(res);
+                    }
+                    while (flag<0) {
+                        this.temp1 = [];
+                        for (let i = 0; i < this.temp.length; i++) {
+                            if (this.temp[i].node_id === parseInt(id)) {
+                                this.temp[i].node_value = m;
+                            }
+                            if (this.temp[i].degree > 0) {
+                                this.temp1.push(this.temp[i]);
+                            }
+                        }
+                        for (let i = 0; i < this.temp1.length; i++) {
+                            for (let j = 0; j < this.temp.length; j++) {
+                                if (this.temp1[i].parent === this.temp[j].node_id) {
+                                    this.temp[j].node_value += this.temp1[i].node_value * 2;
+                                    this.temp[j].degree++;
+                                }
+                                if (this.temp1[i].node_id === this.temp[j].node_id) {
+                                    this.temp.splice(j, 1);
+                                }
+                            }
+                        }
+                        for (let i = 0; i < this.temp.length; i++) {
+                            if (this.temp[i].parent === 0) {
+                                flag = this.temp[i].degree;
+                                sum=this.temp[i].node_value;
+                            }
+                        }
+
+                    }
+                    this.source[0].data.push({
+                        name: m.toString(),
+                        value: sum.toString()
+                    })
+                }
             }
         },
         mounted(){

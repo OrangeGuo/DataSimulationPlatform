@@ -14,7 +14,7 @@ let sqlMap = {
     },
     nodes: {
         add: 'insert into nodes(taskId, id, name, parent, pos_x, pos_y, degree) VALUES (?,?,?,?,?,?,?)',
-        list: 'select taskId, id, name, parent, pos_x, pos_y, degree from nodes where taskId=?',
+        list: 'select taskId, id, name, parent, pos_x, pos_y, degree,value from nodes where taskId=?',
         delete: 'delete from nodes where taskId=?'
     },
     edges: {
