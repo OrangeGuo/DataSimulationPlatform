@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8797ff6f-2f30-4979-98f8-5aed594d5083" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/views/page/IndexBinding.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/sqlMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/sqlMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/page/SensAnalyse.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/page/SensAnalyse.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/Head.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/Head.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,100 +65,54 @@
     </expand>
     <select />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1756369382">
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="js" value="3" />
-          <entry key="nodes" value="1" />
-          <entry key="tasks" value="2" />
-          <entry key="user" value="2" />
-          <entry key="vue" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Database Element" value="5" />
-          <entry key="JavaScript" value="3" />
-          <entry key="Vue.js" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="cell_1" value="14" />
-          <entry key="js" value="13" />
-          <entry key="txt" value="7" />
-          <entry key="vue" value="2777" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JavaScript" value="13" />
-          <entry key="PLAIN_TEXT" value="7" />
-          <entry key="Scratch" value="14" />
-          <entry key="Vue.js" value="2777" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FavoritesManager">
     <favorites_list name="webstormProject" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/page/IndexConfig.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="133" lean-forward="true" selection-start-line="133" selection-end-line="133" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/page/Head.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-179">
-              <caret line="31" column="55" selection-start-line="31" selection-start-column="55" selection-end-line="31" selection-end-column="55" />
+            <state relative-caret-position="291">
+              <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/page/Readme.vue">
+        <entry file="file://$PROJECT_DIR$/src/views/page/IndexBinding.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-171" />
+            <state relative-caret-position="22">
+              <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+            </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
+        <entry file="file://$PROJECT_DIR$/src/router/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="80" selection-start-line="7" selection-start-column="79" selection-end-line="7" selection-end-column="80" />
+            <state relative-caret-position="814">
+              <caret line="49" column="18" lean-forward="true" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
               <folding>
-                <element signature="n#style#0;n#el-button#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#2;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#0#22#0" expanded="true" />
+                <element signature="e#118#164#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/page/SensAnalyse.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-122">
-              <caret line="119" column="35" selection-start-line="119" selection-start-column="35" selection-end-line="119" selection-end-column="35" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-input#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-button#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#1;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#2;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="22">
+              <caret line="1" column="8" lean-forward="true" selection-start-column="10" selection-end-line="1" selection-end-column="8" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/db.js">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -172,7 +127,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/api/nodeApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
+            <state relative-caret-position="1342">
               <caret line="61" column="34" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="34" />
             </state>
           </provider>
@@ -181,8 +136,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/page/ModuleConfig.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="103" column="31" lean-forward="true" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="31" />
+            <state relative-caret-position="2200">
+              <caret line="103" column="31" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="31" />
               <folding>
                 <element signature="e#1190#1233#0" expanded="true" />
               </folding>
@@ -198,8 +153,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="74" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="74" />
+            <state relative-caret-position="352">
+              <caret line="16" column="80" selection-start-line="16" selection-start-column="80" selection-end-line="16" selection-end-column="80" />
             </state>
           </provider>
         </entry>
@@ -209,8 +164,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Single File Component" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -289,18 +244,13 @@
         <option value="$PROJECT_DIR$/src/components/HomePage.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/src/views/page/TaskManage.vue" />
-        <option value="$PROJECT_DIR$/src/router/index.js" />
-        <option value="$PROJECT_DIR$/src/components/page/Head.vue" />
         <option value="$PROJECT_DIR$/server/sqlMap.js" />
         <option value="$PROJECT_DIR$/src/views/page/SensAnalyse.vue" />
+        <option value="$PROJECT_DIR$/src/views/page/IndexBinding.vue" />
+        <option value="$PROJECT_DIR$/src/router/index.js" />
+        <option value="$PROJECT_DIR$/src/components/page/Head.vue" />
       </list>
     </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="110" />
@@ -316,72 +266,71 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="DataSimulationPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataSimulationPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DataSimulationPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataSimulationPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DataSimulationPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataSimulationPlatform" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DataSimulationPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataSimulationPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DataSimulationPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataSimulationPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DataSimulationPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataSimulationPlatform" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DataSimulationPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataSimulationPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="router" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DataSimulationPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataSimulationPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DataSimulationPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataSimulationPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DataSimulationPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DataSimulationPlatform" type="462c0819:PsiDirectoryNode" />
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Course" />
     </panes>
   </component>
@@ -411,117 +360,6 @@
       <recent name="C:\Users\Administrator\Desktop\DataSimulationPlatform\src\views\page" />
       <recent name="C:\Users\Administrator\Desktop\DataSimulationPlatform\dist\static\js" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/store/modules/dagStore.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/views/page/ModuleConfig.vue</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -573,6 +411,8 @@
       <workItem from="1544066172230" duration="2000" />
       <workItem from="1544083534030" duration="255000" />
       <workItem from="1544091272019" duration="1411000" />
+      <workItem from="1544245246760" duration="618000" />
+      <workItem from="1544331848577" duration="6298000" />
     </task>
     <task id="LOCAL-00001" summary="切换到腾讯云数据库">
       <created>1542879818546</created>
@@ -749,11 +589,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544184170373</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="修复导航栏显示突出的bug">
+      <created>1544341680935</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1544341680935</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78725000" />
+    <option name="totallyTimeSpent" value="85641000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -766,9 +613,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49716714" visible="true" weight="0.19101876" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49716714" visible="true" weight="0.19638069" />
       <window_info id="Structure" order="1" sideWeight="0.5028329" side_tool="true" weight="0.2351387" />
       <window_info id="Favorites" order="2" sideWeight="0.5028329" side_tool="true" weight="0.2351387" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -782,7 +628,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3274596" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32892805" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.6010568" side_tool="true" weight="0.3101983" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.3989432" visible="true" weight="0.26872247" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.3989432" visible="true" weight="0.26770538" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32892805" />
       <window_info anchor="bottom" id="Messages" order="14" />
@@ -858,9 +704,22 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="切换到腾讯云数据库" />
     <MESSAGE value="修正坐标" />
     <MESSAGE value="修复 state undefined" />
     <MESSAGE value="修改主页面css以铺满" />
@@ -885,7 +744,8 @@
     <MESSAGE value="模型配置界面修改" />
     <MESSAGE value="保存模型增加合法判断" />
     <MESSAGE value="灵敏度分析" />
-    <option name="LAST_COMMIT_MESSAGE" value="灵敏度分析" />
+    <MESSAGE value="修复导航栏显示突出的bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复导航栏显示突出的bug" />
   </component>
   <component name="editorHistoryManager">
     <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/user">
@@ -902,187 +762,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/tasks">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/tasks">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/tasks">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/tasks">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/tasks">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/tasks">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/tasks">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/tasks">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/tasks">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/page/empty.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/Head.vue">
+    <entry file="file://$PROJECT_DIR$/src/views/page/IndexConfig.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-179">
-          <caret line="31" column="55" selection-start-line="31" selection-start-column="55" selection-end-line="31" selection-end-column="55" />
+        <state relative-caret-position="2926">
+          <caret line="133" selection-start-line="133" selection-end-line="133" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/index.js">
+    <entry file="file://$PROJECT_DIR$/src/views/page/Readme.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/ModuleConfig.vue">
+    <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="103" column="31" lean-forward="true" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="31" />
+        <state relative-caret-position="154">
+          <caret line="7" column="80" selection-start-line="7" selection-start-column="79" selection-end-line="7" selection-end-column="80" />
           <folding>
-            <element signature="e#1190#1233#0" expanded="true" />
+            <element signature="n#style#0;n#el-button#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#2;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1095,160 +795,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/api/nodeApi.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
+        <state relative-caret-position="1342">
           <caret line="61" column="34" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
+    <entry file="file://$PROJECT_DIR$/src/views/page/ModuleConfig.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="74" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/IndexConfig.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="133" lean-forward="true" selection-start-line="133" selection-end-line="133" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="80" selection-start-line="7" selection-start-column="79" selection-end-line="7" selection-end-column="80" />
+        <state relative-caret-position="2200">
+          <caret line="103" column="31" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="31" />
           <folding>
-            <element signature="n#style#0;n#el-button#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#2;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#1190#1233#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/page/SensAnalyse.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-122">
-          <caret line="119" column="35" selection-start-line="119" selection-start-column="35" selection-end-line="119" selection-end-column="35" />
+        <state relative-caret-position="22">
+          <caret line="1" column="8" lean-forward="true" selection-start-column="10" selection-end-line="1" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/db.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="80" selection-start-line="16" selection-start-column="80" selection-end-line="16" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/page/IndexBinding.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="814">
+          <caret line="49" column="18" lean-forward="true" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-input#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-button#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#1;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#2;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#118#164#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/Head.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
         </state>
       </provider>
     </entry>

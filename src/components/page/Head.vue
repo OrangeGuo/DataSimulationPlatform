@@ -32,7 +32,9 @@
                 <el-menu-item index="/page/ModuleConfig">
                     模型配置
                 </el-menu-item>
-
+                <el-menu-item index="/page/IndexBinding">
+                    数据绑定
+                </el-menu-item>
 			</el-menu>
 		</div>
 		
