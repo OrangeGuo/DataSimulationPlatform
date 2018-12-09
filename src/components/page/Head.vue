@@ -117,7 +117,7 @@
     .menu {
     	display: inline-block;
     	float: right;
-    	padding-top: 5px;
+    	padding-top: 0px;
     	margin-right: 30px;
     }
 
