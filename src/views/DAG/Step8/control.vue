@@ -6,7 +6,6 @@
                 <span @click="sizeExpend">╋</span>
                 <span @click="sizeShrink">一</span>
                 <span @click="sizeInit">╬</span>
-                <span :class="['sel_area', 'sel_area_ing'].indexOf(currentEvent) !== -1 ? 'sel_ing' : ''" @click="sel_area($event)">口</span>
             </div>
         </body>
         </foreignObject>

@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8797ff6f-2f30-4979-98f8-5aed594d5083" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/page/IndexBinding.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/Head.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/Head.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/DAG/Step8/control.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DAG/Step8/control.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,15 +67,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/page/Head.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/page/IndexBinding.vue">
           <provider selected="true" editor-type-id="text-editor">
@@ -88,11 +76,20 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/DAG/Step8/control.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/router/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="814">
-              <caret line="49" column="18" lean-forward="true" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+            <state relative-caret-position="924">
+              <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
                 <element signature="e#118#164#0" expanded="true" />
@@ -105,7 +102,7 @@
         <entry file="file://$PROJECT_DIR$/src/views/page/SensAnalyse.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="22">
-              <caret line="1" column="8" lean-forward="true" selection-start-column="10" selection-end-line="1" selection-end-column="8" />
+              <caret line="1" column="8" selection-start-column="10" selection-end-line="1" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -249,6 +246,7 @@
         <option value="$PROJECT_DIR$/src/views/page/IndexBinding.vue" />
         <option value="$PROJECT_DIR$/src/router/index.js" />
         <option value="$PROJECT_DIR$/src/components/page/Head.vue" />
+        <option value="$PROJECT_DIR$/src/views/DAG/Step8/control.vue" />
       </list>
     </option>
   </component>
@@ -294,6 +292,13 @@
               <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="router" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -314,6 +319,21 @@
               <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="DAG" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="DAG" type="462c0819:PsiDirectoryNode" />
+              <item name="Step8" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
@@ -412,7 +432,8 @@
       <workItem from="1544083534030" duration="255000" />
       <workItem from="1544091272019" duration="1411000" />
       <workItem from="1544245246760" duration="618000" />
-      <workItem from="1544331848577" duration="6298000" />
+      <workItem from="1544331848577" duration="6445000" />
+      <workItem from="1544592279236" duration="629000" />
     </task>
     <task id="LOCAL-00001" summary="切换到腾讯云数据库">
       <created>1542879818546</created>
@@ -596,11 +617,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544341680935</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="导航栏增加 数据绑定">
+      <created>1544342463656</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1544342463656</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85641000" />
+    <option name="totallyTimeSpent" value="86417000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -613,8 +641,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49716714" visible="true" weight="0.19638069" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49716714" visible="true" weight="0.19906166" />
       <window_info id="Structure" order="1" sideWeight="0.5028329" side_tool="true" weight="0.2351387" />
       <window_info id="Favorites" order="2" sideWeight="0.5028329" side_tool="true" weight="0.2351387" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -625,10 +654,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3274596" />
-      <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32892805" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32719547" />
+      <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.6010568" side_tool="true" weight="0.3101983" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.3989432" visible="true" weight="0.26770538" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.3989432" visible="true" weight="0.26770538" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32892805" />
       <window_info anchor="bottom" id="Messages" order="14" />
@@ -720,7 +749,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修正坐标" />
     <MESSAGE value="修复 state undefined" />
     <MESSAGE value="修改主页面css以铺满" />
     <MESSAGE value="完全修复移植带来的bug" />
@@ -745,7 +773,8 @@
     <MESSAGE value="保存模型增加合法判断" />
     <MESSAGE value="灵敏度分析" />
     <MESSAGE value="修复导航栏显示突出的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复导航栏显示突出的bug" />
+    <MESSAGE value="导航栏增加 数据绑定" />
+    <option name="LAST_COMMIT_MESSAGE" value="导航栏增加 数据绑定" />
   </component>
   <component name="editorHistoryManager">
     <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/user">
@@ -765,13 +794,6 @@
     <entry file="file://$PROJECT_DIR$/src/views/page/empty.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/IndexConfig.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2926">
-          <caret line="133" selection-start-line="133" selection-end-line="133" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/page/Readme.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -785,6 +807,34 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/Head.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="29" lean-forward="true" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#118#164#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/page/SensAnalyse.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="8" selection-start-column="10" selection-end-line="1" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/db.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -813,20 +863,17 @@
     <entry file="file://$PROJECT_DIR$/server/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/SensAnalyse.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="8" lean-forward="true" selection-start-column="10" selection-end-line="1" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/db.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/sqlMap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="16" column="80" selection-start-line="16" selection-start-column="80" selection-end-line="16" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/page/IndexConfig.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="157" column="30" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -837,21 +884,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/index.js">
+    <entry file="file://$PROJECT_DIR$/src/views/DAG/Step8/control.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="49" column="18" lean-forward="true" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <element signature="e#118#164#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/Head.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+        <state relative-caret-position="154">
+          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
         </state>
       </provider>
     </entry>
