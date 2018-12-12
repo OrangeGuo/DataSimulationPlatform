@@ -1,13 +1,17 @@
 <template>
     <div>
         <div style="height: 50px">
-
+             <el-dropdown @command="handleCommand">
+                <span class="el-dropdown-link">
+                    下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown" >
+                    <el-dropdown-item v-for="item in tasks" :command="item.value" >{{item.text}}</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
             <el-input style="Float: left;height:50px;width: 500px;" float="left" placeholder="请输入关键字"
                       clearable></el-input>
             <el-button style="Float: left;height:40px;" type="primary" @click="listModules" icon="el-icon-search">搜索
-            </el-button>
-            <el-button style="Float: left;height:40px;" type="primary" @click="dialogAddForm = true"
-                       icon="el-icon-plus">新建
             </el-button>
         </div>
          <el-table
@@ -21,12 +25,9 @@
                 label="结点编号"
                 width="200">
                 <template slot-scope="scope">
-
-
                         <div slot="reference" class="name-wrapper">
                             <el-tag size="medium">{{ scope.row.node_id }}</el-tag>
                         </div>
-
                 </template>
             </el-table-column>
             <el-table-column
@@ -54,39 +55,29 @@
                 </template>
             </el-table-column>
             <el-table-column
-
                 label="操作"
                 width="150">
                 <template slot-scope="scope">
-                    <el-button icon="el-icon-delete" @click="deleteItem(scope.$index)" type="danger"
-                               size="small"></el-button>
                     <el-button icon="el-icon-edit" type="primary" size="small"
                                @click="openEdit(scope.$index)"></el-button>
                 </template>
             </el-table-column>
         </el-table>
-        <el-dialog title="新建结点" :visible.sync="dialogAddForm" width="30%">
+        <el-dialog title="修改结点" :visible.sync="dialogAddForm" width="30%">
             <el-form :model="form">
-                <el-form-item label="结点编号" :label-width="formLabelWidth">
-                    <el-input v-model="form.node_id" autocomplete="off" placeholder="不超过10字符"></el-input>
-                </el-form-item>
                 <el-form-item label="结点名称" :label-width="formLabelWidth">
-                    <el-input v-model="form.node_name" type="textarea" placeholder="不超过50字符"></el-input>
+                    <el-input v-model="form.node_name"  ></el-input>
                 </el-form-item>
                 <el-form-item label="结点值" :label-width="formLabelWidth">
-                    <el-input v-model="form.node_value" type="textarea" placeholder="不超过50字符"></el-input>
-                </el-form-item>
-                <el-form-item label="父结点编号" :label-width="formLabelWidth">
-                    <el-input v-model="form.parent" type="textarea" placeholder="不超过50字符"></el-input>
+                    <el-input v-model="form.node_value" ></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogAddForm = false">取 消</el-button>
-                <el-button type="primary" @click="newModules">确 定</el-button>
+                <el-button type="primary" @click="updateModules">确 定</el-button>
             </div>
         </el-dialog>
     </div>
-
 </template>
 
 <script>
@@ -95,82 +86,78 @@
         data() {
             return {
                 form: {
-                    node_id: '',
                     node_name: '',
                     node_value: '',
-                    parent: '',
-                    delivery: false,
-                    type: [],
-                    resource: '',
-                    desc: ''
                 },
                 dialogAddForm: false,
                 formLabelWidth:"120px",
-
-                tableData: [
-                    {
-                        node_id: 1,
-                        node_name: 'asd',
-                        node_value: 10,
-                        parent: null,
-                    }
-                ]
+                tasks:[],
+                tempTask:"",
+                tempModuleId:"",
+                tableData: [],
+                allData:[],
             }
         },
         methods:{
-            listModules(){
+            listTaskid(){
                 const self = this;
-                self.$axios.post('/api/modules/listModules', {
-                    task_id: localStorage.getItem("task-id")
-                },{}).then((res) => {
-                    self.tableData = [];
+                self.$axios.post('/api/task/listTask').then((res) => {
+                    self.tasks = [];
                     res.data.some(item => {
-                        self.tableData.push({
-                            node_id: item.node_id,
-                            node_name: item.node_name,
-                            node_value: item.node_value,
-                            parent: item.parent,
-                        })
-
+                        self.tasks.push({
+                            text: item.taskName,
+                            value: item.id.toString(),
+                        });
                     });
-
                 });
             },
-            newModules(){
-                const self=this;
-                let node_id= parseInt(this.form.node_id);
-                let node_name = this.form.node_name;
-                let node_value=parseInt(this.form.node_value);
-                console.log(node_value);
-                let parent=parseInt(this.form.parent);
-                let i = 0;
-                let flag = true;
-                while (i < this.tableData.length) {
-                    if (node_id === this.tableData[i].node_id) {
-                        this.$message.warning("任务名重复，请重新确认");
-                        flag = false;
-                        break;
-                    }
-                    i++;
-                }
-                if (flag) {
-                    this.dialogAddForm = false;
-                    this.$http.post('/api/modules/addModules', {
-                        node_id: node_id,
-                        node_name: node_name,
-                        node_value:node_value,
-                        parent:parent,
-                        task_id:localStorage.getItem("task-id")
-                    }, {}).then((response) => {
-                        self.listModules();
-                    })
-                }
+            handleCommand(command){
+                this.tempTask=command;
+                this.listModules();
             },
-
+            listModules(){
+                const self = this;
+                self.$axios.post('/api/node/listNodes', {taskId: parseInt(self.tempTask)}).then((res) => {
+                    self.tableData=[];
+                    self.allData=[];
+                    res.data.some(item => {
+                        self.allData.push({
+                            node_id: item.id,
+                            node_name: item.name,
+                            node_value: item.value,
+                            parent: item.parent,
+                            degree:item.degree,
+                        })
+                    });
+                }).then(()=>{
+                    for(let i=0;i<self.allData.length;i++)
+                    {
+                       if(self.allData[i].degree>0)
+                           self.tableData.push(self.allData[i]);
+                    }
+                })
+            },
+            openEdit(index){
+                this.dialogAddForm=true;
+                this.form.node_name=this.tableData[index].node_name;
+                this.form.node_value=this.tableData[index].node_value;
+                this.tempModuleId=index;
+            },
+            updateModules(){
+                const self =this;
+                self.dialogAddForm=false;
+                self.tableData[this.tempModuleId].node_name=this.form.node_name;
+                self.tableData[this.tempModuleId].node_value=this.form.node_value;
+                self.$http.post('/api/node/updateNodes',{
+                    name:self.form.node_name,
+                    value:self.form.node_value,
+                    id:parseInt(self.tableData[self.tempModuleId].node_id),
+                    taskId:parseInt(self.tempTask)
+                },{})
+            },
         },
-         mounted() {
-            this.listModules();
-
+         mounted(){
+            this.listTaskid();
         },
     }
 </script>

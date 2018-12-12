@@ -19,6 +19,19 @@ let jsonWrite = function (res, ret) {
 
     }
 };
+router.post('/updateNodes', (req, res) => {
+    let sql = $sql.nodes.update;
+    let params = req.body;
+    console.log(params);
+    conn.query(sql, [params.name,params.value,params.taskId,params.id], function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        if (result) {
+            jsonWrite(res, result);
+        }
+    })
+});
 //删除任务接口
 router.post('/deleteNodes', (req, res) => {
     let sql = $sql.nodes.delete;
