@@ -12,10 +12,12 @@
     "dependencies": {
         "babel-polyfill": "^6.23.0",
         "body-parser": "^1.18.3",
+        "connect-multiparty": "^2.2.0",
         "element-ui": "2.0.1",
         "fs": "0.0.1-security",
         "http": "0.0.0",
         "jsplumb": "^2.8.3",
+        "multer": "^1.4.1",
         "mysql": "^2.16.0",
         "net": "^1.0.2",
         "nodemon": "^1.18.4",
@@ -99,7 +101,7 @@
         "webpack": "^3.12.0",
         "webpack-bundle-analyzer": "^2.2.1",
         "webpack-dev-middleware": "^1.10.0",
-        "webpack-dev-server": "^2.9.1",
+        "webpack-dev-server": "^3.1.10",
         "webpack-hot-middleware": "^2.18.0",
         "webpack-merge": "^4.1.0"
     },

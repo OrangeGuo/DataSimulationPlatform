@@ -3,10 +3,23 @@ let express = require('express');
 let router = express.Router();
 let mysql = require('mysql');
 let $sql = require('../sqlMap');
-
+let multipart = require('connect-multiparty');
+let multer = require('multer');
+let multipartMiddleware = multipart({dest:'.'});
 // 连接数据库
 let conn = mysql.createConnection(models.mysql);
-
+let storage = multer.diskStorage({
+   //文件存储路径
+   destination: (req , file , cb )=>{
+      cb(null , './server');
+   },
+   //修改上传文件的名字
+   //file 是个文件对象 ,fieldname对应在客户端的name属性
+   filename: (req , file , cb ) => {
+      cb( null, file.originalname);
+   }
+});
+let upload=multer({storage:storage});
 conn.connect();
 let jsonWrite = function (res, ret) {
     if (typeof ret === 'undefined') {
@@ -51,6 +64,14 @@ router.post('/listUser', (req, res) => {
             jsonWrite(res, result);
         }
     })
+});
+router.post('/uploadImg', upload.any(), (req, res) => {
+    console.log("upload");
+    console.log(req.files);
+    //console.log(req.headers);
+
+
+
 });
 router.post('/updatePass', (req, res) => {
     let sql = $sql.user.update;

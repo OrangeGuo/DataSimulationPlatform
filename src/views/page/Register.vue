@@ -2,6 +2,17 @@
     <div class="wraper">
         <div class="login-wrap">
             <div class="login-wrap-title">用户注册</div>
+            <el-upload
+                class="avatar-uploader"
+                action="/api/user/uploadImg"
+                :http-request="upLoad"
+                :headers="headers"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
             <div class="login-wrap-from">
                 <el-form :model="userInfo" :rules="rules" ref="form" label-width="0px" class="userinfo">
                     <el-form-item prop="username">
@@ -30,7 +41,9 @@
         data() {
 
             return {
-
+                imageUrl: 'static/img/head-icon.jpg',
+                form:new FormData(),
+                headers:{'Content-Type':'multipart/form-data; boundary=----WebKitFormBoundary3BCFnBuTMzNqB0hH\\r\\n'},
                 UsernameFlag: 1,
                 UserpwdFlag: 1,
                 userInfo: {
@@ -54,7 +67,30 @@
 
         },
         methods: {
+            upLoad(){
+                let self=this;
+                this.$axios.post('/api/user/uploadImg',self.form,{
+                headers:{'Content-Type':'multipart/form-data'}
+            });
+            },
+            handleAvatarSuccess(res, file) {
 
+                this.imageUrl = URL.createObjectURL(file.raw);
+            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg';
+                const isLt2M = file.size / 1024 / 1024 < 2;
+
+                if (!isJPG) {
+                    this.$message.error('上传头像图片只能是 JPG 格式!');
+                }
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 2MB!');
+                }
+                this.form=new FormData();
+                this.form.append('file',file,file.name);
+                return isJPG && isLt2M;
+            },
 
             UsernameIsRight() {
 
@@ -66,8 +102,7 @@
                     //单字节加1
                     if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)) {
                         len++;
-                    }
-                    else {
+                    } else {
                         len += 2;
                         flag = false;
                     }
@@ -88,8 +123,7 @@
                     let code = this.userInfo.userpwd.charCodeAt(i);
                     if (code < 48 || code > 57 && code < 65 || code > 90 && code < 97 || code > 122) {
                         flag = false;
-                    }
-                    else {
+                    } else {
                         len++;
                     }
                 }
@@ -144,6 +178,36 @@
 </script>
 
 <style scoped>
+    .avatar-uploader .el-upload {
+        border: 1px dashed #39d930;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+
+    }
+
+    .avatar-uploader .el-upload:hover {
+        border-color: #fd6cff;
+
+    }
+
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 178px;
+        height: 178px;
+        background-color: #289699;
+        line-height: 178px;
+        text-align: center;
+    }
+
+    .avatar {
+        width: 178px;
+        height: 178px;
+        display: block;
+    }
+
     .wraper {
         position: relative;
         width: 100%;
