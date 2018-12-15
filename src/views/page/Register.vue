@@ -42,8 +42,8 @@
 
             return {
                 imageUrl: 'static/img/head-icon.jpg',
-                form:new FormData(),
-                headers:{'Content-Type':'multipart/form-data; boundary=----WebKitFormBoundary3BCFnBuTMzNqB0hH\\r\\n'},
+                form: new FormData(),
+                headers: {'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary3BCFnBuTMzNqB0hH\\r\\n'},
                 UsernameFlag: 1,
                 UserpwdFlag: 1,
                 userInfo: {
@@ -67,15 +67,14 @@
 
         },
         methods: {
-            upLoad(){
-                let self=this;
-                this.$axios.post('/api/user/uploadImg',self.form,{
-                headers:{'Content-Type':'multipart/form-data'}
-            });
+            upLoad() {
+                let self = this;
+                this.$axios.post('/api/user/uploadImg', self.form, {
+                    headers: {'Content-Type': 'multipart/form-data'}
+                });
             },
             handleAvatarSuccess(res, file) {
-
-                this.imageUrl = URL.createObjectURL(file.raw);
+                this.imageUrl = 'static/img/' + file.name;
             },
             beforeAvatarUpload(file) {
                 const isJPG = file.type === 'image/jpeg';
@@ -87,8 +86,8 @@
                 if (!isLt2M) {
                     this.$message.error('上传头像图片大小不能超过 2MB!');
                 }
-                this.form=new FormData();
-                this.form.append('file',file,file.name);
+                this.form = new FormData();
+                this.form.append('file', file, file.name);
                 return isJPG && isLt2M;
             },
 
@@ -155,7 +154,8 @@
 
                     this.$http.post('/api/user/addUser', {
                         username: self.userInfo.username,
-                        password: self.userInfo.userpwd
+                        password: self.userInfo.userpwd,
+                        image: self.imageUrl
                     }, {}).then((response) => {
                         //console.log(response);
                     });
@@ -205,6 +205,9 @@
     .avatar {
         width: 178px;
         height: 178px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 89px;
         display: block;
     }
 

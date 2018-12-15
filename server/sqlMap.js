@@ -2,8 +2,8 @@
 let sqlMap = {
     // 用户
     user: {
-        add: 'insert into user( username, password) values ( ?, ?)',
-        list: 'select username,password from user',
+        add: 'insert into user( username, password,image) values ( ?, ?,?)',
+        list: 'select username,password,image from user',
         update: 'update user set password=? where username=?'
     },
     task: {
@@ -16,7 +16,7 @@ let sqlMap = {
         add: 'insert into nodes(taskId, id, name, parent, pos_x, pos_y, degree) VALUES (?,?,?,?,?,?,?)',
         list: 'select taskId, id, name, parent, pos_x, pos_y, degree,value from nodes where taskId=?',
         delete: 'delete from nodes where taskId=?',
-        update:'update nodes set name=?, value=? where  taskId=? and id=?',
+        update: 'update nodes set name=?, value=? where  taskId=? and id=?',
     },
     edges: {
         add: 'insert into edges(taskId,id, dst_node_id, src_node_id) values (?,?,?,?)',
