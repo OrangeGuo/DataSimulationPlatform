@@ -3,15 +3,14 @@ let express = require('express');
 let router = express.Router();
 let mysql = require('mysql');
 let $sql = require('../sqlMap');
-let multipart = require('connect-multiparty');
 let multer = require('multer');
-let multipartMiddleware = multipart({dest:'.'});
+
 // 连接数据库
 let conn = mysql.createConnection(models.mysql);
 let storage = multer.diskStorage({
    //文件存储路径
    destination: (req , file , cb )=>{
-      cb(null , './server');
+      cb(null , './static/img');
    },
    //修改上传文件的名字
    //file 是个文件对象 ,fieldname对应在客户端的name属性
