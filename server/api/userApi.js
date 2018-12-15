@@ -68,7 +68,7 @@ router.post('/uploadImg', upload.any(), (req, res) => {
     console.log("upload");
     console.log(req.files);
     //console.log(req.headers);
-
+    res.status(200);
 
 
 });

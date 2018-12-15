@@ -73,8 +73,10 @@
                     headers: {'Content-Type': 'multipart/form-data'}
                 });
             },
-            handleAvatarSuccess(res, file) {
-                this.imageUrl = 'static/img/' + file.name;
+            handleAvatarSuccess(file) {
+                console.log(file);
+                this.imageUrl = URL.createObjectURL(file.raw);
+                console.log(this.imageUrl);
             },
             beforeAvatarUpload(file) {
                 const isJPG = file.type === 'image/jpeg';
@@ -187,9 +189,9 @@
 
     }
 
-    .avatar-uploader .el-upload:hover {
+    .avatar-uploader :hover {
         border-color: #fd6cff;
-
+        position: center;
     }
 
     .avatar-uploader-icon {
@@ -197,6 +199,7 @@
         color: #8c939d;
         width: 178px;
         height: 178px;
+        position: center;
         background-color: #289699;
         line-height: 178px;
         text-align: center;
@@ -245,8 +248,4 @@
         margin-bottom: 20px;
     }
 
-    .login-til {
-        font-size: 12px;
-        color: #ff3333;
-    }
 </style>
