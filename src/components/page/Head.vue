@@ -47,7 +47,7 @@
 			return {
 				activeIndex:"/page/layout",
                 index:"",
-				thumbImg:require('static/img/head-icon.jpg')
+				thumbImg:require(localStorage.getItem('img'))
 			}
 		},
 		methods:{

@@ -4,6 +4,7 @@ let router = express.Router();
 let mysql = require('mysql');
 let $sql = require('../sqlMap');
 let multer = require('multer');
+let path = require('path');
 
 // 连接数据库
 let conn = mysql.createConnection(models.mysql);
@@ -31,7 +32,11 @@ let jsonWrite = function (res, ret) {
 
     }
 };
-
+router.post('/images', (req, res) => {
+    let img=req.body.filename;
+    console.log('image:'+img);
+    res.sendFile(path.resolve(path.resolve(__dirname,'..'),'..') + "/" +img);
+});
 // 增加用户接口
 router.post('/addUser', (req, res) => {
     let sql = $sql.user.add;
@@ -51,7 +56,6 @@ router.post('/listUser', (req, res) => {
     let sql = $sql.user.list;
     let params = req.body;
     console.log("list user");
-    console.log(params.username);
     conn.query(sql, function (err, result) {
         if (err) {
             console.log(err);
