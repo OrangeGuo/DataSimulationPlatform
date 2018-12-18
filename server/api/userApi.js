@@ -68,7 +68,7 @@ router.post('/uploadImg', upload.any(), (req, res) => {
     console.log("upload");
     console.log(req.files);
     //console.log(req.headers);
-    res.status(200);
+    res.status(200).send('');
 
 
 });
@@ -85,5 +85,5 @@ router.post('/updatePass', (req, res) => {
         }
 
     })
-})
+});
 module.exports = router;

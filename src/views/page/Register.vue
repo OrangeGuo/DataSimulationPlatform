@@ -4,11 +4,11 @@
             <div class="login-wrap-title">用户注册</div>
             <el-upload
                 class="avatar-uploader"
-                action="/api/user/uploadImg"
+                action=""
                 :http-request="upLoad"
                 :headers="headers"
                 :show-file-list="false"
-                :on-success="handleAvatarSuccess"
+                :on-change="handleAvatarSuccess"
                 :before-upload="beforeAvatarUpload">
                 <img v-if="imageUrl" :src="imageUrl" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -42,6 +42,7 @@
 
             return {
                 imageUrl: 'static/img/head-icon.jpg',
+                imagePath: '',
                 form: new FormData(),
                 headers: {'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary3BCFnBuTMzNqB0hH\\r\\n'},
                 UsernameFlag: 1,
@@ -74,9 +75,10 @@
                 });
             },
             handleAvatarSuccess(file) {
-                console.log(file);
+
                 this.imageUrl = URL.createObjectURL(file.raw);
-                console.log(this.imageUrl);
+                console.log(file.name);
+                this.imagePath = 'static/img/' + file.name;
             },
             beforeAvatarUpload(file) {
                 const isJPG = file.type === 'image/jpeg';
@@ -157,7 +159,7 @@
                     this.$http.post('/api/user/addUser', {
                         username: self.userInfo.username,
                         password: self.userInfo.userpwd,
-                        image: self.imageUrl
+                        image: self.imagePath
                     }, {}).then((response) => {
                         //console.log(response);
                     });
