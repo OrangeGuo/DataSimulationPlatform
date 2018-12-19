@@ -47,7 +47,7 @@
 			return {
 				activeIndex:"/page/layout",
                 index:"",
-				thumbImg:require(localStorage.getItem('img'))
+				thumbImg:localStorage.getItem('img'),
 			}
 		},
 		methods:{
@@ -72,8 +72,11 @@
 			handleClose (key, keyPath) {
 
 			}
-		}
-	}
+		},
+        mounted() {
+
+        }
+    }
 </script>
 
 <style>

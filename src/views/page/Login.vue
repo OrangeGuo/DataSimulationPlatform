@@ -73,14 +73,12 @@
                         self.$message.warning("账号或者密码有误");
                     }
                 });
-                self.$axios.post('/api/user/images',{filename:'static/img/head-icon.jpg'},{responseType: "arraybuffer"}).then((res)=>{
-                    let src='data:image/jpg;base64,'+ btoa(new Uint8Array(res).reduce((data, byte) => data + String.fromCharCode(byte), ''));
-                    let link=document.createElement('a');
-
-                    link.href=src;
-                    link.download='qrCode.jpg';
-                    link.click();
-                    localStorage.setItem('img',src);
+                let img='static/img/code.png';
+                self.$axios.post('/api/user/images',{filename:img},{responseType: "blob"}).then((res)=>{
+                    //let src='data:image/jpg;base64,'+ btoa(new Uint8Array(res.data).reduce((data, byte) => data + String.fromCharCode(byte), ''));
+                    //let url=URL.createObjectURL(new Blob([src], {type: "image/jpg"}));
+                    let url=URL.createObjectURL(res.data);
+                    localStorage.setItem('img',url);
                 });
             },
 
