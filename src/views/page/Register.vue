@@ -5,6 +5,7 @@
             <el-upload
                 class="avatar-uploader"
                 action=""
+                align="center"
                 :http-request="upLoad"
                 :headers="headers"
                 :show-file-list="false"
