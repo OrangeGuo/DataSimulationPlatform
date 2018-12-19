@@ -75,8 +75,10 @@
                             //let url=URL.createObjectURL(new Blob([src], {type: "image/jpg"}));
                             let url = URL.createObjectURL(res.data);
                             localStorage.setItem('img', url);
+                        }).then(()=>{
+                            self.$router.push('./page');
                         });
-                        self.$router.push('./page');
+
                     } else {
                         self.$message.warning("账号或者密码有误");
                     }
