@@ -74,7 +74,8 @@
 			}
 		},
         mounted() {
-
+            this.thumbImg=localStorage.getItem('img');
+            URL.revokeObjectURL(localStorage.getItem('img'));
         }
     }
 </script>

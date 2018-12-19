@@ -42,7 +42,7 @@
 
             return {
                 imageUrl: 'static/img/head-icon.jpg',
-                imagePath: '',
+                imagePath: 'static/img/head-icon.jpg',
                 form: new FormData(),
                 headers: {'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary3BCFnBuTMzNqB0hH\\r\\n'},
                 UsernameFlag: 1,
