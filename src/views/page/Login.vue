@@ -2,14 +2,21 @@
     <div class="wraper">
         <div class="login-wrap">
             <div class="login-wrap-title">大数据仿真平台</div>
+            <div
+                class="avatar-uploader"
+                align="center">
+                <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                <i v-else class="avatar"></i>
+            </div>
             <div class="login-wrap-from" align="center">
                 <el-form :model="userInfo" :rules="rules" ref="form" label-width="0px" class="userinfo">
                     <el-form-item prop="username">
-                        <el-input v-model="userInfo.username" name="username" placeholder="请输入用户名"/>
+                        <el-input v-model="userInfo.username" name="username" placeholder="请输入用户名"
+                                  @change="checkUserName"/>
                     </el-form-item>
                     <el-form-item prop="userpwd">
                         <el-input v-model="userInfo.userpwd" name="age" type="password" placeholder="请输入密码"
-                                  @keyup.enter.native="submit('form')"/>
+                                  @keyup.enter.native="login"/>
                         <!-- .native的意思就是当你给一个vue组件绑定事件时候，要加上native！如果是普通的html元素！就不需要-->
                     </el-form-item>
 
@@ -27,11 +34,11 @@
         data() {
 
             return {
-
+                imageUrl: '',
                 userInfo: {
                     username: "",
                     userpwd: "",
-                    image:""
+                    image: ""
                 },
                 rules: {
                     username: [
@@ -40,98 +47,77 @@
                     userpwd: [
                         {required: true, message: "请输入密码", trigger: 'blur'}
                     ]
-                }
+                },
+                users: []
             }
 
 
         },
         methods: {
-            submit(formname) {
-                let self = this;
-                self.$refs[formname].validate(
-                    (valid) => {
-                        if (valid) {
-                            self.testUser();
-                        } else {
-                            console.error("登陆失败");
-                            return false;
-                        }
-                    }
-                )
-            },
             login() {
-                const self = this;
-                self.$axios.post('/api/user/listUser').then((res) => {
-                    let rel = res.data.some(item => {
-                        self.userInfo.image=item.image;
-                        return item.username === self.userInfo.username && item.password === self.userInfo.userpwd;
-                    });
-                    if (rel) {
-                        self.$message.success("登录成功!");
-                        localStorage.setItem('user-name', self.userInfo.username);
-                        localStorage.setItem('user-pwd', self.userInfo.userpwd);
-                        self.$axios.post('/api/image/getImg', {filename: self.userInfo.image}, {responseType: "blob"}).then((res) => {
-                            //let src='data:image/jpg;base64,'+ btoa(new Uint8Array(res.data).reduce((data, byte) => data + String.fromCharCode(byte), ''));
-                            //let url=URL.createObjectURL(new Blob([src], {type: "image/jpg"}));
-                            let url = URL.createObjectURL(res.data);
-                            localStorage.setItem('img', url);
-                        }).then(()=>{
-                            self.$router.push('./page');
-                        });
-
-                    } else {
-                        self.$message.warning("账号或者密码有误");
+                let isSuccess = false;
+                let self = this;
+                for (let i = 0; i < this.users.length; i++) {
+                    if (this.userInfo.username === this.users[i].username && this.userInfo.userpwd === this.users[i].password) {
+                        isSuccess = true;
+                        break;
                     }
-                });
-
-            },
-
-            testUser() {
-                const self = this;
-                if (process.env.NODE_ENV === 'development') {
-                    self.url = 'static/data/account.json';
                 }
-
-                self.$axios.get(self.url).then((res) => {
-                    let rel = res.data.some(item => {
-                        return item.name === self.userInfo.username && item.password === self.userInfo.userpwd;
-                    });
-                    if (rel) {
-                        localStorage.setItem('user-name', self.userInfo.username);
-                        localStorage.setItem('user-pwd', self.userInfo.userpwd);
-                        self.$router.push('./page');
-                    } else {
-                        self.$message.warning("账号或者密码有误");
-                    }
-                });
+                if (isSuccess) {
+                    this.$message.success("登录成功!");
+                    localStorage.setItem('user-name', self.userInfo.username);
+                    localStorage.setItem('user-pwd', self.userInfo.userpwd);
+                    this.$router.push('./page');
+                } else {
+                    this.$message.warning("账号或者密码有误");
+                }
             },
             register() {
                 this.$router.push('./register')
             },
-            addUser() {
-                let username = this.userInfo.username;
-                let password = this.userInfo.userpwd;
-                let flag = false;
-                this.$http.post('/api/user/addUser', {
-                    username: username,
-                    password: password
-                }, {}).then((response) => {
-
-                    let result = response.data;
-                    for (let i = 0; i < result.length; i++) {
-                        if (result[i].username == username && result[i].password == password) {
-                            flag = true;
-                            break;
-                        }
+            checkUserName() {
+                let isExist = false;
+                for (let i = 0; i < this.users.length; i++) {
+                    if (this.users[i].username === this.userInfo.username) {
+                        isExist = true;
+                        this.userInfo.image = this.users[i].image;
+                        break;
                     }
-                })
-                if (!flag)
-                    this.$message.warning("账户或密码错误");
-                else {
-                    this.$message.success("登录成功!");
-                    this.$router.push('./page')
                 }
+                if (!isExist) {
+                    this.$message.warning("用户名不存在");
+                    return;
+                }
+                this.getImg(this.userInfo.image);
+            },
+            getImg(imageName) {
+                let self = this;
+                self.$axios.post('/api/image/getImg', {filename: imageName}, {responseType: "blob"}).then((res) => {
+                    //let src='data:image/jpg;base64,'+ btoa(new Uint8Array(res.data).reduce((data, byte) => data + String.fromCharCode(byte), ''));
+                    //let url=URL.createObjectURL(new Blob([src], {type: "image/jpg"}));
+                    self.imageUrl = URL.createObjectURL(res.data);
+                    localStorage.setItem('img', self.imageUrl);
+                })
+            },
+            getUsers() {
+                const self = this;
+                self.$axios.post('/api/user/listUser').then((res) => {
+                    self.users = [];
+                    res.data.some(item => {
+                        self.users.push({
+                            username: item.username,
+                            password: item.password,
+                            image: item.image
+                        })
+                    });
+                });
             }
+
+        },
+        mounted() {
+
+            this.getUsers();
+            this.getImg('static/img/unamed.jpg');
         }
     }
 
@@ -139,6 +125,30 @@
 </script>
 
 <style scoped>
+    .avatar-uploader .el-upload {
+        border: 1px dashed #39d930;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+
+    }
+
+    .avatar-uploader :hover {
+        border-color: #fd6cff;
+        position: center;
+    }
+
+
+    .avatar {
+        width: 178px;
+        height: 178px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 89px;
+        display: block;
+    }
+
     .wraper {
         position: relative;
         width: 100%;
