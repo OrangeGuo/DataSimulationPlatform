@@ -70,7 +70,7 @@
         methods: {
             upLoad() {
                 let self = this;
-                this.$axios.post('/api/user/uploadImg', self.form, {
+                this.$axios.post('/api/image/uploadImg', self.form, {
                     headers: {'Content-Type': 'multipart/form-data'}
                 });
             },

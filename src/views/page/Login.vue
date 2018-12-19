@@ -74,7 +74,7 @@
                     }
                 });
                 let img='static/img/code.png';
-                self.$axios.post('/api/user/images',{filename:img},{responseType: "blob"}).then((res)=>{
+                self.$axios.post('/api/image/getImg',{filename:img},{responseType: "blob"}).then((res)=>{
                     //let src='data:image/jpg;base64,'+ btoa(new Uint8Array(res.data).reduce((data, byte) => data + String.fromCharCode(byte), ''));
                     //let url=URL.createObjectURL(new Blob([src], {type: "image/jpg"}));
                     let url=URL.createObjectURL(res.data);
