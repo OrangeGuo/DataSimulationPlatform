@@ -14,8 +14,8 @@
                     </el-form-item>
 
 
-                    <el-button round type="primary" @click="login" > 登 录</el-button>
-                    <el-button round type="primary" @click="register" > 注 册</el-button>
+                    <el-button round type="primary" @click="login"> 登 录</el-button>
+                    <el-button round type="primary" @click="register"> 注 册</el-button>
                 </el-form>
             </div>
         </div>
@@ -30,7 +30,8 @@
 
                 userInfo: {
                     username: "",
-                    userpwd: ""
+                    userpwd: "",
+                    image:""
                 },
                 rules: {
                     username: [
@@ -62,24 +63,25 @@
                 const self = this;
                 self.$axios.post('/api/user/listUser').then((res) => {
                     let rel = res.data.some(item => {
+                        self.userInfo.image=item.image;
                         return item.username === self.userInfo.username && item.password === self.userInfo.userpwd;
                     });
                     if (rel) {
                         self.$message.success("登录成功!");
                         localStorage.setItem('user-name', self.userInfo.username);
                         localStorage.setItem('user-pwd', self.userInfo.userpwd);
+                        self.$axios.post('/api/image/getImg', {filename: self.userInfo.image}, {responseType: "blob"}).then((res) => {
+                            //let src='data:image/jpg;base64,'+ btoa(new Uint8Array(res.data).reduce((data, byte) => data + String.fromCharCode(byte), ''));
+                            //let url=URL.createObjectURL(new Blob([src], {type: "image/jpg"}));
+                            let url = URL.createObjectURL(res.data);
+                            localStorage.setItem('img', url);
+                        });
                         self.$router.push('./page');
                     } else {
                         self.$message.warning("账号或者密码有误");
                     }
                 });
-                let img='static/img/code.png';
-                self.$axios.post('/api/image/getImg',{filename:img},{responseType: "blob"}).then((res)=>{
-                    //let src='data:image/jpg;base64,'+ btoa(new Uint8Array(res.data).reduce((data, byte) => data + String.fromCharCode(byte), ''));
-                    //let url=URL.createObjectURL(new Blob([src], {type: "image/jpg"}));
-                    let url=URL.createObjectURL(res.data);
-                    localStorage.setItem('img',url);
-                });
+
             },
 
             testUser() {
