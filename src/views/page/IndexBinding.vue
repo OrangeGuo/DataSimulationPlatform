@@ -23,12 +23,70 @@
              <el-button style="Float: left;height:40px;margin-left: 20px" type="primary" @click="Analyse" >一键分析
             </el-button>
         </div>
-        <div class="chart-show">
-        	<div class="chart-item" v-for="item in source">
-        		<div class="chart-item-title" v-cloak>{{ item.name }}</div>
-        		<schart :canvasId="item.canvasId" :type="item.canvasId" :data="item.data" width="600" height="600" :options="item.options"></schart>
-        	</div>
+        <div id="wrap">
+            <div class="chart-show">
+        	    <div class="chart-item" v-for="item in source">
+        		    <div class="chart-item-title" v-cloak>{{ item.name }}</div>
+        		    <schart :canvasId="item.canvasId" :type="item.canvasId" :data="item.data" width="600" height="600" :options="item.options"></schart>
+        	    </div>
+            </div>
+            <el-table
+            :data="tableData"
+            @row-dblclick="openDiag"
+            height="600"
+            stripe
+            border
+            style="width: 80%;margin-left: 20px">
+            <el-table-column
+                prop="node_id"
+                label="结点编号"
+                width="200">
+                <template slot-scope="scope">
+                        <div slot="reference" class="name-wrapper">
+                            <el-tag size="medium">{{ scope.row.node_id }}</el-tag>
+                        </div>
+                </template>
+            </el-table-column>
+            <el-table-column
+                prop="node_name"
+                label="结点名称"
+                width="200">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.node_name }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                prop="node_value"
+                label="结点值"
+                width="200">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.node_value }}</span>
+                </template>
+            </el-table-column>
+             <el-table-column
+                prop="parent"
+                label="父结点"
+                width="200">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.parent }}</span>
+                </template>
+            </el-table-column>
+        </el-table>
         </div>
+        <el-dialog title="修改对应结点" :visible.sync="dialogUpdateForm" width="30%">
+            <el-form :model="form">
+                <el-form-item label="结点名" :label-width="formLabelWidth">
+                    <el-input v-model="form.node_name"  ></el-input>
+                </el-form-item>
+                <el-form-item label="结点值" :label-width="formLabelWidth">
+                    <el-input v-model="form.node_value"  ></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogUpdateForm = false">取 消</el-button>
+                <el-button type="primary" @click="showInTable">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -39,6 +97,13 @@
         data(){
             return{
                tasks:[],
+                form: {
+                    node_name: '',
+                    node_value: '',
+                },
+                dialogUpdateForm:false,
+                tempTask:'',
+                tableData:[],
                 dropVisible:false,
                 inputVisible:false,
                 title:"选择任务模型",
@@ -50,6 +115,8 @@
                    text:"ADC",
                     value:"2",
                 }],
+                tempModuleId:'',
+                formLabelWidth:"120px",
                 source:[{
 				    canvasId:"bar",
 		            name:"柱状图",
@@ -95,6 +162,43 @@
                         break;
                 this.title=this.tasks[i].text;
                 this.dropVisible=true;
+                this.tempTask=command;
+                this.listNode();
+            },
+            listNode(){
+                const self = this;
+                self.$axios.post('/api/node/listNodes', {taskId: parseInt(self.tempTask)}).then((res) => {
+                    self.tableData=[];
+                    res.data.some(item => {
+                        self.tableData.push({
+                            node_id: item.id,
+                            node_name: item.name,
+                            node_value: item.value,
+                            parent: item.parent,
+                            degree:item.degree,
+                        })
+                    });
+                }).then(()=>{
+
+                })
+            },
+            openDiag(row){
+                this.dialogUpdateForm=true;
+                this.form.node_name=row.node_name;
+                this.form.node_value=row.node_value;
+                this.tempModuleId=row.node_id;
+            },
+            showInTable(){
+                const self =this;
+                self.dialogUpdateForm=false;
+                self.$http.post('/api/node/updateNodes',{
+                    name:self.form.node_name,
+                    value:self.form.node_value,
+                    id:parseInt(self.tempModuleId),
+                    taskId:parseInt(self.tempTask)
+                },{}).then(()=>{
+                    self.listNode();
+                })
             },
             handleCommand1(command){
                 let i=0;
@@ -237,5 +341,7 @@
 </script>
 
 <style scoped>
-
+    #wrap{
+    display: flex;
+    }
 </style>
