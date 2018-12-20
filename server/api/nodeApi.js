@@ -19,6 +19,24 @@ let jsonWrite = function (res, ret) {
 
     }
 };
+router.post('/updateValue', (req, res) => {
+    let sql = $sql.nodes.updateAll;
+    let nodes = req.body;
+    console.log("update value");
+    console.log(nodes);
+    for (let i = 0; i < nodes.length; i++) {
+        let params = nodes[i];
+        conn.query(sql, [params.value,params.taskId, params.id], function (err, result) {
+            if (err) {
+                console.log(err);
+            }
+            //if (result) {
+            //console.log(result.length);
+            //jsonWrite(res, result);
+            //}
+        })
+    }
+});
 router.post('/updateNodes', (req, res) => {
     let sql = $sql.nodes.update;
     let params = req.body;
