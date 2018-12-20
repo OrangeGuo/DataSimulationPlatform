@@ -42,8 +42,10 @@
         data() {
 
             return {
-                imageUrl: 'static/img/head-icon.jpg',
+                imageUrl: '',
                 imagePath: 'static/img/head-icon.jpg',
+                isJpg: true,
+                isLarge: false,
                 form: new FormData(),
                 headers: {'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary3BCFnBuTMzNqB0hH\\r\\n'},
                 UsernameFlag: 1,
@@ -76,30 +78,27 @@
                 });
             },
             handleAvatarSuccess(file) {
-
                 this.imageUrl = URL.createObjectURL(file.raw);
-                console.log(file.name);
                 this.imagePath = 'static/img/' + file.name;
+                console.log("name:" + this.imagePath.length);
             },
             beforeAvatarUpload(file) {
                 const isJPG = file.type === 'image/jpeg';
                 const isLt2M = file.size / 1024 / 1024 < 2;
-
                 if (!isJPG) {
+                    this.isJpg = false;
                     this.$message.error('上传头像图片只能是 JPG 格式!');
                 }
                 if (!isLt2M) {
                     this.$message.error('上传头像图片大小不能超过 2MB!');
+                    this.isLarge = true;
                 }
                 this.form = new FormData();
                 this.form.append('file', file, file.name);
                 return isJPG && isLt2M;
             },
-
             UsernameIsRight() {
-
                 let len = 0;
-
                 let flag = this.UsernameFlag;
                 for (let i = 0; i < this.userInfo.username.length; i++) {
                     let c = this.userInfo.username.charCodeAt(i);
@@ -119,8 +118,6 @@
                     return;
                 }
                 len = 0;
-
-
                 flag = this.UserpwdFlag;
                 len = 0;
                 for (let i = 0; i < this.userInfo.userpwd.length; i++) {
@@ -154,9 +151,23 @@
                     if (!flag) {
                         self.$message.success("账户已经存在");
                         return;
-
                     }
-
+                    if (this.imageUrl === '') {
+                        this.$message.warning("未设置头像");
+                        return;
+                    }
+                    if (self.imagePath.length > 29) {
+                        this.$message.warning("图像名称过长");
+                        return;
+                    }
+                    if (!this.isJpg) {
+                        this.$message.warning("图像格式错误");
+                        return;
+                    }
+                    if (this.isLarge) {
+                        this.$message.warning("图像尺寸过大");
+                        return;
+                    }
                     this.$http.post('/api/user/addUser', {
                         username: self.userInfo.username,
                         password: self.userInfo.userpwd,
