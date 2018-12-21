@@ -17,7 +17,7 @@
                     <el-dropdown-item v-for="item in alogrim" :command="item.value" >{{item.text}}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-            <input style="margin-left: 20px" type="file" @change="importf(this)"
+            <input style="margin-left: 20px" type="file" @change="importf1(this)"
                    v-show="inputVisible"
                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
              <el-button style="Float: left;height:40px;margin-left: 20px" type="primary" @click="Analyse" >一键分析
@@ -97,6 +97,8 @@
         data(){
             return{
                tasks:[],
+                datalist:[],
+
                 form: {
                     node_name: '',
                     node_value: '',
@@ -215,7 +217,7 @@
                 const self=this;
 
             },
-            importf(obj) {
+            importf1(obj) {
 
                 let _this = this;
 
@@ -229,6 +231,7 @@
 
                 let reader = new FileReader();
 
+                const self=this;
                 //if (!FileReader.prototype.readAsBinaryString) {
 
                 FileReader.prototype.readAsBinaryString = function (f) {
@@ -283,33 +286,61 @@
 
                         // excel 数据再处理
 
-                        let arr = []
+                        let arr = [];
 
                         outdata.map(v => {
 
-                            let obj = {}
+                            let obj = {};
 
-                            obj.account = v.登录账号
+                            obj.myID = v.id;
 
-                            obj.name = v.姓名
+                            obj.value = v.value;
 
-                            obj.department = v.部门
+                            obj.parentID = v.parent;
 
-                            obj.secondDepartment = v.二级部门
+                            obj.level = v.weight;
 
-                            obj.status = v.状态
-
-                            obj.id = v.id
+                            obj.name =v.name;
 
                             arr.push(obj)
 
-                        })
+                        });
 
                         _this.accountList = [...arr];
+                        this.datalist = _this.accountList;
 
-                        console.log(_this.accountList)
+                        if(this.datalist[0].myID==null) {
+                            console.log("wrong");
+                        }
 
-             
+                        let flag=false;
+                        for(let i=0;i<self.tableData.length;i++)
+                        {
+                           for (let y=0;y<this.datalist.length;y++)
+                           {
+
+                               if(self.tableData[i].node_id===this.datalist[y].myID)
+                               {
+                                   flag=true;
+                                   if(self.tableData[i].parent===this.datalist[y].parentID)
+                                   {
+
+                                       self.tableData[i].node_value=this.datalist[y].value;
+                                   }
+                                   else
+                                   {
+                                      console.log("wrong");
+                                   }
+                               }
+                               if(flag===false&&y>=this.datalist.length)
+                               {
+                                   console.log("wrong");
+                               }
+                           }
+
+                        }
+                        console.log(this.datalist);
+                        console.log(self.tableData);
 
                     }
 
@@ -328,7 +359,14 @@
                 }
 
 
-            }
+            },
+         AHP(){
+                let self = this;
+                for(let i = 0;i<self.datalist.length;i++ )
+                {
+
+                }
+        }
 
         },
         mounted(){
