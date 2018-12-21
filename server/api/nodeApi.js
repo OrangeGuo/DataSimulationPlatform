@@ -26,7 +26,7 @@ router.post('/updateValue', (req, res) => {
     console.log(nodes);
     for (let i = 0; i < nodes.length; i++) {
         let params = nodes[i];
-        conn.query(sql, [params.value,params.taskId, params.id], function (err, result) {
+        conn.query(sql, [params.value,params.weight,params.taskId, params.id], function (err, result) {
             if (err) {
                 console.log(err);
             }

@@ -14,10 +14,10 @@ let sqlMap = {
     },
     nodes: {
         add: 'insert into nodes(taskId, id, name, parent, pos_x, pos_y, degree) VALUES (?,?,?,?,?,?,?)',
-        list: 'select taskId, id, name, parent, pos_x, pos_y, degree,value from nodes where taskId=?',
+        list: 'select taskId, id, name, parent, pos_x, pos_y, degree,value,weight from nodes where taskId=?',
         delete: 'delete from nodes where taskId=?',
         update: 'update nodes set name=?, value=? where  taskId=? and id=?',
-        updateAll: 'update nodes set value=? where  taskId=? and id=?'
+        updateAll: 'update nodes set value=? ,weight=? where  taskId=? and id=?'
     },
     edges: {
         add: 'insert into edges(taskId,id, dst_node_id, src_node_id) values (?,?,?,?)',
