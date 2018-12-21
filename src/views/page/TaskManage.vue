@@ -23,8 +23,7 @@
             border
             style="width: 80%"
             highlight-current-row
-            @row-click="openModule"
-            @row-dblclick="openIndexConfig"
+            @row-dblclick="openModule"
         >
             <el-table-column
                 prop="taskName"

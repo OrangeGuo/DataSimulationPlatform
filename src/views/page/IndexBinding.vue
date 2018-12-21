@@ -77,7 +77,7 @@
         <el-dialog title="修改对应结点" :visible.sync="dialogUpdateForm" width="30%">
             <el-form :model="form">
                 <el-form-item label="结点名" :label-width="formLabelWidth">
-                    <el-input v-model="form.node_name"></el-input>
+                    <el-input :disabled="true" v-model="form.node_name"></el-input>
                 </el-form-item>
                 <el-form-item label="结点值" :label-width="formLabelWidth">
                     <el-input v-model="form.node_value"></el-input>
@@ -180,6 +180,7 @@
                             node_value: item.value,
                             parent: item.parent,
                             degree: item.degree,
+                            weight: item.weight
                         })
                     });
                 }).then(() => {
@@ -187,6 +188,14 @@
                 })
             },
             openDiag(row) {
+                if(this.datalist.length===0){
+                    this.$message.warning("未选择文件");
+                    return;
+                }
+                if (row.degree !== 1) {
+                    this.$message.warning("非叶子节点不可修改");
+                    return;
+                }
                 this.dialogUpdateForm = true;
                 this.form.node_name = row.node_name;
                 this.form.node_value = row.node_value;
@@ -195,6 +204,12 @@
             showInTable() {
                 const self = this;
                 self.dialogUpdateForm = false;
+                for (let i = 0; i < this.datalist.length; i++) {
+                    if (this.datalist[i].myID === this.tempModuleId) {
+                        this.datalist[i].value = this.form.node_value;
+                        break;
+                    }
+                }
                 self.$http.post('/api/node/updateNodes', {
                     name: self.form.node_name,
                     value: self.form.node_value,
@@ -332,10 +347,11 @@
                                     if (self.tableData[i].parent === self.datalist[y].parentID) {
                                         flag = true;
 
-                                    }
-                                    else {
+                                    } else {
                                         flag = false;
-                                        console.log("wrong");
+                                        self.$message.warning("导入数据与模型不匹配");
+                                        return;
+
                                     }
                                 }
 
