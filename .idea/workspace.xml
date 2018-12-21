@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8797ff6f-2f30-4979-98f8-5aed594d5083" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/92036814-299a-4d55-a384-89dbfe209d31.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/92036814-299a-4d55-a384-89dbfe209d31.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/nodeApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/nodeApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/sqlMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/sqlMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/page/IndexBinding.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/page/IndexBinding.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,11 +92,41 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/api/nodeApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+            <state relative-caret-position="356">
+              <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/page/IndexConfig.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1214">
+              <caret line="144" column="14" selection-start-line="144" selection-start-column="14" selection-end-line="144" selection-end-column="14" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/page/IndexBinding.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-10">
+              <caret line="198" column="13" selection-start-line="198" selection-start-column="13" selection-end-line="198" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -198,9 +225,7 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/components/HomePage.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
-        <option value="$PROJECT_DIR$/src/views/page/TaskManage.vue" />
         <option value="$PROJECT_DIR$/src/views/page/SensAnalyse.vue" />
-        <option value="$PROJECT_DIR$/src/views/page/IndexBinding.vue" />
         <option value="$PROJECT_DIR$/src/router/index.js" />
         <option value="$PROJECT_DIR$/src/views/DAG/Step8/control.vue" />
         <option value="$PROJECT_DIR$/src/views/page/IndexConfig.vue" />
@@ -215,6 +240,8 @@
         <option value="$PROJECT_DIR$/src/store/modules/dagStore.js" />
         <option value="$PROJECT_DIR$/server/sqlMap.js" />
         <option value="$PROJECT_DIR$/server/api/nodeApi.js" />
+        <option value="$PROJECT_DIR$/src/views/page/TaskManage.vue" />
+        <option value="$PROJECT_DIR$/src/views/page/IndexBinding.vue" />
       </list>
     </option>
   </component>
@@ -426,7 +453,7 @@
       <workItem from="1545285421954" duration="1145000" />
       <workItem from="1545378299276" duration="120000" />
       <workItem from="1545378500989" duration="1875000" />
-      <workItem from="1545388281092" duration="359000" />
+      <workItem from="1545388281092" duration="2874000" />
     </task>
     <task id="LOCAL-00001" summary="切换到腾讯云数据库">
       <created>1542879818546</created>
@@ -736,11 +763,25 @@
       <option name="project" value="LOCAL" />
       <updated>1545379095360</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="node表增加weight项及相关DAO操作修改">
+      <created>1545388677648</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1545388677648</updated>
+    </task>
+    <task id="LOCAL-00046" summary="任务管理界面双击跳转模型配置（单击与编辑任务冲突）；数据绑定：非叶子节点不可修改，修改后立即同步到datalist">
+      <created>1545390353633</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1545390353633</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141644000" />
+    <option name="totallyTimeSpent" value="144159000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -755,7 +796,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49716714" visible="true" weight="0.22855228" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49716714" visible="true" weight="0.22855228" />
       <window_info id="Structure" order="1" sideWeight="0.5028329" side_tool="true" weight="0.2351387" />
       <window_info id="Favorites" order="2" sideWeight="0.5028329" side_tool="true" weight="0.2351387" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -769,7 +810,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32719547" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.6018767" side_tool="true" weight="0.24220963" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.39812332" weight="0.23903818" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.39812332" visible="true" weight="0.04249292" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32892805" />
       <window_info anchor="bottom" id="Messages" order="14" />
@@ -861,8 +902,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="node增加parent属性记录父节点" />
-    <MESSAGE value="使用axios库代替http;删除任务后移除对应DAG" />
     <MESSAGE value="模型配置界面显示任务名称" />
     <MESSAGE value="模型配置界面修改" />
     <MESSAGE value="保存模型增加合法判断" />
@@ -886,7 +925,9 @@
     <MESSAGE value="增加批量修改节点value的接口" />
     <MESSAGE value="修复用户注册时头像校验：格式，尺寸，名称长度" />
     <MESSAGE value="修复模型配置后节点ID不连续的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复模型配置后节点ID不连续的bug" />
+    <MESSAGE value="node表增加weight项及相关DAO操作修改" />
+    <MESSAGE value="任务管理界面双击跳转模型配置（单击与编辑任务冲突）；数据绑定：非叶子节点不可修改，修改后立即同步到datalist" />
+    <option name="LAST_COMMIT_MESSAGE" value="任务管理界面双击跳转模型配置（单击与编辑任务冲突）；数据绑定：非叶子节点不可修改，修改后立即同步到datalist" />
   </component>
   <component name="editorHistoryManager">
     <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/tasks" />
@@ -895,13 +936,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/page/Readme.vue">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5632">
-          <caret line="256" selection-start-line="256" selection-end-line="256" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/router/index.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -948,27 +982,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/IndexBinding.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/DAG/Step8/control.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/IndexConfig.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="144" column="14" selection-start-line="144" selection-start-column="14" selection-end-line="144" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1093,10 +1110,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/page/IndexConfig.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1214">
+          <caret line="144" column="14" selection-start-line="144" selection-start-column="14" selection-end-line="144" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/api/nodeApi.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+        <state relative-caret-position="356">
+          <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/page/IndexBinding.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10">
+          <caret line="198" column="13" selection-start-line="198" selection-start-column="13" selection-end-line="198" selection-end-column="13" />
         </state>
       </provider>
     </entry>

@@ -188,7 +188,7 @@
                 })
             },
             openDiag(row) {
-                if(this.datalist.length===0){
+                if (this.datalist.length === 0) {
                     this.$message.warning("未选择文件");
                     return;
                 }
@@ -205,7 +205,7 @@
                 const self = this;
                 self.dialogUpdateForm = false;
                 for (let i = 0; i < this.datalist.length; i++) {
-                    if (this.datalist[i].myID === this.tempModuleId) {
+                    if (this.datalist[i].id === this.tempModuleId) {
                         this.datalist[i].value = this.form.node_value;
                         break;
                     }
@@ -317,7 +317,7 @@
 
                             let obj = {};
 
-                            obj.myID = v.id;
+                            obj.id = v.id;
 
                             obj.value = v.value;
 
@@ -327,6 +327,7 @@
 
                             obj.name = v.name;
 
+                            obj.taskId = _this.tempTask;
                             arr.push(obj)
 
                         });
@@ -334,7 +335,7 @@
                         _this.accountList = [...arr];
                         self.datalist = _this.accountList;
 
-                        if (self.datalist[0].myID == null) {
+                        if (self.datalist[0].id == null) {
                             console.log("wrong");
                         }
 
@@ -342,7 +343,7 @@
                         for (let i = 0; i < self.tableData.length; i++) {
                             for (let y = 0; y < self.datalist.length; y++) {
 
-                                if (self.tableData[i].node_id === self.datalist[y].myID) {
+                                if (self.tableData[i].node_id === self.datalist[y].id) {
 
                                     if (self.tableData[i].parent === self.datalist[y].parentID) {
                                         flag = true;
@@ -364,14 +365,15 @@
                                 self.tableData[i].node_value = self.datalist[i].value;
                                 self.tableData[i].node_name = self.datalist[i].name;
                             }
+                            this.saveData();
                         }
 
 
-                    }
+                    };
 
                     reader.readAsArrayBuffer(f);
 
-                }
+                };
 
                 if (rABS) {
 
@@ -392,7 +394,7 @@
                 for (let i = 1; i < self.datalist.length; i++) {
                     for (let y = 0; y < self.datalist.length; y++) {
 
-                        if (self.datalist[y].myID === self.datalist[i].parentID) {
+                        if (self.datalist[y].id === self.datalist[i].parentID) {
 
                             let temp_value = parseFloat(self.datalist[i].value);
                             let temp_weight = parseFloat(self.datalist[i].weight);
@@ -404,6 +406,10 @@
 
                 }
                 console.log(self.datalist);
+            },
+            saveData() {
+                let self=this;
+                self.$http.post('/api/node/updateValue', self.datalist)
             }
 
         },
