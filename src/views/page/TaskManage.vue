@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <div style="height: 50px">
+        <div style="height: 50px;margin-left: 250px" >
 
             <el-input style="Float: left;height:50px;width: 500px;" float="left" placeholder="请输入关键字"
                       clearable></el-input>
@@ -14,9 +14,11 @@
                        icon="el-icon-upload">保存
             </el-button>
         </div>
+        <div style="margin-left: 250px">
         <el-table
             :data="tableData"
             height="250"
+            
             stripe
             border
             style="width: 80%"
@@ -68,7 +70,7 @@
             </el-table-column>
         </el-table>
 
-
+        </div>
         <el-dialog title="新建任务" :visible.sync="dialogAddForm" width="30%">
             <el-form :model="form">
                 <el-form-item label="任务名称" :label-width="formLabelWidth">

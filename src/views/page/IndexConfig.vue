@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div style="height: 50px">
+    <div >
+        <div style="height: 50px" align="center">
              <el-dropdown @command="handleCommand">
                 <span class="el-dropdown-link">
                     下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
@@ -14,6 +14,7 @@
             <el-button style="Float: left;height:40px;" type="primary" @click="listModules" icon="el-icon-search">搜索
             </el-button>
         </div>
+        <div align="center">
          <el-table
             :data="tableData"
             height="600"
@@ -63,6 +64,7 @@
                 </template>
             </el-table-column>
         </el-table>
+        </div>
         <el-dialog title="修改结点" :visible.sync="dialogAddForm" width="30%">
             <el-form :model="form">
                 <el-form-item label="结点名称" :label-width="formLabelWidth">
