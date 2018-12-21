@@ -206,7 +206,23 @@ const dagStore = {
                 }
             });
             state.DataAll.edges = _edges;
-            state.DataAll.nodes = _nodes
+            state.DataAll.nodes = _nodes;
+            state.DataAll.nodes.forEach(item => {
+                if (item.id > id) {
+                    item.id--;
+                }
+                if (item.parent > id) {
+                    item.parent--;
+                }
+            });
+            state.DataAll.edges.forEach(item => {
+                if (item.dst_node_id > id) {
+                    item.dst_node_id--;
+                }
+                if (item.src_node_id > id) {
+                    item.src_node_id--;
+                }
+            })
         },
         ADD_NODE_DATA: (state, params) => {
             let _nodes = state.DataAll.nodes;
