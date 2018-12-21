@@ -362,9 +362,19 @@
             },
          AHP(){
                 let self = this;
-                for(let i = 0;i<self.datalist.length;i++ )
+                for(let i = self.datalist.length-1;i>0;i-- )
                 {
 
+                   let temp_parent = self.datalist[i].parent;
+
+                   for(let y=i;y>0;y--)
+                   {
+                      if(temp_parent===self.datalist[y].myID)
+                      {
+                          self.datalist[y].value+=self.datalist[i].value*self.datalist[i].weight;
+                      }
+                   }
+                   console.log(self.datalist);
                 }
         }
 
