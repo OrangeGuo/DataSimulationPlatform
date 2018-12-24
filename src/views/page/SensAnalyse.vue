@@ -13,47 +13,80 @@
                       clearable></el-input>
             <el-button style="Float: left;height:40px;" type="primary" @click="listModules" icon="el-icon-search">搜索
             </el-button>
+            <el-button style="Float: left;height:40px;" type="primary" @click="startAnalyse" >灵敏度分析
+            </el-button>
         </div>
        <div id="wrap">
+           <div>
          <el-table
             :data="tableData"
-            height="600"
+            height="300"
             stripe
             border
             @row-dblclick="openDiag"
-            style="width: 40%">
-            <el-table-column
-                prop="node_id"
-                label="结点编号"
-                width="200">
-                <template slot-scope="scope">
-                        <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{ scope.row.node_id }}</el-tag>
-                        </div>
-
-                </template>
-            </el-table-column>
+            style="width: 650px">
             <el-table-column
                 prop="node_name"
                 label="结点名称"
                 width="200">
                 <template slot-scope="scope">
-                    <span style="margin-left: 10px">{{ scope.row.node_name }}</span>
+                        <div slot="reference" class="name-wrapper">
+                            <el-tag size="medium">{{ scope.row.node_name }}</el-tag>
+                        </div>
+
                 </template>
             </el-table-column>
             <el-table-column
-                prop="node_value"
-                label="结点值"
+                prop="range"
+                label="变化范围"
                 width="200">
                 <template slot-scope="scope">
-                    <span style="margin-left: 10px">{{ scope.row.node_value }}</span>
+                    <span style="margin-left: 10px">{{ scope.row.range }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                prop="long"
+                label="步长"
+                width="200">
+                <template slot-scope="scope">
+                    <span style="margin-left: 10px">{{ scope.row.long }}</span>
                 </template>
             </el-table-column>
          </el-table>
-       <div class="chart-show">
+               <label>方案列表</label>
+               <el-table
+            :data="plan"
+            height="450"
+            stripe
+            border
+            v-show="dropVisible"
+            style="width: 650px">
+                   <el-table-column
+                prop="id"
+                label="序号"
+                width="64px">
+                <template slot-scope="scope">
+                        <div slot="reference" class="name-wrapper">
+                            <el-tag size="medium">{{ scope.row.id }}</el-tag>
+                        </div>
+
+                </template>
+            </el-table-column>
+            <template v-for='(col) in plan1'>
+                <el-table-column
+                    :prop="col.dataItem"
+                    :label="col.dataName"
+                    :key="col.dataItem"
+                 width="124px">
+                </el-table-column>
+            </template>
+         </el-table>
+           </div>
+       <div class="chart-show" style="margin-left: 20px">
         	<div class="chart-item" v-for="item in source">
         		<div class="chart-item-title" v-cloak>{{ item.name }}</div>
-        		<schart :canvasId="item.canvasId" :type="item.canvasId" :data="item.data" width="600" height="600" :options="item.options"></schart>
+        		<schart :canvasId="item.canvasId" :type="item.canvasId" :data="item.data"
+                        width="800" height="600"  :options="item.options"></schart>
         	</div>
         </div>
        </div>
@@ -71,7 +104,7 @@
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogUpdateForm = false">取 消</el-button>
-                <el-button type="primary" @click="showChart">确 定</el-button>
+                <el-button type="primary" @click="showChange">确 定</el-button>
             </div>
         </el-dialog>
    </div>
@@ -83,6 +116,7 @@
 		data () {
 			return {
 			    dialogUpdateForm:false,
+                dropVisible:false,
                 formLabelWidth: '120px',
                 form:{
 			        begin:'',
@@ -91,13 +125,17 @@
                 },
 			    tasks:[],
                 allData:[],
-                temp:[],
                 tableData:[],
-                temp1:[],
+                plan:[],
+                plan1:[],
+                nodeIsSelected:[],
 				source:[{
 				    canvasId:"line",
-		            name:"折线图",
-		            data:[],
+		            name:"分析结果",
+		            data:[{
+				        name:'',
+                        value:0,
+                    }],
                     options:{
 			            title:"灵敏度分析",
 			            bgColor:"#009688",
@@ -137,6 +175,9 @@
                             node_value: item.value,
                             parent: item.parent,
                             degree:item.degree,
+                            weight:item.weight,
+                            range:'',
+                            long:'',
                         })
                     });
                 }).then(()=>{
@@ -151,58 +192,122 @@
                 this.dialogUpdateForm=true;
                 localStorage.setItem('nodeId', row.node_id);
             },
-            showChart(){
+            showChange(){
+                let id=parseInt(localStorage.getItem("nodeId"));
+                let i=0;
+                for(i=0;i<this.tableData.length;i++)
+                    if(this.tableData[i].node_id===id)
+                        break;
+                this.tableData[i].range=this.form.begin+"-"+this.form.end;
+                this.tableData[i].long=this.form.walkLong;
                 this.dialogUpdateForm=false;
-                let id=localStorage.getItem("nodeId");
-                for(let m=parseInt(this.form.begin);m<=parseInt(this.form.end);m=m+parseInt(this.form.walkLong))
+                const self=this;
+                this.nodeIsSelected.push({
+                    node_id:self.tableData[i].node_id,
+                    node_name:self.tableData[i].node_name,
+                    begin:self.form.begin,
+                    end:self.form.end,
+                    tempValue:self.form.begin,
+                    long:self.form.walkLong
+                });
+                this.form={};
+            },
+            startAnalyse(){
+                let i=0;
+                let length=this.nodeIsSelected.length;
+                this.plan=[];
+                let y=1;
+                this.dropVisible=true;
+                while(parseFloat(this.nodeIsSelected[length-1].tempValue)<parseFloat(this.nodeIsSelected[length-1].end))
                 {
-                    let flag = -3;
-                    let sum=0;
-                    this.temp=[];
-                    for(let i=0;i<this.allData.length;i++)
+                    if(parseFloat(this.nodeIsSelected[i].tempValue)<parseFloat(this.nodeIsSelected[i].end))
                     {
-                        let res={};
-                        for(var key in this.allData[i])
+                        i=0;
+                        let obj={};
+                        let tempkey='id';
+                        obj[tempkey]=y;
+                        for(let j=0;j<this.nodeIsSelected.length;j++)
                         {
-                            res[key]=this.allData[i][key];
-                        }
-                        this.temp.push(res);
-                    }
-                    while (flag<0) {
-                        this.temp1 = [];
-                        for (let i = 0; i < this.temp.length; i++) {
-                            if (this.temp[i].node_id === parseInt(id)) {
-                                this.temp[i].node_value = m;
-                            }
-                            if (this.temp[i].degree > 0) {
-                                this.temp1.push(this.temp[i]);
-                            }
-                        }
-                        for (let i = 0; i < this.temp1.length; i++) {
-                            for (let j = 0; j < this.temp.length; j++) {
-                                if (this.temp1[i].parent === this.temp[j].node_id) {
-                                    this.temp[j].node_value += this.temp1[i].node_value * 2;
-                                    this.temp[j].degree++;
-                                }
-                                if (this.temp1[i].node_id === this.temp[j].node_id) {
-                                    this.temp.splice(j, 1);
-                                }
-                            }
-                        }
-                        for (let i = 0; i < this.temp.length; i++) {
-                            if (this.temp[i].parent === 0) {
-                                flag = this.temp[i].degree;
-                                sum=this.temp[i].node_value;
-                            }
-                        }
+                            let key=this.nodeIsSelected[j].node_name;
+                            obj[key]=this.nodeIsSelected[j].tempValue;
+                            for(let m=0;m<this.allData.length;m++)
+                            {
+                                if(this.allData[m].node_id===this.nodeIsSelected[j].node_id)
+                                {
+                                    this.allData[m].node_value=this.nodeIsSelected[j].tempValue;
 
+                                }
+                                else
+                                {
+                                    let key5=this.allData[m].node_name;
+                                    obj[key5]=this.allData[m].node_value;
+                                }
+                            }
+                        }
+                        for (let n = this.allData.length-1; n >0; n--) {
+                             for (let a =this.allData.length-1; a >=0; a--) {
+
+                                    if (this.allData[a].node_id === this.allData[n].parent) {
+
+                                        let temp_value = parseFloat(this.allData[n].node_value);
+                                        let temp_weight = parseFloat(this.allData[n].weight);
+                                        let temp = parseFloat(this.allData[a].node_value);
+                                        temp += temp_weight * temp_value;
+                                        this.allData[a].node_value = temp;
+
+                                     }
+                             }
+
+                         }
+
+                         for(let l=0;l<this.allData.length;l++)
+                             if(this.allData[l].parent===0){
+                                  let key1="root";
+                                 obj[key1]=this.allData[l].node_value;
+                             }
+                        this.plan.push(obj);
+                        y++;
+                        for(let d=0;d<this.allData.length;d++)
+                            for(let r=0;r<this.tableData.length;r++)
+                            {
+                                if(this.allData[d].node_id!==this.tableData[r].node_id)
+                                    this.allData[d].node_value=0;
+                            }
+                        let tempValue=parseFloat(this.nodeIsSelected[i].tempValue);
+                        let long=parseFloat(this.nodeIsSelected[i].long);
+                        this.nodeIsSelected[i].tempValue=tempValue+long;
                     }
-                    this.source[0].data.push({
-                        name: m.toString(),
-                        value: sum.toString()
+                    else{
+                        this.nodeIsSelected[i].tempValue=this.nodeIsSelected[i].begin;
+                        i++;
+                        if(i<length)
+                        {
+                            this.nodeIsSelected[i].tempValue=parseFloat(this.nodeIsSelected[i].tempValue)+parseFloat(this.nodeIsSelected[i].long);
+
+                        }
+                    }
+                }
+                this.plan1=[];
+                for(let x=0;x<this.tableData.length;x++)
+                {
+                    this.plan1.push({
+                        dataItem:this.tableData[x].node_name,
+                        dataName:this.tableData[x].node_name,
                     })
                 }
-            }
+                this.plan1.push({
+                    dataItem:'root',
+                    dataName:'root',
+                })
+                this.source[0].data=[];
+                for(let g=0;g<this.plan.length;g++)
+                {
+                    this.source[0].data.push({
+                        name:this.plan[g].id,
+                        value:this.plan[g].root
+                    })
+                }
+            },
         },
         mounted(){
             this.listTaskid();
