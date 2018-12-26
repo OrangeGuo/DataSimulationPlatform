@@ -242,9 +242,12 @@
             this.taskId = parseInt(localStorage.getItem('task-id'));
             if (this.taskId > 0) {
                 this.loadNodesAndEdges();
+                this.taskName=localStorage.getItem('task-name');
+
             } else {
                 this.$message.warning("请选择任务");
             }
+
         },
         components: {
             ...Step,
