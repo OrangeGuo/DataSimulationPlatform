@@ -137,10 +137,6 @@
             }
         },
         methods: {
-            openIndexConfig(row) {
-                localStorage.setItem('task-id', row.id);
-                this.$router.push('./IndexConfig')
-            },
             openModule(row){
                 localStorage.setItem('task-id', row.id);
                 localStorage.setItem('task-name',row.taskName);

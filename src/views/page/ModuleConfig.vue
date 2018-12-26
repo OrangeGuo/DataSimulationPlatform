@@ -4,8 +4,17 @@
 
         <div class="mainContent">
             <div class="nav">
+                <el-dropdown @command="handleCommand">
+                <span class="el-dropdown-link">
+                    {{taskName}}<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item v-for="item in tasks" :command="item.value">{{item.text}}
+                        </el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
                 <div class="nodes_bus">
-                    <p>{{taskName}}</p>
+
                     <el-button style="Float: left;height:40px;width: 120px" type="primary" @click="dragIt('新建节点')"
                                icon="el-icon-plus">新建节点
                     </el-button>
@@ -37,8 +46,9 @@
         }),
         data() {
             return {
+                taskName: '选择任务',
+                tasks: [],
                 taskId: 0,
-                taskName: "新建任务",
                 tap: tap,
                 dragBus: false,
                 busValue: {
@@ -56,6 +66,29 @@
                     i - n === 0 ? (item.sel = true) : (item.sel = false);
                 });
                 this.tap = JSON.parse(JSON.stringify(this.tap));
+            },
+            handleCommand(command) {
+                for (let i = 0; i < this.tasks.length; i++) {
+                    if (command === this.tasks[i].value) {
+                        this.taskName = this.tasks[i].text;
+                        break;
+                    }
+                }
+                this.taskId = parseInt(command);
+                this.loadNodesAndEdges();
+            },
+            listTask() {
+                const self = this;
+                self.$axios.post('/api/task/listTask').then((res) => {
+                    self.tasks = [];
+                    res.data.some(item => {
+                        self.tasks.push({
+                            text: item.taskName,
+                            value: item.id.toString(),
+                        });
+                    });
+                });
+
             },
             save() {
                 if (this.DataAll.nodes.length !== this.DataAll.edges.length + 1) {
@@ -84,6 +117,20 @@
             loadNodesAndEdges() {
                 let nodes = [];
                 this.DataAll.edges = [];
+                this.DataAll.nodes = [
+                    {
+                        taskId: 0,
+                        name: "root",
+                        id: 1,
+                        parent: 0,
+                        pos_x: 504,
+                        pos_y: 62,
+                        type: 'constant',
+                        in_ports: [0],
+                        out_ports: [0],
+                        degree: 0
+                    }
+                ];
                 let self = this;
                 this.$axios.post('/api/node/listNodes', {taskId: self.taskId}).then((res) => {
                     res.data.some(item => {
@@ -183,7 +230,6 @@
                 }
                 window.sessionStorage["dragDes"] = null;
                 this.dragBus = false;
-                console.log(this.DataAll.nodes);
             }
         },
         mounted() {
@@ -191,11 +237,13 @@
                 const i = window.sessionStorage.step;
                 this.selStep(i);
             }
-            sessionStorage['svgScale'] = 1
-            this.taskId = localStorage.getItem('task-id');
+            sessionStorage['svgScale'] = 1;
+            this.listTask();
+            this.taskId = parseInt(localStorage.getItem('task-id'));
             if (this.taskId > 0) {
-                this.taskName = localStorage.getItem('task-name');
                 this.loadNodesAndEdges();
+            } else {
+                this.$message.warning("请选择任务");
             }
         },
         components: {

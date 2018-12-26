@@ -67,6 +67,7 @@
                     this.$message.success("登录成功!");
                     localStorage.setItem('user-name', self.userInfo.username);
                     localStorage.setItem('user-pwd', self.userInfo.userpwd);
+                    localStorage.setItem('task-id', '0');
                     this.$router.push('./page');
                 } else {
                     this.$message.warning("账号或者密码有误");
@@ -153,8 +154,8 @@
         position: relative;
         width: 100%;
         height: 100%;
-        //background-color: #324157;
-        background:url("/static/img/dataFlow.jpg");
+    / / background-color: #324157;
+        background: url("/static/img/dataFlow.jpg");
         background-size: contain;
 
     }
