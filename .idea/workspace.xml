@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8797ff6f-2f30-4979-98f8-5aed594d5083" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/page/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/page/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/page/ModuleConfig.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/page/ModuleConfig.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/page/TaskManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/page/TaskManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/page/SensAnalyse.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/page/SensAnalyse.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,74 +53,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/store/modules/dagStore.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="20" lean-forward="true" selection-start-line="4" selection-end-line="13" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="140" column="13" selection-start-line="140" selection-end-line="140" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/page/Login.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="69" column="54" selection-start-line="69" selection-start-column="54" selection-end-line="69" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/views/page/ModuleConfig.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-721">
-              <caret line="87" column="21" selection-start-line="87" selection-start-column="21" selection-end-line="87" selection-end-column="21" />
-              <folding>
-                <element signature="n#style#0;n#el-button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-button#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-button#2;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#1630#1673#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/api/nodeApi.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-770">
-              <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/page/SensAnalyse.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="163" column="29" lean-forward="true" selection-start-line="163" selection-start-column="29" selection-end-line="163" selection-end-column="29" />
+            <state relative-caret-position="116">
+              <caret line="243" column="37" lean-forward="true" selection-start-line="243" selection-start-column="37" selection-end-line="243" selection-end-column="37" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/nodes">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -159,6 +97,7 @@
       <find>testUser</find>
       <find>myID</find>
       <find>taskName</find>
+      <find>walkLong</find>
     </findStrings>
     <replaceStrings>
       <replace>againpwd</replace>
@@ -206,7 +145,6 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/components/HomePage.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
-        <option value="$PROJECT_DIR$/src/views/page/SensAnalyse.vue" />
         <option value="$PROJECT_DIR$/src/router/index.js" />
         <option value="$PROJECT_DIR$/src/views/DAG/Step8/control.vue" />
         <option value="$PROJECT_DIR$/src/views/page/IndexConfig.vue" />
@@ -216,14 +154,15 @@
         <option value="$PROJECT_DIR$/config/index.js" />
         <option value="$PROJECT_DIR$/src/components/page/Head.vue" />
         <option value="$PROJECT_DIR$/src/views/page/Register.vue" />
-        <option value="$PROJECT_DIR$/src/store/modules/dagStore.js" />
         <option value="$PROJECT_DIR$/server/sqlMap.js" />
         <option value="$PROJECT_DIR$/server/api/nodeApi.js" />
         <option value="$PROJECT_DIR$/src/views/page/IndexBinding.vue" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/src/views/page/TaskManage.vue" />
         <option value="$PROJECT_DIR$/src/views/page/Login.vue" />
+        <option value="$PROJECT_DIR$/src/store/modules/dagStore.js" />
         <option value="$PROJECT_DIR$/src/views/page/ModuleConfig.vue" />
+        <option value="$PROJECT_DIR$/src/views/page/SensAnalyse.vue" />
       </list>
     </option>
   </component>
@@ -443,7 +382,8 @@
       <workItem from="1545378500989" duration="1875000" />
       <workItem from="1545388281092" duration="3145000" />
       <workItem from="1545706604360" duration="728000" />
-      <workItem from="1545814440257" duration="2334000" />
+      <workItem from="1545814440257" duration="3730000" />
+      <workItem from="1545832691165" duration="1521000" />
     </task>
     <task id="LOCAL-00001" summary="切换到腾讯云数据库">
       <created>1542879818546</created>
@@ -774,11 +714,25 @@
       <option name="project" value="LOCAL" />
       <updated>1545392398346</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="模型配置界面增加任务选择下拉框以及修复若干bug">
+      <created>1545816870270</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1545816870270</updated>
+    </task>
+    <task id="LOCAL-00049" summary="优化任务管理到模型配置的跳转效果">
+      <created>1545817746402</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1545817746402</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147492000" />
+    <option name="totallyTimeSpent" value="150409000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -792,7 +746,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49716714" visible="true" weight="0.11863271" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49716714" visible="true" weight="0.20107238" />
       <window_info id="Structure" order="1" sideWeight="0.5028329" side_tool="true" weight="0.2351387" />
       <window_info id="Favorites" order="2" sideWeight="0.5028329" side_tool="true" weight="0.2351387" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -806,7 +760,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32719547" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.6018767" side_tool="true" weight="0.24220963" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.39812332" visible="true" weight="0.16147308" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.39812332" visible="true" weight="0.16005665" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32892805" />
       <window_info anchor="bottom" id="Messages" order="14" />
@@ -898,8 +852,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="模型配置界面修改" />
-    <MESSAGE value="保存模型增加合法判断" />
     <MESSAGE value="灵敏度分析" />
     <MESSAGE value="修复导航栏显示突出的bug" />
     <MESSAGE value="导航栏增加 数据绑定" />
@@ -923,7 +875,9 @@
     <MESSAGE value="node表增加weight项及相关DAO操作修改" />
     <MESSAGE value="任务管理界面双击跳转模型配置（单击与编辑任务冲突）；数据绑定：非叶子节点不可修改，修改后立即同步到datalist" />
     <MESSAGE value="导入数据合法后保存到数据库" />
-    <option name="LAST_COMMIT_MESSAGE" value="导入数据合法后保存到数据库" />
+    <MESSAGE value="模型配置界面增加任务选择下拉框以及修复若干bug" />
+    <MESSAGE value="优化任务管理到模型配置的跳转效果" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化任务管理到模型配置的跳转效果" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/views/page/empty.vue">
@@ -1074,23 +1028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/IndexBinding.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="421" column="5" selection-start-line="421" selection-start-column="5" selection-end-line="421" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/SensAnalyse.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="163" column="29" lean-forward="true" selection-start-line="163" selection-start-column="29" selection-end-line="163" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://92036814-299a-4d55-a384-89dbfe209d31/schema/dap/table/tasks">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1098,31 +1035,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/modules/dagStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2098">
+          <caret line="17" column="10" lean-forward="true" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/page/Login.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
+        <state relative-caret-position="-59">
           <caret line="69" column="54" selection-start-line="69" selection-start-column="54" selection-end-line="69" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/page/ModuleConfig.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="244" column="29" selection-start-line="244" selection-start-column="21" selection-end-line="244" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#el-button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-button#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-button#2;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#1630#1673#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/api/nodeApi.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-770">
+        <state relative-caret-position="22">
           <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="140" column="13" selection-start-line="140" selection-end-line="140" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/modules/dagStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="20" lean-forward="true" selection-start-line="4" selection-end-line="13" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1133,15 +1076,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/page/ModuleConfig.vue">
+    <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-721">
-          <caret line="87" column="21" selection-start-line="87" selection-start-column="21" selection-end-line="87" selection-end-column="21" />
+        <state relative-caret-position="88">
+          <caret line="141" column="45" selection-start-line="141" selection-start-column="37" selection-end-line="141" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/page/IndexBinding.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="203" column="12" selection-start-line="203" selection-start-column="12" selection-end-line="203" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/page/SensAnalyse.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="243" column="37" lean-forward="true" selection-start-line="243" selection-start-column="37" selection-end-line="243" selection-end-column="37" />
           <folding>
-            <element signature="n#style#0;n#el-button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-button#1;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-button#2;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#1630#1673#0" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
