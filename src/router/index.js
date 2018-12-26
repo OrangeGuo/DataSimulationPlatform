@@ -5,7 +5,6 @@ import Router from 'vue-router';
 import Login from '../views/page/Login';	//登录页
 import Register from '../views/page/Register';
 import TaskManage from '../views/page/TaskManage';
-import IndexConfig from '../views/page/IndexConfig';
 import SensAnalyse from '../views/page/SensAnalyse';
 import ModuleConfig from '../views/page/ModuleConfig';
 import IndexBinding from '../views/page/IndexBinding'
@@ -40,10 +39,6 @@ export default new Router({
                 {
                     path: 'taskManage',
                     component: TaskManage
-                },
-                {
-                    path: 'indexConfig',
-                    component: IndexConfig
                 },
                 {
                     path: 'sensAnalyse',

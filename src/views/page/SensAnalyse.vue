@@ -9,10 +9,6 @@
                     <el-dropdown-item v-for="item in tasks" :command="item.value" >{{item.text}}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-            <el-input style="Float: left;height:50px;width: 500px;" float="left" placeholder="请输入关键字"
-                      clearable></el-input>
-            <el-button style="Float: left;height:40px;" type="primary" @click="listModules" icon="el-icon-search">搜索
-            </el-button>
             <el-button style="Float: left;height:40px;" type="primary" @click="startAnalyse" >灵敏度分析
             </el-button>
         </div>
@@ -28,7 +24,7 @@
             <el-table-column
                 prop="node_name"
                 label="结点名称"
-                width="200">
+                width="150">
                 <template slot-scope="scope">
                         <div slot="reference" class="name-wrapper">
                             <el-tag size="medium">{{ scope.row.node_name }}</el-tag>
@@ -39,7 +35,7 @@
             <el-table-column
                 prop="range"
                 label="变化范围"
-                width="200">
+                width="150">
                 <template slot-scope="scope">
                     <span style="margin-left: 10px">{{ scope.row.range }}</span>
                 </template>
@@ -47,9 +43,17 @@
             <el-table-column
                 prop="long"
                 label="步长"
-                width="200">
+                width="150">
                 <template slot-scope="scope">
                     <span style="margin-left: 10px">{{ scope.row.long }}</span>
+                </template>
+            </el-table-column>
+             <el-table-column
+                label="操作"
+                width="150">
+                <template slot-scope="scope">
+                    <el-button icon="el-icon-delete" @click="clearItem(scope.$index)" type="danger"
+                               size="small"></el-button>
                 </template>
             </el-table-column>
          </el-table>
@@ -188,11 +192,25 @@
                     }
                 })
             },
+            clearItem(index){
+                this.tableData[index].range="";
+                this.tableData[index].long="";
+                for(let i=0;i<this.nodeIsSelected.length;i++)
+                {
+                    if(this.nodeIsSelected[i].node_id===this.tableData[index].node_id)
+                        this.nodeIsSelected.splice(i,1);
+                }
+            },
             openDiag(row){
                 this.dialogUpdateForm=true;
                 localStorage.setItem('nodeId', row.node_id);
             },
             showChange(){
+                if(this.form.begin===''||this.form.end===''||this.form.end==='')
+                {
+                    this.$message.warning("输入框不能为空");
+                    return;
+                }
                 let id=parseInt(localStorage.getItem("nodeId"));
                 let i=0;
                 for(i=0;i<this.tableData.length;i++)
@@ -202,22 +220,52 @@
                 this.tableData[i].long=this.form.walkLong;
                 this.dialogUpdateForm=false;
                 const self=this;
-                this.nodeIsSelected.push({
-                    node_id:self.tableData[i].node_id,
-                    node_name:self.tableData[i].node_name,
-                    begin:self.form.begin,
-                    end:self.form.end,
-                    tempValue:self.form.begin,
-                    long:self.form.walkLong
-                });
+                let flag=false;
+                let j=0;
+                for(j=0;j<this.nodeIsSelected.length;j++)
+                {
+                    if(this.nodeIsSelected[j].node_id===id)
+                    {
+                        flag=true;
+                    }
+                }
+                if(flag===false) {
+                    this.nodeIsSelected.push({
+                        node_id: self.tableData[i].node_id,
+                        node_name: self.tableData[i].node_name,
+                        begin: self.form.begin,
+                        end: self.form.end,
+                        tempValue: self.form.begin,
+                        long: self.form.walkLong
+                    });
+                }
+                else{
+                    this.nodeIsSelected[j].begin=this.form.begin;
+                    this.nodeIsSelected[j].end=this.form.end;
+                    this.nodeIsSelected[j].long=this.form.walkLong;
+                    this.nodeIsSelected[j].tempValue=this.form.begin;
+                }
                 this.form={};
             },
             startAnalyse(){
+                if(this.tableData.length===0) {
+                    this.$message.warning("请先选择任务模型");
+                    return;
+                }
+                if(this.nodeIsSelected.length===0){
+                    this.$message.warning("请先为结点确定一个变换范围(双击对应结点)");
+                    return ;
+                }
                 let i=0;
                 let length=this.nodeIsSelected.length;
                 this.plan=[];
                 let y=1;
                 this.dropVisible=true;
+                for(i=0;i<this.nodeIsSelected.length;i++)
+                {
+                    this.nodeIsSelected[i].tempValue=this.nodeIsSelected[i].begin;
+                }
+                i=0;
                 while(parseFloat(this.nodeIsSelected[length-1].tempValue)<parseFloat(this.nodeIsSelected[length-1].end))
                 {
                     if(parseFloat(this.nodeIsSelected[i].tempValue)<parseFloat(this.nodeIsSelected[i].end))
@@ -259,7 +307,6 @@
                              }
 
                          }
-
                          for(let l=0;l<this.allData.length;l++)
                              if(this.allData[l].parent===0){
                                   let key1="root";
