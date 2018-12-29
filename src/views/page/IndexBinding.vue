@@ -115,24 +115,15 @@
                 alogrim: [{
                     text: "AHP",
                     value: "1",
-                }, {
-                    text: "ADC",
-                    value: "2",
-                }],
+                }, ],
                 tempModuleId: '',
                 formLabelWidth: "120px",
                 source: [{
                     canvasId: "bar",
                     name: "柱状图",
                     data: [{
-                        name: "结点一",
-                        value: 20,
-                    }, {
-                        name: "结点二",
-                        value: 25,
-                    }, {
-                        name: "结点三",
-                        value: 31,
+                        name: "",
+                        value: 0,
                     }],
                     options: {
                         title: "分析结果",

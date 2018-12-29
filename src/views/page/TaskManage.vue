@@ -4,20 +4,17 @@
         <div style="height: 50px;margin-left: 250px" >
 
             <el-input style="Float: left;height:50px;width: 500px;" float="left" placeholder="请输入关键字"
-                      clearable></el-input>
-            <el-button style="Float: left;height:40px;" type="primary" @click="" icon="el-icon-search">搜索
+                      clearable v-model="input"></el-input>
+            <el-button style="Float: left;height:40px;" type="primary" @click="searchTask" icon="el-icon-search">搜索
             </el-button>
             <el-button style="Float: left;height:40px;" type="primary" @click="dialogAddForm = true"
                        icon="el-icon-plus">新建
-            </el-button>
-            <el-button style="Float: left;height:40px;" type="primary" @click=""
-                       icon="el-icon-upload">保存
             </el-button>
         </div>
         <div style="margin-left: 250px">
         <el-table
             :data="tableData"
-            height="250"
+            height="600"
             
             stripe
             border
@@ -106,6 +103,8 @@
         name: "TaskManage",
         data() {
             return {
+                input:'',
+                allData:[],
                 flag: 0,
                 id: 1,
                 defaultProps: {
@@ -142,6 +141,14 @@
                 localStorage.setItem('task-name',row.taskName);
                 this.$router.push('./ModuleConfig')
             },
+            searchTask(){
+                this.tableData=[];
+                for(let i=0;i<this.allData.length;i++)
+                {
+                    if(this.allData[i].taskName.indexOf(this.input)!==-1)
+                        this.tableData.push(this.allData[i]);
+                }
+            },
             newTask() {
                 const self = this;
                 let taskName = this.form.taskName;
@@ -168,6 +175,7 @@
                         detail: detail,
                         id: temp
                     }, {}).then((response) => {
+                        self.$message.info("新建任务成功");
                         self.listTask();
                     })
                 }
@@ -200,6 +208,8 @@
                             id: item.id
                         });
                     });
+                }).then(()=>{
+                    self.allData=self.tableData;
                 });
             },
             deleteItem(index) {
@@ -209,6 +219,7 @@
                 }, {}).then((response) => {
                     let taskId=self.tableData[index].id;
                     self.tableData.splice(index, 1);
+                    self.$message.info("删除成功");
                     self.$axios.post('/api/node/deleteNodes',{taskId:taskId},{});
                     self.$axios.post('/api/edge/deleteEdges',{taskId:taskId},{});
                 })
@@ -238,6 +249,7 @@
                     detail: self.tableData[id].detail,
                     id: parseInt(self.tableData[id].id)
                 }, {}).then((response) => {
+                    self.$message.info("修改成功");
                     self.listTask();
                 })
             },
