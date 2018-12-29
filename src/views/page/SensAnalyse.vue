@@ -202,6 +202,9 @@
             },
             openDiag(row) {
                 this.dialogUpdateForm = true;
+                this.form.begin='';
+                this.form.end='';
+                this.form.step='';
                 localStorage.setItem('nodeId', row.node_id);
             },
             checkInput() {
@@ -251,6 +254,7 @@
                 return true;
             },
             showChange() {
+
                 if (this.form.begin === '' || this.form.end === '' || this.form.step === '') {
                     this.$message.warning("输入框不能为空");
                     return;
@@ -272,6 +276,7 @@
                 for (j = 0; j < this.nodeIsSelected.length; j++) {
                     if (this.nodeIsSelected[j].node_id === id) {
                         flag = true;
+                        break;
                     }
                 }
                 if (flag === false) {
@@ -289,7 +294,7 @@
                     this.nodeIsSelected[j].long = this.form.step;
                     this.nodeIsSelected[j].tempValue = this.form.begin;
                 }
-                this.form = {};
+
             },
             startAnalyse() {
                 if (this.tableData.length === 0) {
@@ -365,6 +370,10 @@
                             this.nodeIsSelected[i].tempValue = parseFloat(this.nodeIsSelected[i].tempValue) + parseFloat(this.nodeIsSelected[i].long);
 
                         }
+                    }
+                    if(this.plan.length>=50) {
+                        this.$message.warning("方案过多，只显示前50组方案");
+                        break;
                     }
                 }
                 this.plan1 = [];
