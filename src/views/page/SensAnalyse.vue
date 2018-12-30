@@ -3,12 +3,22 @@
         <div style="height: 50px">
             <el-dropdown @command="handleCommand">
                 <span class="el-dropdown-link">
-                    下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+                    {{title}}<i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item v-for="item in tasks" :command="item.value">{{item.text}}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
+            <el-dropdown @command="handleCommand1">
+                <span class="el-dropdown-link">
+                    {{title1}}<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item v-for="item in alogrim" :command="item.value">{{item.text}}</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+            <input style="margin-left: 20px" type="file" @change="importf1(this)"
+                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
             <el-button style="Float: left;height:40px;" type="primary" @click="startAnalyse">灵敏度分析
             </el-button>
         </div>
@@ -120,6 +130,9 @@
     export default {
         data() {
             return {
+                title:'选择任务模型',
+                title1:'选择算法',
+                datalist:[],
                 dialogUpdateForm: false,
                 dropVisible: false,
                 formLabelWidth: '120px',
@@ -130,6 +143,10 @@
                 },
                 tasks: [],
                 allData: [],
+                 alogrim: [{
+                    text: "AHP",
+                    value: "1",
+                }, ],
                 tableData: [],
                 plan: [],
                 plan1: [],
@@ -153,6 +170,154 @@
             }
         },
         methods: {
+            importf1(obj) {
+
+                let _this = this;
+
+                let inputDOM = this.$refs.inputer;   // 通过DOM取文件数据
+
+                this.file = event.currentTarget.files[0];
+
+                let rABS = false; //是否将文件读取为二进制字符串
+
+                let f = this.file;
+
+                let reader = new FileReader();
+
+                const self = this;
+                //if (!FileReader.prototype.readAsBinaryString) {
+
+                FileReader.prototype.readAsBinaryString = function (f) {
+
+                    let binary = "";
+
+                    let rABS = false; //是否将文件读取为二进制字符串
+
+                    let pt = this;
+
+                    let wb; //读取完成的数据
+
+                    let outdata;
+
+                    let reader = new FileReader();
+
+                    reader.onload = function (e) {
+
+                        let bytes = new Uint8Array(reader.result);
+
+                        let length = bytes.byteLength;
+
+                        for (let i = 0; i < length; i++) {
+
+                            binary += String.fromCharCode(bytes[i]);
+
+                        }
+
+                        let XLSX = require('xlsx');
+
+                        if (rABS) {
+
+                            wb = XLSX.read(btoa(fixdata(binary)), { //手动转化
+
+                                type: 'base64'
+
+                            });
+
+                        } else {
+
+                            wb = XLSX.read(binary, {
+
+                                type: 'binary'
+
+                            });
+
+                        }
+
+                        // outdata就是你想要的东西 excel导入的数据
+
+                        outdata = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+
+                        // excel 数据再处理
+
+                        let arr = [];
+
+                        outdata.map(v => {
+
+                            let obj = {};
+
+                            obj.id = v.id;
+
+                            obj.value = v.value;
+
+                            obj.parentID = v.parent;
+
+                            obj.weight = v.weight;
+
+                            obj.name = v.name;
+
+                            obj.taskId = _this.tempTask;
+                            arr.push(obj)
+
+                        });
+
+                        _this.accountList = [...arr];
+                        self.datalist = _this.accountList;
+
+                        if (self.datalist[0].id == null) {
+                            console.log("wrong");
+                        }
+
+                        let flag = false;
+                        for (let i = 0; i < self.allData.length; i++) {
+                            for (let y = 0; y < self.datalist.length; y++) {
+
+                                if (self.allData[i].node_id === self.datalist[y].id) {
+
+                                    if (self.allData[i].parent === self.datalist[y].parentID) {
+                                        flag = true;
+
+                                    } else {
+                                        flag = false;
+                                        self.$message.warning("导入数据与模型不匹配");
+                                        return;
+
+                                    }
+                                }
+
+                            }
+
+
+                        }
+                        if (flag === true) {
+                            for (let i = 0; i < self.datalist.length; i++) {
+                                self.allData[i].node_value = self.datalist[i].value;
+                                self.allData[i].node_name = self.datalist[i].name;
+                            }
+                            this.saveData();
+                        }
+
+
+                    };
+
+                    reader.readAsArrayBuffer(f);
+
+                };
+
+                if (rABS) {
+
+                    reader.readAsArrayBuffer(f);
+
+                } else {
+
+                    reader.readAsBinaryString(f);
+
+                }
+
+
+            },
+            saveData(){
+
+            },
             listTaskid() {
                 const self = this;
                 self.$axios.post('/api/task/listTask').then((res) => {
@@ -166,7 +331,19 @@
                 });
             },
             handleCommand(command) {
+                let i = 0;
+                for (i = 0; i < this.tasks.length; i++)
+                    if (this.tasks[i].value === command)
+                        break;
+                this.title = this.tasks[i].text;
                 this.listModules(command);
+            },
+            handleCommand1(command) {
+                let i = 0;
+                for (i = 0; i < this.alogrim.length; i++)
+                    if (this.alogrim[i].value === command)
+                        break;
+                this.title1 = this.alogrim[i].text;
             },
             listModules(taskid) {
                 const self = this;
@@ -296,6 +473,23 @@
                 }
 
             },
+            calAHP(){
+                for(let i=0;i<this.plan.length;i++)
+                {
+                    for(let t=0;t<this.allData.length;t++)
+                        this.allData[t].node_value=0;
+                    for(let j=0;j<this.tableData.length;j++)
+                    {
+                        this.tableData[j].node_value=this.plan[i][this.tableData[j].node_name];
+                    }
+
+                    for(let x=0;x<this.allData.length;x++)
+                        if(this.allData[x].parent===0)
+                        {
+                            this.plan[i].root=this.allData[x].node_value;
+                        }
+                }
+            },
             startAnalyse() {
                 if (this.tableData.length === 0) {
                     this.$message.warning("请先选择任务模型");
@@ -333,33 +527,10 @@
                                 }
                             }
                         }
-                        for (let n = this.allData.length - 1; n > 0; n--) {
-                            for (let a = this.allData.length - 1; a >= 0; a--) {
-
-                                if (this.allData[a].node_id === this.allData[n].parent) {
-
-                                    let temp_value = parseFloat(this.allData[n].node_value);
-                                    let temp_weight = parseFloat(this.allData[n].weight);
-                                    let temp = parseFloat(this.allData[a].node_value);
-                                    temp += temp_weight * temp_value;
-                                    this.allData[a].node_value = temp;
-
-                                }
-                            }
-
-                        }
-                        for (let l = 0; l < this.allData.length; l++)
-                            if (this.allData[l].parent === 0) {
-                                let key1 = "root";
-                                obj[key1] = this.allData[l].node_value;
-                            }
+                        let key1 = "root";
+                        obj[key1] = 0;
                         this.plan.push(obj);
                         y++;
-                        for (let d = 0; d < this.allData.length; d++)
-                            for (let r = 0; r < this.tableData.length; r++) {
-                                if (this.allData[d].node_id !== this.tableData[r].node_id)
-                                    this.allData[d].node_value = 0;
-                            }
                         let tempValue = parseFloat(this.nodeIsSelected[i].tempValue);
                         let long = parseFloat(this.nodeIsSelected[i].long);
                         this.nodeIsSelected[i].tempValue = tempValue + long;
@@ -376,6 +547,7 @@
                         break;
                     }
                 }
+                this.calAHP();
                 this.plan1 = [];
                 for (let x = 0; x < this.tableData.length; x++) {
                     this.plan1.push({
