@@ -93,7 +93,8 @@
             return {
                 tasks: [],
                 datalist: [],
-
+                weight:[],
+               Threat:[],
                 form: {
                     node_name: '',
                     node_value: '',
@@ -349,7 +350,7 @@
                                 self.tableData[i].node_value = self.datalist[i].value;
                                 self.tableData[i].node_name = self.datalist[i].name;
                             }
-                            this.saveData();
+                            self.saveData();
                         }
 
 
@@ -371,17 +372,45 @@
 
 
             },
+             AHPweight()
+            {
+                let self = this;
+                let threat = 0;
+                let spaceThreat = 0;
+                let emThreat = 0;
+                let targetThreat  = 0;
+                for(let i = 0; i< self.datalist.length;i++)
+                {
+                    threat += self.datalist[i].threat;
+                    spaceThreat += self.datalist[i].spaceThreat;
+                    emThreat += self.datalist[i].emThreat;
+                    targetThreat += self.datalist[i].targetThrest;
+                }
+                for(let i = 0; i< self.datalist.length;i++)
+                {
+                    self.datalist[i].threat = self.datalist[i].threat/threat;
+                    self.datalist[i].spaceThreat = self.datalist[i].spaceThreat/spaceThreat;
+                    self.datalist[i].emThreat = self.datalist[i].emThreat/emThreat;
+                    self.datalist[i].targetThrest = self.datalist[i].targetThrest/targetThreat;
+                }
+                for(let i = 0; i< self.datalist.length;i++)
+                {
+                    let temp = self.datalist[i].threat+self.datalist[i].spaceThreat+self.datalist[i].emThreat+self.datalist[i].targetThrest;
+                    self.weight.push({tweight:temp/4});
+
+                }
+            },
             AHP() {
                 let self = this;
 
-
+                self.AHPweight();
                 for (let i = 1; i < self.datalist.length; i++) {
                     for (let y = 0; y < self.datalist.length; y++) {
 
                         if (self.datalist[y].id === self.datalist[i].parentID) {
 
                             let temp_value = parseFloat(self.datalist[i].value);
-                            let temp_weight = parseFloat(self.datalist[i].weight);
+                            let temp_weight = parseFloat(self.weight[i].tweight);
                             let temp = parseFloat(self.datalist[y].value);
                             temp += temp_weight * temp_value;
                             self.datalist[y].value = temp;
