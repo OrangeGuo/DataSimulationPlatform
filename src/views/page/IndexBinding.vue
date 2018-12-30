@@ -24,13 +24,6 @@
             </el-button>
         </div>
         <div id="wrap">
-            <div class="chart-show">
-                <div class="chart-item" v-for="item in source">
-                    <div class="chart-item-title" v-cloak>{{ item.name }}</div>
-                    <schart :canvasId="item.canvasId" :type="item.canvasId" :data="item.data" width="600" height="600"
-                            :options="item.options"></schart>
-                </div>
-            </div>
             <el-table
                 :data="tableData"
                 @row-dblclick="openDiag"

@@ -217,6 +217,10 @@
         background-color: #289699;
         line-height: 178px;
         text-align: center;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 89px;
+        display: block;
     }
 
     .avatar {
@@ -232,7 +236,7 @@
         position: relative;
         width: 100%;
         height: 100%;
-        //background-color: #324157;
+    / / background-color: #324157;
         background: url("/static/img/dataFlow.jpg");
         background-size: contain;
     }
