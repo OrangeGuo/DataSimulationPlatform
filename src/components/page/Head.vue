@@ -23,9 +23,6 @@
                 <el-menu-item index="/page/TaskManage">
                     任务管理
                 </el-menu-item>
-                <!--<el-menu-item index="/page/IndexConfig" >
-                    指标配置
-                </el-menu-item>-->
                 <el-menu-item index="/page/SensAnalyse">
                     灵敏度分析
                 </el-menu-item>
@@ -34,6 +31,9 @@
                 </el-menu-item>
                 <el-menu-item index="/page/IndexBinding">
                     数据绑定
+                </el-menu-item>
+                <el-menu-item index="/page/ResultShow" >
+                    结果展示
                 </el-menu-item>
 			</el-menu>
 		</div>

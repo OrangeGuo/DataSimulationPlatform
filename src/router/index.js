@@ -8,6 +8,7 @@ import TaskManage from '../views/page/TaskManage';
 import SensAnalyse from '../views/page/SensAnalyse';
 import ModuleConfig from '../views/page/ModuleConfig';
 import IndexBinding from '../views/page/IndexBinding'
+import ResultShow from '../views/page/ResultShow'
 import Page from '../components/page/Page';	//主页面模板
 import Readme from '../views/page/Readme';	//了解系统
 import ResetPwd from '../views/page/ResetPwd';//重置密码
@@ -64,7 +65,10 @@ export default new Router({
                     path: 'personalCenter',
                     component: PersonalCenter
                 },
-
+                {
+                    path: 'resultShow',
+                    component: ResultShow
+                }
             ]
         }
     ]

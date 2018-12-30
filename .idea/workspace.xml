@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8797ff6f-2f30-4979-98f8-5aed594d5083" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/views/page/ResultShow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/Head.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/Head.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/page/TaskManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/page/TaskManage.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,11 +50,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="189" column="46" lean-forward="true" selection-start-line="189" selection-start-column="46" selection-end-line="189" selection-end-column="46" />
+            <state relative-caret-position="4202">
+              <caret line="191" column="48" selection-start-line="191" selection-start-column="48" selection-end-line="191" selection-end-column="48" />
               <folding>
                 <element signature="n#style#0;n#el-button#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#el-button#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -59,6 +63,37 @@
                 <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#1;n#el-table#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#2;n#el-table#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/page/ResultShow.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/router/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+                <element signature="e#118#164#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/page/Head.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="295">
+              <caret line="34" column="53" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -77,8 +112,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Single File Component" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -152,14 +187,12 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/components/HomePage.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
-        <option value="$PROJECT_DIR$/src/router/index.js" />
         <option value="$PROJECT_DIR$/src/views/DAG/Step8/control.vue" />
         <option value="$PROJECT_DIR$/src/views/page/IndexConfig.vue" />
         <option value="$PROJECT_DIR$/server/index.js" />
         <option value="$PROJECT_DIR$/server/api/userApi.js" />
         <option value="$PROJECT_DIR$/server/api/imgApi.js" />
         <option value="$PROJECT_DIR$/config/index.js" />
-        <option value="$PROJECT_DIR$/src/components/page/Head.vue" />
         <option value="$PROJECT_DIR$/server/sqlMap.js" />
         <option value="$PROJECT_DIR$/server/api/nodeApi.js" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
@@ -170,6 +203,9 @@
         <option value="$PROJECT_DIR$/src/views/page/Register.vue" />
         <option value="$PROJECT_DIR$/src/views/page/IndexBinding.vue" />
         <option value="$PROJECT_DIR$/src/views/page/TaskManage.vue" />
+        <option value="$PROJECT_DIR$/src/views/page/ResultShow.vue" />
+        <option value="$PROJECT_DIR$/src/router/index.js" />
+        <option value="$PROJECT_DIR$/src/components/page/Head.vue" />
       </list>
     </option>
   </component>
@@ -193,11 +229,6 @@
             <path>
               <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
@@ -232,35 +263,13 @@
               <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="router" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="DAG" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="DAG" type="462c0819:PsiDirectoryNode" />
-              <item name="Step8" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
@@ -273,12 +282,6 @@
               <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webstormProject" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="webstormProject" type="b2602c69:ProjectViewProjectNode" />
@@ -391,14 +394,7 @@
       <workItem from="1545706604360" duration="728000" />
       <workItem from="1545814440257" duration="3730000" />
       <workItem from="1545832691165" duration="1521000" />
-      <workItem from="1546155987152" duration="309000" />
-    </task>
-    <task id="LOCAL-00001" summary="切换到腾讯云数据库">
-      <created>1542879818546</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1542879818546</updated>
+      <workItem from="1546155987152" duration="1444000" />
     </task>
     <task id="LOCAL-00002" summary="修正坐标">
       <created>1542969406633</created>
@@ -736,11 +732,18 @@
       <option name="project" value="LOCAL" />
       <updated>1545817746402</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="任务管理界面 创建时间显示优化">
+      <created>1546156347546</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1546156347546</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155051000" />
+    <option name="totallyTimeSpent" value="156186000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -755,7 +758,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49716714" visible="true" weight="0.12600537" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49716714" visible="true" weight="0.12600537" />
       <window_info id="Structure" order="1" sideWeight="0.5028329" side_tool="true" weight="0.2351387" />
       <window_info id="Favorites" order="2" sideWeight="0.5028329" side_tool="true" weight="0.2351387" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -766,7 +769,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32719547" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32719547" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3274596" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.6018767" side_tool="true" weight="0.24220963" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.39812332" weight="0.53889674" />
@@ -861,7 +864,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="灵敏度分析" />
     <MESSAGE value="修复导航栏显示突出的bug" />
     <MESSAGE value="导航栏增加 数据绑定" />
     <MESSAGE value="完成图片上传功能" />
@@ -886,7 +888,8 @@
     <MESSAGE value="导入数据合法后保存到数据库" />
     <MESSAGE value="模型配置界面增加任务选择下拉框以及修复若干bug" />
     <MESSAGE value="优化任务管理到模型配置的跳转效果" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化任务管理到模型配置的跳转效果" />
+    <MESSAGE value="任务管理界面 创建时间显示优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="任务管理界面 创建时间显示优化" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/views/page/empty.vue">
@@ -939,13 +942,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/img/head-icon.jpg">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page/Head.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="75" column="19" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/api/userApi.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1034,16 +1030,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-608">
-          <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/page/Login.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
@@ -1090,8 +1076,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/page/TaskManage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="189" column="46" lean-forward="true" selection-start-line="189" selection-start-column="46" selection-end-line="189" selection-end-column="46" />
+        <state relative-caret-position="4202">
+          <caret line="191" column="48" selection-start-line="191" selection-start-column="48" selection-end-line="191" selection-end-column="48" />
           <folding>
             <element signature="n#style#0;n#el-button#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-button#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -1100,6 +1086,31 @@
             <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#1;n#el-table#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#2;n#el-table#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/page/ResultShow.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#118#164#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page/Head.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="34" column="53" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
         </state>
       </provider>
     </entry>

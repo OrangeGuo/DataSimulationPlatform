@@ -189,7 +189,7 @@
                         day = day.split("-");
                         let dateYear = day[0];
                         let dateMonth = day[1];
-                        day = day[2].split("T")
+                        day = day[2].split("T");
                         let dateDay = day[0];
                         self.tableData.push({
                             date: dateYear + '-' + dateMonth + '-' + dateDay ,
