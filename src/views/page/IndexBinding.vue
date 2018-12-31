@@ -308,10 +308,12 @@
 
                             obj.parentID = v.parent;
 
-                            obj.weight = v.weight;
 
                             obj.name = v.name;
-
+                            obj.threat = v.threat;
+                            obj.spaceThreat = v.spaceThreat;
+                            obj.emThreat = v.emThreat;
+                            obj.targetThreat = v.targetThreat;
                             obj.taskId = _this.tempTask;
                             arr.push(obj)
 
@@ -384,18 +386,18 @@
                     threat += self.datalist[i].threat;
                     spaceThreat += self.datalist[i].spaceThreat;
                     emThreat += self.datalist[i].emThreat;
-                    targetThreat += self.datalist[i].targetThrest;
+                    targetThreat += self.datalist[i].targetThreat;
                 }
                 for(let i = 0; i< self.datalist.length;i++)
                 {
                     self.datalist[i].threat = self.datalist[i].threat/threat;
                     self.datalist[i].spaceThreat = self.datalist[i].spaceThreat/spaceThreat;
                     self.datalist[i].emThreat = self.datalist[i].emThreat/emThreat;
-                    self.datalist[i].targetThrest = self.datalist[i].targetThrest/targetThreat;
+                    self.datalist[i].targetThreat = self.datalist[i].targetThreat/targetThreat;
                 }
                 for(let i = 0; i< self.datalist.length;i++)
                 {
-                    let temp = self.datalist[i].threat+self.datalist[i].spaceThreat+self.datalist[i].emThreat+self.datalist[i].targetThrest;
+                    let temp = self.datalist[i].threat+self.datalist[i].spaceThreat+self.datalist[i].emThreat+self.datalist[i].targetThreat;
                     self.weight.push({tweight:temp/4});
 
                 }
