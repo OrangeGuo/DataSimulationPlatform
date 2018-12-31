@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <div style="height: 50px;margin-left: 250px" >
+        <div style="height: 50px;margin-left: 250px">
 
             <el-input style="Float: left;height:50px;width: 500px;" float="left" placeholder="请输入关键字"
                       clearable v-model="input"></el-input>
@@ -12,59 +12,59 @@
             </el-button>
         </div>
         <div style="margin-left: 250px">
-        <el-table
-            :data="tableData"
-            height="600"
-            
-            stripe
-            border
-            style="width: 80%"
-            highlight-current-row
-            @row-dblclick="openModule"
-        >
-            <el-table-column
-                prop="taskName"
-                label="任务名称"
-                width="200%">
-                <template slot-scope="scope">
+            <el-table
+                :data="tableData"
+                height="600"
 
-
-                    <div slot="reference" class="name-wrapper">
-                        <el-tag size="medium">{{ scope.row.taskName }}</el-tag>
-                    </div>
-
-                </template>
-            </el-table-column>
-            <el-table-column
-                prop="date"
-                label="创建时间"
-                width="300"
+                stripe
+                border
+                style="width: 80%"
+                highlight-current-row
+                @row-dblclick="openModule"
             >
-                <template slot-scope="scope">
-                    <i class="el-icon-time"></i>
-                    <span style="margin-left: 10px">{{ scope.row.date }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column
-                prop="detail"
-                label="备   注"
-                width="300">
-                <template slot-scope="scope">
-                    <span style="margin-left: 10px">{{ scope.row.detail }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column
+                <el-table-column
+                    prop="taskName"
+                    label="任务名称"
+                    width="200%">
+                    <template slot-scope="scope">
 
-                label="操作"
-                width="150">
-                <template slot-scope="scope">
-                    <el-button icon="el-icon-delete" @click="deleteItem(scope.$index)" type="danger"
-                               size="small"></el-button>
-                    <el-button icon="el-icon-edit" type="primary" size="small"
-                               @click="openEdit(scope.$index)"></el-button>
-                </template>
-            </el-table-column>
-        </el-table>
+
+                        <div slot="reference" class="name-wrapper">
+                            <el-tag size="medium">{{ scope.row.taskName }}</el-tag>
+                        </div>
+
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    prop="date"
+                    label="创建时间"
+                    width="300"
+                >
+                    <template slot-scope="scope">
+                        <i class="el-icon-time"></i>
+                        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    prop="detail"
+                    label="备   注"
+                    width="300">
+                    <template slot-scope="scope">
+                        <span style="margin-left: 10px">{{ scope.row.detail }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column
+
+                    label="操作"
+                    width="150">
+                    <template slot-scope="scope">
+                        <el-button icon="el-icon-delete" @click="deleteItemDia(scope.$index)" type="danger"
+                                   size="small"></el-button>
+                        <el-button icon="el-icon-edit" type="primary" size="small"
+                                   @click="openEdit(scope.$index)"></el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
 
         </div>
         <el-dialog title="新建任务" :visible.sync="dialogAddForm" width="30%">
@@ -95,6 +95,20 @@
                 <el-button type="primary" @click="updateItem">确 定</el-button>
             </div>
         </el-dialog>
+        <el-dialog title="删除任务" :visible.sync="dialogDeleteForm" width="30%">
+            <el-form :model="form">
+                <el-form-item label="任务名称" :label-width="formLabelWidth">
+                    <el-input v-model="form.taskName" autocomplete="off" placeholder="不超过10字符"></el-input>
+                </el-form-item>
+                <el-form-item label="备   注" :label-width="formLabelWidth">
+                    <el-input v-model="form.detail" type="textarea" placeholder="不超过50字符"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogDeleteForm = false">取 消</el-button>
+                <el-button type="primary" @click="deleteItem">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -103,8 +117,8 @@
         name: "TaskManage",
         data() {
             return {
-                input:'',
-                allData:[],
+                input: '',
+                allData: [],
                 flag: 0,
                 id: 1,
                 defaultProps: {
@@ -132,20 +146,20 @@
                 },
                 dialogAddForm: false,
                 dialogUpdateForm: false,
+                dialogDeleteForm: false,
                 tableData: []
             }
         },
         methods: {
-            openModule(row){
+            openModule(row) {
                 localStorage.setItem('task-id', row.id);
-                localStorage.setItem('task-name',row.taskName);
+                localStorage.setItem('task-name', row.taskName);
                 this.$router.push('./ModuleConfig')
             },
-            searchTask(){
-                this.tableData=[];
-                for(let i=0;i<this.allData.length;i++)
-                {
-                    if(this.allData[i].taskName.indexOf(this.input)!==-1)
+            searchTask() {
+                this.tableData = [];
+                for (let i = 0; i < this.allData.length; i++) {
+                    if (this.allData[i].taskName.indexOf(this.input) !== -1)
                         this.tableData.push(this.allData[i]);
                 }
             },
@@ -192,28 +206,35 @@
                         day = day[2].split("T");
                         let dateDay = day[0];
                         self.tableData.push({
-                            date: dateYear + '-' + dateMonth + '-' + dateDay ,
+                            date: dateYear + '-' + dateMonth + '-' + dateDay,
                             taskName: item.taskName,
                             detail: item.detail,
                             id: item.id
                         });
                     });
-                }).then(()=>{
-                    self.allData=self.tableData;
+                }).then(() => {
+                    self.allData = self.tableData;
                 });
             },
-            deleteItem(index) {
+            deleteItemDia(index) {
+                this.dialogDeleteForm = true;
+                localStorage.setItem('task_id', index);
+                this.form.taskName = this.tableData[index].taskName;
+                this.form.detail = this.tableData[index].detail;
+            },
+            deleteItem() {
+                let index = localStorage.getItem("task_id");
                 const self = this;
                 self.$axios.post('/api/task/deleteTask', {
                     taskName: self.tableData[index].taskName
                 }, {}).then((response) => {
-                    let taskId=self.tableData[index].id;
+                    let taskId = self.tableData[index].id;
                     self.tableData.splice(index, 1);
                     self.$message.info("删除成功");
-                    self.$axios.post('/api/node/deleteNodes',{taskId:taskId},{});
-                    self.$axios.post('/api/edge/deleteEdges',{taskId:taskId},{});
-                })
-
+                    self.$axios.post('/api/node/deleteNodes', {taskId: taskId}, {});
+                    self.$axios.post('/api/edge/deleteEdges', {taskId: taskId}, {});
+                });
+                this.dialogDeleteForm = false;
             },
             openEdit(index) {
                 this.dialogUpdateForm = true;
@@ -225,7 +246,7 @@
                 let id = localStorage.getItem("task_id");
                 for (let i = 0; i < this.tableData.length; i++) {
                     if (this.form.taskName === this.tableData[i].taskName) {
-                        this.$message.warning("任务名重复，请重新确认");
+                        if (parseInt(id) !== i) this.$message.warning("任务名重复，请重新确认");
                         return;
                     }
                 }
