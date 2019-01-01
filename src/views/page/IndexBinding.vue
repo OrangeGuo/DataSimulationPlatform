@@ -32,16 +32,6 @@
                 border
                 style="width: 80%;margin-left: 20px">
                 <el-table-column
-                    prop="node_id"
-                    label="结点编号"
-                    width="200">
-                    <template slot-scope="scope">
-                        <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{ scope.row.node_id }}</el-tag>
-                        </div>
-                    </template>
-                </el-table-column>
-                <el-table-column
                     prop="node_name"
                     label="结点名称"
                     width="200">
@@ -57,17 +47,17 @@
                         <span style="margin-left: 10px">{{ scope.row.node_value }}</span>
                     </template>
                 </el-table-column>
-                <el-table-column
-                    prop="parent"
-                    label="父结点"
-                    width="200">
-                    <template slot-scope="scope">
-                        <span style="margin-left: 10px">{{ scope.row.parent }}</span>
-                    </template>
-                </el-table-column>
+                <template v-for='(col) in plan1'>
+                        <el-table-column
+                            :prop="col.dataItem"
+                            :label="col.dataName"
+                            :key="col.dataItem"
+                            width="200">
+                        </el-table-column>
+                </template>
             </el-table>
         </div>
-        <el-dialog title="修改对应结点" :visible.sync="dialogUpdateForm" width="30%">
+        <el-dialog title="编辑威胁度" :visible.sync="dialogUpdateForm" width="30%">
             <el-form :model="form">
                 <el-form-item label="结点名" :label-width="formLabelWidth">
                     <el-input :disabled="true" v-model="form.node_name"></el-input>
@@ -95,6 +85,7 @@
                 datalist: [],
                 weight:[],
                Threat:[],
+                plan1:[],
                 form: {
                     node_name: '',
                     node_value: '',
@@ -105,7 +96,7 @@
                 dropVisible: false,
                 inputVisible: false,
                 title: "选择任务模型",
-                title1: "选择算法",
+                title1: "",
                 alogrim: [{
                     text: "AHP",
                     value: "1",
@@ -146,11 +137,14 @@
             },
             handleCommand(command) {
                 let i = 0;
+                this.title1='选择算法';
+                this.inputVisible=false;
                 for (i = 0; i < this.tasks.length; i++)
                     if (this.tasks[i].value === command)
                         break;
                 this.title = this.tasks[i].text;
                 this.dropVisible = true;
+                this.plan1=[];
                 this.tempTask = command;
                 this.listNode();
             },
@@ -165,7 +159,11 @@
                             node_value: item.value,
                             parent: item.parent,
                             degree: item.degree,
-                            weight: item.weight
+                            weight: item.weight,
+                            threat:0,
+                            spaceThreat:0,
+                            emThreat:0,
+                            targetThreat:0,
                         })
                     });
                 }).then(() => {
@@ -205,11 +203,29 @@
                 })
             },
             handleCommand1(command) {
+                this.plan1=[];
                 let i = 0;
                 for (i = 0; i < this.alogrim.length; i++)
                     if (this.alogrim[i].value === command)
                         break;
                 this.title1 = this.alogrim[i].text;
+                if(this.title1==='AHP')
+                {
+                    this.plan1.push({
+                        dataItem:'threat',
+                        dataName:'威胁度',
+                    },{
+                        dataItem:'spaceThreat',
+                        dataName:'太空威胁度',
+                    },{
+                        dataItem:'emThreat',
+                        dataName:'电磁威胁度'
+                    },{
+                        dataItem:'targetThreat',
+                        dataName:'目标威胁度',
+                    });
+
+                }
                 this.inputVisible = true;
             },
             Analyse() {
@@ -311,6 +327,10 @@
                             obj.weight = v.weight;
 
                             obj.name = v.name;
+                            obj.threat=v.威胁度;
+                            obj.spaceThreat=v.太空威胁度;
+                            obj.emThreat=v.电磁威胁度;
+                            obj.targetThreat=v.目标威胁度;
 
                             obj.taskId = _this.tempTask;
                             arr.push(obj)
@@ -345,11 +365,25 @@
 
 
                         }
+
                         if (flag === true) {
                             for (let i = 0; i < self.datalist.length; i++) {
-                                self.tableData[i].node_value = self.datalist[i].value;
-                                self.tableData[i].node_name = self.datalist[i].name;
+                                for(let j=0;j<self.tableData.length;j++) {
+                                    if( self.tableData[j].node_id ===self.datalist[i].id) {
+                                        self.tableData[j].node_value = self.datalist[i].value;
+                                        if(self.title1==='AHP')
+                                        {
+                                            self.tableData[j].threat=self.datalist[i].threat;
+                                            self.tableData[j].spaceThreat=self.datalist[i].spaceThreat;
+                                            self.tableData[j].emThreat=self.datalist[i].emThreat;
+                                            self.tableData[j].targetThreat=self.datalist[i].targetThreat;
+
+                                        }
+                                    }
+
+                                }
                             }
+                            // console.log(self.tableData);
                             self.saveData();
                         }
 
@@ -384,18 +418,18 @@
                     threat += self.datalist[i].threat;
                     spaceThreat += self.datalist[i].spaceThreat;
                     emThreat += self.datalist[i].emThreat;
-                    targetThreat += self.datalist[i].targetThrest;
+                    targetThreat += self.datalist[i].targetThreat;
                 }
                 for(let i = 0; i< self.datalist.length;i++)
                 {
                     self.datalist[i].threat = self.datalist[i].threat/threat;
                     self.datalist[i].spaceThreat = self.datalist[i].spaceThreat/spaceThreat;
                     self.datalist[i].emThreat = self.datalist[i].emThreat/emThreat;
-                    self.datalist[i].targetThrest = self.datalist[i].targetThrest/targetThreat;
+                    self.datalist[i].targetThreat = self.datalist[i].targetThreat/targetThreat;
                 }
                 for(let i = 0; i< self.datalist.length;i++)
                 {
-                    let temp = self.datalist[i].threat+self.datalist[i].spaceThreat+self.datalist[i].emThreat+self.datalist[i].targetThrest;
+                    let temp = self.datalist[i].threat+self.datalist[i].spaceThreat+self.datalist[i].emThreat+self.datalist[i].targetThreat;
                     self.weight.push({tweight:temp/4});
 
                 }
