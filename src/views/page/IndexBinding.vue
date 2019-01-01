@@ -194,13 +194,13 @@
                     this.$message.warning("未选择文件");
                     return;
                 }
+                this.tempModuleId = row.node_id;
                 if(this.title1=='灰色层次分析法'){
                     this.dialogUpdateForm = true;
                     this.form.threat = row.threat;
                     this.form.emThreat = row.emThreat;
                     this.form.spaceThreat=row.spaceThreat;
                     this.form.targetThreat=row.targetThreat;
-                    this.tempModuleId = row.node_id;
                 }
                 else if(this.title1==='ADC'){
                     this.dialogUpdateForm1=true;
@@ -226,14 +226,14 @@
                 this.dialogUpdateForm1=false;
                 for (let i = 0; i < this.datalist.length; i++) {
                     if (this.datalist[i].id === this.tempModuleId) {
-                        this.datalist[i].weight = parseFloat(this.form.weight);
+                        this.datalist[i].weight = parseFloat(this.form1.weight);
                         break;
                     }
                 }
                 for(let i=0;i<this.tableData.length;i++)
                 {
                     if (this.tableData[i].node_id === this.tempModuleId) {
-                        this.tableData[i].weight = parseFloat(this.form.weight);
+                        this.tableData[i].weight = parseFloat(this.form1.weight);
                         break;
                     }
                 }
@@ -264,6 +264,7 @@
 
                 }
                 else if(this.title1==='ADC'){
+                    this.flagButton=false;
                     this.plan1.push({
                         dataItem:'weight',
                         dataName:'权重',
@@ -273,6 +274,12 @@
             },
             Analyse() {
                 //this.showInbar();
+                if(this.title1==='灰色层次分析法')
+                    this.AHP();
+                else if(this.title1==='ADC') {
+                    this.ADC();
+                    this.$message.info(this.datalist[0].value.toFixed(2));
+                }
                this.$router.push('resultShow');
             },
             assignTableAHP(){
@@ -532,9 +539,7 @@
         mounted() {
             this.listTaskid();
         },
-        components: {
-            Schart
-        },
+
     }
 </script>
 
