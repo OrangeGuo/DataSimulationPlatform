@@ -20,7 +20,7 @@
             <input style="margin-left: 20px" type="file" @change="importf1(this)"
                    v-show="inputVisible"
                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
-            <el-button style="Float: left;height:40px;margin-left: 20px" type="primary" @click="AHPweight">归一化
+            <el-button style="Float: left;height:40px;margin-left: 20px" type="primary" @click="AHPweight" v-show="flagButton">归一化
             </el-button>
             <el-button style="Float: left;height:40px;margin-left: 20px" type="primary" @click="Analyse">一键分析
             </el-button>
@@ -80,11 +80,25 @@
                 <el-button type="primary" @click="showInTable">确 定</el-button>
             </div>
         </el-dialog>
+        <el-dialog title="编辑权重" :visible.sync="dialogUpdateForm1" width="30%">
+            <el-form :model="form1">
+                <el-form-item label="结点名称" :label-width="formLabelWidth">
+                    <el-input  v-model="form1.node_name" :disabled="true"></el-input>
+                </el-form-item>
+                <el-form-item label="权重" :label-width="formLabelWidth">
+                    <el-input v-model="form1.weight"></el-input>
+                </el-form-item>
+
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogUpdateForm1 = false">取 消</el-button>
+                <el-button type="primary" @click="showInTableADC">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
 <script>
-    import Schart from "vue-schart";
 
     export default {
         name: "IndexBinding",
@@ -92,6 +106,8 @@
             return {
                 tasks: [],
                 datalist: [],
+                flagButton:false,
+                dialogUpdateForm1:false,
                 weight:[],
                Threat:[],
                 plan1:[],
@@ -100,6 +116,10 @@
                     spaceThreat: '',
                     emThreat:'',
                     targetThreat:'',
+                },
+                form1:{
+                    node_name:'',
+                    weight:'',
                 },
                 dialogUpdateForm: false,
                 tempTask: '',
@@ -111,25 +131,12 @@
                 alogrim: [{
                     text: "灰色层次分析法",
                     value: "1",
-                }, ],
+                },{
+                    text:"ADC",
+                    value:"2",
+                } ],
                 tempModuleId: '',
                 formLabelWidth: "120px",
-                source: [{
-                    canvasId: "bar",
-                    name: "柱状图",
-                    data: [{
-                        name: "",
-                        value: 0,
-                    }],
-                    options: {
-                        title: "分析结果",
-                        bgColor: "#009688",
-                        titleColor: "#fff",
-                        contentColor: "#cc0632",
-                        axisColor: "#FFF",
-                        fillColor: "#d9f501"
-                    }
-                }]
             }
         },
 
@@ -150,6 +157,7 @@
                 let i = 0;
                 this.title1='选择算法';
                 this.inputVisible=false;
+                this.flagButton=false;
                 for (i = 0; i < this.tasks.length; i++)
                     if (this.tasks[i].value === command)
                         break;
@@ -194,7 +202,11 @@
                     this.form.targetThreat=row.targetThreat;
                     this.tempModuleId = row.node_id;
                 }
-
+                else if(this.title1==='ADC'){
+                    this.dialogUpdateForm1=true;
+                    this.form1.node_name=row.node_name;
+                    this.form1.weight=row.weight;
+                }
             },
             showInTable() {
                 const self = this;
@@ -210,6 +222,22 @@
                 }
                 this.assignTableAHP();
             },
+            showInTableADC(){
+                this.dialogUpdateForm1=false;
+                for (let i = 0; i < this.datalist.length; i++) {
+                    if (this.datalist[i].id === this.tempModuleId) {
+                        this.datalist[i].weight = parseFloat(this.form.weight);
+                        break;
+                    }
+                }
+                for(let i=0;i<this.tableData.length;i++)
+                {
+                    if (this.tableData[i].node_id === this.tempModuleId) {
+                        this.tableData[i].weight = parseFloat(this.form.weight);
+                        break;
+                    }
+                }
+            },
             handleCommand1(command) {
                 this.plan1=[];
                 let i = 0;
@@ -219,6 +247,7 @@
                 this.title1 = this.alogrim[i].text;
                 if(this.title1==='灰色层次分析法')
                 {
+                    this.flagButton=true;
                     this.plan1.push({
                         dataItem:'threat',
                         dataName:'威胁度',
@@ -234,23 +263,17 @@
                     });
 
                 }
+                else if(this.title1==='ADC'){
+                    this.plan1.push({
+                        dataItem:'weight',
+                        dataName:'权重',
+                    })
+                }
                 this.inputVisible = true;
             },
             Analyse() {
                 //this.showInbar();
                this.$router.push('resultShow');
-            },
-            showInbar() {
-                const self = this;
-                self.AHP();
-
-                this.source[0].data = [];
-                for (let i = 0; i < self.datalist.length; i++) {
-                    this.source[0].data.push({
-                        name: self.datalist[i].name,
-                        value: self.datalist[i].value,
-                    });
-                }
             },
             assignTableAHP(){
                 for(let i=0;i<this.tableData.length;i++)
@@ -398,6 +421,9 @@
                                         {
                                             self.assignTableAHP();
 
+                                        }
+                                        else if(self.title1==='ADC'){
+                                            self.tableData[j].weight=self.datalist[i].weight;
                                         }
                                     }
 
