@@ -454,6 +454,28 @@
                 }
                 console.log(self.datalist);
             },
+            ADC(){
+                let self = this;
+                let result = 0;
+
+                for(let i = 0;i<self.datalist.length;i++ )
+                {
+                    if(self.datalist[i].parentID === 1)
+                    {
+                        let j=self.datalist[i].id;
+                        for(let k=i;k<self.datalist.length;k++)
+                        {
+                            if(self.datalist[k].parentID ===j)
+                            {
+                                self.datalist[i].value += self.datalist[k].value*self.datalist[k].weight;
+                            }
+                        }
+                    }
+                }
+                result = self.datalist[1].value*self.datalist[2].value*self.datalist[3].value*self.datalist[4].value*(1-self.datalist[1].value);
+                self.datalist[0].value = result;
+
+            },
             saveData() {
                 let self=this;
                 self.$http.post('/api/node/updateValue', self.datalist)
