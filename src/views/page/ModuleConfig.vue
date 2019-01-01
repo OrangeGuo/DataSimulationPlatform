@@ -14,7 +14,7 @@
                     </el-dropdown-menu>
                 </el-dropdown>
                 <div class="nodes_bus">
-
+&nbsp
                     <el-button style="Float: left;height:40px;width: 120px" type="primary" @click="dragIt('新建节点')"
                                icon="el-icon-plus">新建节点
                     </el-button>
@@ -107,11 +107,14 @@
                     }
                 }
                 let self = this;
-                this.$axios.post('/api/edge/deleteEdges', {taskId: self.taskId}, {}).then((response) => {
+                this.$axios.post('/api/edge/deleteEdges', {taskId: self.taskId}, {}).then(() => {
                     self.$axios.post('/api/edge/addEdges', this.DataAll.edges, {});
-                });
-                this.$axios.post('/api/node/deleteNodes', {taskId: self.taskId}, {}).then((response) => {
+                }).then(() => {
+                    self.$axios.post('/api/node/deleteNodes', {taskId: self.taskId}, {})
+                }).then(() => {
                     self.$axios.post('/api/node/addNodes', this.DataAll.nodes, {});
+                }).then(() => {
+                    self.$message.success("保存成功");
                 });
             },
             loadNodesAndEdges() {
@@ -303,6 +306,8 @@
     }
 
     .nodes_bus {
+        position: absolute;
+        top: 200px;
         user-select: none;
         text-align: center;
     }
