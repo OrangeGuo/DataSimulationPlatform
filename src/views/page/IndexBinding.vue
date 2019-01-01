@@ -201,10 +201,10 @@
                 self.dialogUpdateForm = false;
                 for (let i = 0; i < this.datalist.length; i++) {
                     if (this.datalist[i].id === this.tempModuleId) {
-                        this.datalist[i].threat = this.form.threat;
-                        this.datalist[i].emThreat = this.form.emThreat;
-                        this.datalist[i].spaceThreat = this.form.spaceThreat;
-                        this.datalist[i].targetThreat = this.form.targetThreat;
+                        this.datalist[i].threat = parseFloat(this.form.threat);
+                        this.datalist[i].emThreat = parseFloat(this.form.emThreat);
+                        this.datalist[i].spaceThreat = parseFloat(this.form.spaceThreat);
+                        this.datalist[i].targetThreat = parseFloat(this.form.targetThreat);
                         break;
                     }
                 }
