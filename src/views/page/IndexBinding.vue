@@ -20,8 +20,11 @@
             <input style="margin-left: 20px" type="file" @change="importf1(this)"
                    v-show="inputVisible"
                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+            <el-button style="Float: left;height:40px;margin-left: 20px" type="primary" @click="AHPweight" v-show="flagButton">归一化
+            </el-button>
             <el-button style="Float: left;height:40px;margin-left: 20px" type="primary" @click="Analyse">一键分析
             </el-button>
+
         </div>
         <div id="wrap">
             <el-table
@@ -59,11 +62,17 @@
         </div>
         <el-dialog title="编辑威胁度" :visible.sync="dialogUpdateForm" width="30%">
             <el-form :model="form">
-                <el-form-item label="结点名" :label-width="formLabelWidth">
-                    <el-input :disabled="true" v-model="form.node_name"></el-input>
+                <el-form-item label="威胁度" :label-width="formLabelWidth">
+                    <el-input  v-model="form.threat"></el-input>
                 </el-form-item>
-                <el-form-item label="结点值" :label-width="formLabelWidth">
-                    <el-input v-model="form.node_value"></el-input>
+                <el-form-item label="太空威胁度" :label-width="formLabelWidth">
+                    <el-input v-model="form.spaceThreat"></el-input>
+                </el-form-item>
+                <el-form-item label="电磁威胁度" :label-width="formLabelWidth">
+                    <el-input v-model="form.emThreat"></el-input>
+                </el-form-item>
+                <el-form-item label="目标威胁度" :label-width="formLabelWidth">
+                    <el-input v-model="form.targetThreat"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -71,11 +80,25 @@
                 <el-button type="primary" @click="showInTable">确 定</el-button>
             </div>
         </el-dialog>
+        <el-dialog title="编辑权重" :visible.sync="dialogUpdateForm1" width="30%">
+            <el-form :model="form1">
+                <el-form-item label="结点名称" :label-width="formLabelWidth">
+                    <el-input  v-model="form1.node_name" :disabled="true"></el-input>
+                </el-form-item>
+                <el-form-item label="权重" :label-width="formLabelWidth">
+                    <el-input v-model="form1.weight"></el-input>
+                </el-form-item>
+
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogUpdateForm1 = false">取 消</el-button>
+                <el-button type="primary" @click="showInTableADC">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
 <script>
-    import Schart from "vue-schart";
 
     export default {
         name: "IndexBinding",
@@ -83,12 +106,20 @@
             return {
                 tasks: [],
                 datalist: [],
+                flagButton:false,
+                dialogUpdateForm1:false,
                 weight:[],
                Threat:[],
                 plan1:[],
                 form: {
-                    node_name: '',
-                    node_value: '',
+                    threat: '',
+                    spaceThreat: '',
+                    emThreat:'',
+                    targetThreat:'',
+                },
+                form1:{
+                    node_name:'',
+                    weight:'',
                 },
                 dialogUpdateForm: false,
                 tempTask: '',
@@ -98,27 +129,14 @@
                 title: "选择任务模型",
                 title1: "",
                 alogrim: [{
-                    text: "AHP",
+                    text: "灰色层次分析法",
                     value: "1",
-                }, ],
+                },{
+                    text:"ADC",
+                    value:"2",
+                } ],
                 tempModuleId: '',
                 formLabelWidth: "120px",
-                source: [{
-                    canvasId: "bar",
-                    name: "柱状图",
-                    data: [{
-                        name: "",
-                        value: 0,
-                    }],
-                    options: {
-                        title: "分析结果",
-                        bgColor: "#009688",
-                        titleColor: "#fff",
-                        contentColor: "#cc0632",
-                        axisColor: "#FFF",
-                        fillColor: "#d9f501"
-                    }
-                }]
             }
         },
 
@@ -139,6 +157,7 @@
                 let i = 0;
                 this.title1='选择算法';
                 this.inputVisible=false;
+                this.flagButton=false;
                 for (i = 0; i < this.tasks.length; i++)
                     if (this.tasks[i].value === command)
                         break;
@@ -175,32 +194,49 @@
                     this.$message.warning("未选择文件");
                     return;
                 }
-                if (row.degree !== 1) {
-                    this.$message.warning("非叶子节点不可修改");
-                    return;
-                }
-                this.dialogUpdateForm = true;
-                this.form.node_name = row.node_name;
-                this.form.node_value = row.node_value;
                 this.tempModuleId = row.node_id;
+                if(this.title1=='灰色层次分析法'){
+                    this.dialogUpdateForm = true;
+                    this.form.threat = row.threat;
+                    this.form.emThreat = row.emThreat;
+                    this.form.spaceThreat=row.spaceThreat;
+                    this.form.targetThreat=row.targetThreat;
+                }
+                else if(this.title1==='ADC'){
+                    this.dialogUpdateForm1=true;
+                    this.form1.node_name=row.node_name;
+                    this.form1.weight=row.weight;
+                }
             },
             showInTable() {
                 const self = this;
                 self.dialogUpdateForm = false;
                 for (let i = 0; i < this.datalist.length; i++) {
                     if (this.datalist[i].id === this.tempModuleId) {
-                        this.datalist[i].value = this.form.node_value;
+                        this.datalist[i].threat = parseFloat(this.form.threat);
+                        this.datalist[i].emThreat = parseFloat(this.form.emThreat);
+                        this.datalist[i].spaceThreat = parseFloat(this.form.spaceThreat);
+                        this.datalist[i].targetThreat = parseFloat(this.form.targetThreat);
                         break;
                     }
                 }
-                self.$http.post('/api/node/updateNodes', {
-                    name: self.form.node_name,
-                    value: self.form.node_value,
-                    id: parseInt(self.tempModuleId),
-                    taskId: parseInt(self.tempTask)
-                }, {}).then(() => {
-                    self.listNode();
-                })
+                this.assignTableAHP();
+            },
+            showInTableADC(){
+                this.dialogUpdateForm1=false;
+                for (let i = 0; i < this.datalist.length; i++) {
+                    if (this.datalist[i].id === this.tempModuleId) {
+                        this.datalist[i].weight = parseFloat(this.form1.weight);
+                        break;
+                    }
+                }
+                for(let i=0;i<this.tableData.length;i++)
+                {
+                    if (this.tableData[i].node_id === this.tempModuleId) {
+                        this.tableData[i].weight = parseFloat(this.form1.weight);
+                        break;
+                    }
+                }
             },
             handleCommand1(command) {
                 this.plan1=[];
@@ -209,8 +245,9 @@
                     if (this.alogrim[i].value === command)
                         break;
                 this.title1 = this.alogrim[i].text;
-                if(this.title1==='AHP')
+                if(this.title1==='灰色层次分析法')
                 {
+                    this.flagButton=true;
                     this.plan1.push({
                         dataItem:'threat',
                         dataName:'威胁度',
@@ -226,21 +263,37 @@
                     });
 
                 }
+                else if(this.title1==='ADC'){
+                    this.flagButton=false;
+                    this.plan1.push({
+                        dataItem:'weight',
+                        dataName:'权重',
+                    })
+                }
                 this.inputVisible = true;
             },
             Analyse() {
-                this.showInbar();
+                //this.showInbar();
+                if(this.title1==='灰色层次分析法')
+                    this.AHP();
+                else if(this.title1==='ADC') {
+                    this.ADC();
+                    this.$message.info(this.datalist[0].value.toFixed(2));
+                }
+               this.$router.push('resultShow');
             },
-            showInbar() {
-                const self = this;
-                self.AHP();
-
-                this.source[0].data = [];
-                for (let i = 0; i < self.datalist.length; i++) {
-                    this.source[0].data.push({
-                        name: self.datalist[i].name,
-                        value: self.datalist[i].value,
-                    });
+            assignTableAHP(){
+                for(let i=0;i<this.tableData.length;i++)
+                {
+                    for(let j=0;j<this.datalist.length;j++)
+                    {
+                        if(this.datalist[j].id===this.tableData[i].node_id) {
+                            this.tableData[i].threat = this.datalist[j].threat;
+                            this.tableData[i].spaceThreat = this.datalist[j].spaceThreat;
+                            this.tableData[i].emThreat = this.datalist[j].emThreat;
+                            this.tableData[i].targetThreat = this.datalist[j].targetThreat;
+                        }
+                    }
                 }
             },
             importf1(obj) {
@@ -371,13 +424,13 @@
                                 for(let j=0;j<self.tableData.length;j++) {
                                     if( self.tableData[j].node_id ===self.datalist[i].id) {
                                         self.tableData[j].node_value = self.datalist[i].value;
-                                        if(self.title1==='AHP')
+                                        if(self.title1==='灰色层次分析法')
                                         {
-                                            self.tableData[j].threat=self.datalist[i].threat;
-                                            self.tableData[j].spaceThreat=self.datalist[i].spaceThreat;
-                                            self.tableData[j].emThreat=self.datalist[i].emThreat;
-                                            self.tableData[j].targetThreat=self.datalist[i].targetThreat;
+                                            self.assignTableAHP();
 
+                                        }
+                                        else if(self.title1==='ADC'){
+                                            self.tableData[j].weight=self.datalist[i].weight;
                                         }
                                     }
 
@@ -433,6 +486,7 @@
                     self.weight.push({tweight:temp/4});
 
                 }
+                this.assignTableAHP();
             },
             AHP() {
                 let self = this;
@@ -454,6 +508,28 @@
                 }
                 console.log(self.datalist);
             },
+            ADC(){
+                let self = this;
+                let result = 0;
+
+                for(let i = 0;i<self.datalist.length;i++ )
+                {
+                    if(self.datalist[i].parentID === 1)
+                    {
+                        let j=self.datalist[i].id;
+                        for(let k=i;k<self.datalist.length;k++)
+                        {
+                            if(self.datalist[k].parentID ===j)
+                            {
+                                self.datalist[i].value += self.datalist[k].value*self.datalist[k].weight;
+                            }
+                        }
+                    }
+                }
+                result = self.datalist[1].value*self.datalist[2].value*self.datalist[3].value*self.datalist[4].value*(1-self.datalist[1].value);
+                self.datalist[0].value = result;
+
+            },
             saveData() {
                 let self=this;
                 self.$http.post('/api/node/updateValue', self.datalist)
@@ -463,9 +539,7 @@
         mounted() {
             this.listTaskid();
         },
-        components: {
-            Schart
-        },
+
     }
 </script>
 
