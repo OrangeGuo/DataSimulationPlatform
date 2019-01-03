@@ -144,9 +144,12 @@
                 tasks: [],
                 allData: [],
                  alogrim: [{
-                    text: "AHP",
+                    text: "灰色层次分析法",
                     value: "1",
-                }, ],
+                },{
+                    text:'ADC',
+                     value:'2',
+                 } ],
                 tableData: [],
                 plan: [],
                 plan1: [],
@@ -160,11 +163,11 @@
                     }],
                     options: {
                         title: "灵敏度分析",
-                        bgColor: "#009688",
-                        titleColor: "#fff",
-                        contentColor: "#cc0632",
-                        axisColor: "#FFF",
-                        fillColor: "#d9f501"
+                        bgColor: "#fff",
+                        titleColor: "#000000",
+                        contentColor: "#fff",
+                        axisColor: "#000000",
+                        fillColor: "#cc0632"
                     }
                 }]
             }
@@ -248,12 +251,17 @@
                             obj.id = v.id;
 
                             obj.value = v.value;
+                            obj.dbValue=v.value;
 
                             obj.parentID = v.parent;
 
                             obj.weight = v.weight;
 
                             obj.name = v.name;
+                            obj.threat=v.威胁度;
+                            obj.spaceThreat=v.太空威胁度;
+                            obj.emThreat=v.电磁威胁度;
+                            obj.targetThreat=v.目标威胁度;
 
                             obj.taskId = _this.tempTask;
                             arr.push(obj)
@@ -289,11 +297,25 @@
 
                         }
                         if (flag === true) {
-                            for (let i = 0; i < self.datalist.length; i++) {
-                                self.allData[i].node_value = self.datalist[i].value;
-                                self.allData[i].node_name = self.datalist[i].name;
+                           for (let i = 0; i < self.datalist.length; i++) {
+                                for(let j=0;j<self.allData.length;j++) {
+                                    if( self.allData[j].node_id ===self.datalist[i].id) {
+                                        self.allData[j].node_value = self.datalist[i].value;
+                                        if(self.title1==='灰色层次分析法')
+                                        {
+                                            self.allData[j].threat = self.datalist[i].threat;
+                                            self.allData[j].spaceThreat = self.datalist[i].spaceThreat;
+                                            self.allData[j].emThreat = self.datalist[i].emThreat;
+                                            self.allData[j].targetThreat = self.datalist[i].targetThreat;
+                                        }
+                                        else if(self.title1==='ADC'){
+                                            self.allData[j].weight=self.datalist[i].weight;
+                                        }
+                                    }
+
+                                }
                             }
-                            this.saveData();
+
                         }
 
 
@@ -315,9 +337,6 @@
 
 
             },
-            saveData(){
-
-            },
             listTaskid() {
                 const self = this;
                 self.$axios.post('/api/task/listTask').then((res) => {
@@ -336,6 +355,15 @@
                     if (this.tasks[i].value === command)
                         break;
                 this.title = this.tasks[i].text;
+                this.datalist=[];
+                this.nodeIsSelected=[];
+                this.plan=[];
+                this.plan1=[];
+                this.source[0].data=[];
+                this.allData=[];
+                this.tableData=[];
+                this.title1='选择算法';
+                this.dropVisible=false;
                 this.listModules(command);
             },
             handleCommand1(command) {
@@ -355,9 +383,14 @@
                             node_id: item.id,
                             node_name: item.name,
                             node_value: item.value,
+                            dbValue:item.value,
                             parent: item.parent,
                             degree: item.degree,
                             weight: item.weight,
+                            threat:'',
+                            spaceThreat:'',
+                            emThreat:'',
+                            targetThreat:'',
                             range: '',
                             long: '',
                         })
@@ -372,12 +405,18 @@
             clearItem(index) {
                 this.tableData[index].range = "";
                 this.tableData[index].long = "";
+                this.tableData[index].node_value=this.tableData[index].dbValue;
                 for (let i = 0; i < this.nodeIsSelected.length; i++) {
                     if (this.nodeIsSelected[i].node_id === this.tableData[index].node_id)
                         this.nodeIsSelected.splice(i, 1);
                 }
             },
             openDiag(row) {
+                if(this.datalist.length===0)
+                {
+                    this.$message.warning('请绑定数据');
+                    return;
+                }
                 this.dialogUpdateForm = true;
                 this.form.begin='';
                 this.form.end='';
@@ -473,20 +512,108 @@
                 }
 
             },
+             assignTableAHP(){
+                for(let i=0;i<this.allData.length;i++)
+                {
+                    for(let j=0;j<this.datalist.length;j++)
+                    {
+                        if(this.datalist[j].id===this.allData[i].node_id) {
+                            this.allData[i].threat = this.datalist[j].threat;
+                            this.allData[i].spaceThreat = this.datalist[j].spaceThreat;
+                            this.allData[i].emThreat = this.datalist[j].emThreat;
+                            this.allData[i].targetThreat = this.datalist[j].targetThreat;
+                            this.allData[i].weight = this.datalist[j].weight;
+                        }
+                    }
+                }
+            },
+            AHPweight()
+            {
+                let self = this;
+                let threat = 0;
+                let spaceThreat = 0;
+                let emThreat = 0;
+                let targetThreat  = 0;
+                for(let i = 0; i< self.datalist.length;i++)
+                {
+                    threat += self.datalist[i].threat;
+                    spaceThreat += self.datalist[i].spaceThreat;
+                    emThreat += self.datalist[i].emThreat;
+                    targetThreat += self.datalist[i].targetThreat;
+                }
+                for(let i = 0; i< self.datalist.length;i++)
+                {
+                    self.datalist[i].threat = self.datalist[i].threat/threat;
+                    self.datalist[i].spaceThreat = self.datalist[i].spaceThreat/spaceThreat;
+                    self.datalist[i].emThreat = self.datalist[i].emThreat/emThreat;
+                    self.datalist[i].targetThreat = self.datalist[i].targetThreat/targetThreat;
+                }
+                for(let i = 0; i< self.datalist.length;i++)
+                {
+                    let temp = self.datalist[i].threat+self.datalist[i].spaceThreat+self.datalist[i].emThreat+self.datalist[i].targetThreat;
+                    self.datalist[i].weight=temp/4;
+
+                }
+                this.assignTableAHP();
+            },
             calAHP(){
+                const self=this;
+                if(this.title1==='灰色层次分析法')
+                    this.AHPweight();
+
                 for(let i=0;i<this.plan.length;i++)
                 {
-                    for(let t=0;t<this.allData.length;t++)
-                        this.allData[t].node_value=0;
-                    for(let j=0;j<this.tableData.length;j++)
-                    {
-                        this.tableData[j].node_value=this.plan[i][this.tableData[j].node_name];
+                    for(let g=0;g<this.datalist.length;g++){
+                        this.datalist[g].value=this.datalist[g].dbValue;
                     }
 
-                    for(let x=0;x<this.allData.length;x++)
-                        if(this.allData[x].parent===0)
+                    for(let j=0;j<this.datalist.length;j++)
+                    {
+                        this.datalist[j].value=this.plan[i][this.datalist[j].name];
+                    }
+
+                    if(this.title1==='灰色层次分析法')
+                    {
+                       for (let a=this.datalist.length-1; a >0;a--) {
+                             for (let y = 0; y < self.datalist.length; y++) {
+
+                                if (self.datalist[y].id === self.datalist[a].parentID) {
+
+                                     let temp_value = parseFloat(self.datalist[a].value);
+                                    let temp_weight = parseFloat(self.datalist[a].weight);
+                                    let temp = parseFloat(self.datalist[y].value);
+                                    temp += temp_weight * temp_value;
+                                     self.datalist[y].value = temp.toFixed(5);
+                                }
+                             }
+
+                        }
+                     }
+                     else if(this.title1='ADC'){
+                         let result = 0;
+
+                        for(let i = 0;i<self.datalist.length;i++ )
                         {
-                            this.plan[i].root=this.allData[x].node_value;
+                            if(self.datalist[i].parentID === 1)
+                            {
+                                let j=self.datalist[i].id;
+                                for(let k=i;k<self.datalist.length;k++)
+                                {
+                                    if(self.datalist[k].parentID ===j)
+                                    {
+                                        self.datalist[i].value += self.datalist[k].value*self.datalist[k].weight;
+                                    }
+                                }
+                             }
+                         }
+                        result = self.datalist[1].value*self.datalist[2].value*self.datalist[3].value*self.datalist[4].value*(1-self.datalist[1].value);
+                        self.datalist[0].value = result.toFixed(2);
+                    }
+
+                    for(let x=0;x<this.datalist.length;x++)
+                        if(this.datalist[x].parentID===0)
+                        {
+                            this.plan[i].root=this.datalist[x].value;
                         }
                 }
             },
@@ -566,6 +693,10 @@
                         value: this.plan[g].root
                     })
                 }
+            },
+             ADC(){
+                let self = this;
+
             },
         },
         mounted() {

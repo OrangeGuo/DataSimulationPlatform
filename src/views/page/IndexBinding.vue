@@ -274,13 +274,16 @@
             },
             Analyse() {
                 //this.showInbar();
-                if(this.title1==='灰色层次分析法')
+                if(this.title1==='灰色层次分析法') {
+
+                    console.log(this.datalist);
                     this.AHP();
+                }
                 else if(this.title1==='ADC') {
                     this.ADC();
                     this.$message.info(this.datalist[0].value.toFixed(2));
                 }
-               this.$router.push('resultShow');
+               //this.$router.push('resultShow');
             },
             assignTableAHP(){
                 for(let i=0;i<this.tableData.length;i++)
@@ -292,6 +295,7 @@
                             this.tableData[i].spaceThreat = this.datalist[j].spaceThreat;
                             this.tableData[i].emThreat = this.datalist[j].emThreat;
                             this.tableData[i].targetThreat = this.datalist[j].targetThreat;
+                            this.tableData[i].weight = this.datalist[j].weight;
                         }
                     }
                 }
@@ -426,7 +430,10 @@
                                         self.tableData[j].node_value = self.datalist[i].value;
                                         if(self.title1==='灰色层次分析法')
                                         {
-                                            self.assignTableAHP();
+                                            self.tableData[j].threat=self.datalist[i].threat;
+                                            self.tableData[j].emThreat=self.datalist[i].emThreat;
+                                            self.tableData[j].spaceThreat=self.datalist[i].spaceThreat;
+                                            self.tableData[j].targetThreat=self.datalist[i].targetThreat;
 
                                         }
                                         else if(self.title1==='ADC'){
@@ -492,7 +499,7 @@
                 let self = this;
 
                 self.AHPweight();
-                for (let i = 1; i < self.datalist.length; i++) {
+                for (let i =  self.datalist.length-1; i >0;i--) {
                     for (let y = 0; y < self.datalist.length; y++) {
 
                         if (self.datalist[y].id === self.datalist[i].parentID) {
@@ -528,6 +535,7 @@
                 }
                 result = self.datalist[1].value*self.datalist[2].value*self.datalist[3].value*self.datalist[4].value*(1-self.datalist[1].value);
                 self.datalist[0].value = result;
+                console.log(result);
 
             },
             saveData() {
