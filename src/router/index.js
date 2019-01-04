@@ -9,7 +9,6 @@ import SensAnalyse from '../views/page/SensAnalyse';
 import ModuleConfig from '../views/page/ModuleConfig';
 import IndexBinding from '../views/page/IndexBinding'
 import ResultShow from '../views/page/ResultShow'
-import Home from '../views/page/Home'
 import Page from '../components/page/Page';	//主页面模板
 import Readme from '../views/page/Readme';	//了解系统
 import ResetPwd from '../views/page/ResetPwd';//重置密码
@@ -36,7 +35,7 @@ export default new Router({
         {
             path: '/page',//页面主体
             component: Page,
-            redirect: '/page/home',
+            redirect: '/page/taskManage',
             children: [
                 {
                     path: 'taskManage',
@@ -69,10 +68,6 @@ export default new Router({
                 {
                     path: 'resultShow',
                     component: ResultShow
-                },
-                {
-                    path: 'home',
-                    component: Home
                 }
             ]
         }
