@@ -189,10 +189,6 @@
                 })
             },
             openDiag(row) {
-                if (this.datalist.length === 0) {
-                    this.$message.warning("未选择文件");
-                    return;
-                }
                 this.tempModuleId = row.node_id;
                 if(this.title1=='灰色层次分析法'){
                     this.dialogUpdateForm = true;
@@ -272,6 +268,10 @@
                 this.inputVisible = true;
             },
             Analyse() {
+                if(this.datalist.length===0)
+                {
+                    this.assignDataList();
+                }
                 if(this.title1==='灰色层次分析法') {
                     this.AHP();
                 }
@@ -284,6 +284,12 @@
                    path: '/page/resultShow' ,
                    query: {name: this.datalist}});
 
+            },
+            assignDataList(){
+                for(let i=0;i<this.tableData.length;i++)
+                {
+                    this.datalist.push(this.tableData[i]);
+                }
             },
             assignTableAHP(){
                 for(let i=0;i<this.tableData.length;i++)
