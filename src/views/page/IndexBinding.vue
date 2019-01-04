@@ -533,7 +533,7 @@
                         }
                     }
                 }
-                result = self.datalist[1].value*self.datalist[2].value*self.datalist[3].value*self.datalist[4].value*(1-self.datalist[1].value);
+                result = self.datalist[1].value*self.datalist[2].value*self.datalist[3].value*self.datalist[4].value*(100-self.datalist[1].value);
                 self.datalist[0].value = result;
                 console.log(result);
 
