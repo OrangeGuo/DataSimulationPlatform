@@ -694,10 +694,6 @@
                     })
                 }
             },
-             ADC(){
-                let self = this;
-
-            },
         },
         mounted() {
             this.listTaskid();

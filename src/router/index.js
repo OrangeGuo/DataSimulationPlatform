@@ -52,7 +52,7 @@ export default new Router({
                 },
                 {
                     path: 'indexBinding',
-                    component: IndexBinding
+                    component: IndexBinding,
                 },
                 {
                     path: 'readme',

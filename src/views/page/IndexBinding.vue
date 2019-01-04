@@ -99,7 +99,6 @@
 </template>
 
 <script>
-
     export default {
         name: "IndexBinding",
         data() {
@@ -273,17 +272,18 @@
                 this.inputVisible = true;
             },
             Analyse() {
-                //this.showInbar();
                 if(this.title1==='灰色层次分析法') {
-
-                    console.log(this.datalist);
                     this.AHP();
                 }
                 else if(this.title1==='ADC') {
                     this.ADC();
-                    this.$message.info(this.datalist[0].value.toFixed(2));
                 }
-               //this.$router.push('resultShow');
+                for(let i=0;i<this.datalist.length;i++)
+                    this.datalist[i].value=this.datalist[i].value.toFixed(2);
+               this.$router.push({
+                   path: '/page/resultShow' ,
+                   query: {name: this.datalist}});
+
             },
             assignTableAHP(){
                 for(let i=0;i<this.tableData.length;i++)
@@ -291,10 +291,10 @@
                     for(let j=0;j<this.datalist.length;j++)
                     {
                         if(this.datalist[j].id===this.tableData[i].node_id) {
-                            this.tableData[i].threat = this.datalist[j].threat;
-                            this.tableData[i].spaceThreat = this.datalist[j].spaceThreat;
-                            this.tableData[i].emThreat = this.datalist[j].emThreat;
-                            this.tableData[i].targetThreat = this.datalist[j].targetThreat;
+                            this.tableData[i].threat = this.datalist[j].threat.toFixed(2);
+                            this.tableData[i].spaceThreat = this.datalist[j].spaceThreat.toFixed(2);
+                            this.tableData[i].emThreat = this.datalist[j].emThreat.toFixed(2);
+                            this.tableData[i].targetThreat = this.datalist[j].targetThreat.toFixed(2);
                             this.tableData[i].weight = this.datalist[j].weight;
                         }
                     }
@@ -513,7 +513,6 @@
                     }
 
                 }
-                console.log(self.datalist);
             },
             ADC(){
                 let self = this;
@@ -533,7 +532,7 @@
                         }
                     }
                 }
-                result = self.datalist[1].value*self.datalist[2].value*self.datalist[3].value*self.datalist[4].value*(100-self.datalist[1].value);
+                result = self.datalist[1].value*self.datalist[2].value*self.datalist[3].value*self.datalist[4].value*(10-self.datalist[1].value);
                 self.datalist[0].value = result;
                 console.log(result);
 
